@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Report - Teacher</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/nav+body.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
+    </head>    
+    <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3">Ya-Shiba<img src="img/Logo(Ya-Shiba).png" class="logo" width="57" height="50" alt=""></a>
             <!-- Sidebar Toggle-->
@@ -29,7 +25,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="g_homepage.html">Logout</a></li>
+                        <li><a class="dropdown-item" href="g_homepage.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -41,24 +37,24 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="t_homepage.html">
+                            <a class="nav-link" href="t_homepage.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-school"></i></i></div>
                                 All Classes
                             </a>
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="t_create_classes.html">
+                            <a class="nav-link" href="t_create_classes.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-square-plus"></i></div>
                                 Create Classes
                             </a>
-                            <a class="nav-link" href="t_hidden_class.html">
+                            <a class="nav-link" href="t_hidden_class.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye-slash"></i></div>
                                 Hidden Classes
                             </a>
-                            <a class="nav-link" href="t_student_batch.html">
+                            <a class="nav-link" href="t_student_batch.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Student Batch
                             </a>
-                            <a class="nav-link" href="t_report.html">
+                            <a class="nav-link" href="t_report.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-flag"></i></div>
                                 Report
                             </a>
@@ -70,37 +66,8 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content" class="bg-light">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Report</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"></li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                Description bla bla bla
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Ya-Shiba 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-    </body>
-</html>
+
