@@ -30,7 +30,7 @@
                                 <i class="fas fa-table me-1"></i>
                                 Accounts Data
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style ="font-family:Mukta;">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>

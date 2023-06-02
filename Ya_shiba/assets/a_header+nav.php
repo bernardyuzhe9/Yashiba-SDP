@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en"> 
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,10 +9,16 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/nav+body.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body>
         <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-4">Ya-Shiba<img src="img/Logo(Ya-Shiba).png" class="logo" width="57" height="50" alt=""></a>
+            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "a_dashboard.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="57" height="50" alt="" ></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -31,7 +39,7 @@
             </ul>
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav"  style ="font-family:Nunito;">
                 <!-- sideNav bg color-->>
                 <nav class="sb-sidenav accordion sb-sidenav-white" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
@@ -84,8 +92,9 @@
                     </div>
                 </nav>
             </div>
+        </body>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-
+</html>
