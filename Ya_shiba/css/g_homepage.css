@@ -1,0 +1,257 @@
+/* Image Slider */
+/* Position */
+#imageSlider{
+    margin: 0;
+    padding: 0;
+    height: 630px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Slides */
+.slider{
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.slides{
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+.slides input{
+    display: none;
+}
+.slide{
+    width: 20%;
+    transition: 2s;
+}
+.slide img{
+    width: 800px;
+    height: 500px;
+}
+/*manual slide navigation*/
+.navigation-manual{
+    position: absolute;
+    width: 800px;
+    margin-top: -75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.manual-btn{
+    border: 2px solid rgb(206, 202, 202);
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 50px;
+}
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+.manual-btn:hover{
+    background: rgb(206, 202, 202);
+}
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+#radio2:checked ~ .first{
+    margin-left: -20%;
+}
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+#radio4:checked ~ .first{
+    margin-left: -60%;
+}
+/*automatic navigation*/
+.navigation-auto{
+    position: absolute;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    margin-top: 425px;
+    align-items: center;
+}
+.navigation-auto div{
+    border: 2px solid rgb(206, 202, 202);
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+    margin-top: 50px;
+}
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+#radio1:checked ~ .navigation-auto .auto-btn1,
+#radio2:checked ~ .navigation-auto .auto-btn2,
+#radio3:checked ~ .navigation-auto .auto-btn3,
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    background: rgb(206, 202, 202);
+}
+/* Featuring */
+#feature {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.featureRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+.featureRow h1 {
+    width: 100%;
+    margin: 0.6em 0;
+    text-align: center;
+    color: #070024;
+}
+.featureColumn {
+    padding: 1em;
+}
+.card {
+    padding: 3.1em 1.25em;
+    text-align: center;
+    background: linear-gradient(0deg, #365268 10px, transparent 10px);
+    background-repeat: no-repeat;
+    background-position: 0 0.62em;
+    box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.15);
+    border-radius: 0.5em;
+    transition: 0.5s;
+    cursor: pointer;
+    height: 280px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 90px;
+}
+.card .icon {
+    font-size: 2.5em;
+    height: 1.5em;
+    width: 1.5em;
+    margin: auto;
+    background-color: #365268;
+    display:grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+}
+.icon:before {
+    position: absolute;
+    content: "";
+    height: 1.5em;
+    width: 1.5em;
+    border: 0.12em solid #365268;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.card h3 {
+    font-size: 1.3em;
+    margin: 1em 0 1.4em 0;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #070024;
+}
+.card p {
+    line-height: 2em;
+    color: #625a71;
+    font-family:Mukta;
+}
+.card:hover {
+    background-position: 0;
+}
+.card:hover .icon:before {
+    height: 2.25em;
+    width: 2.25em;
+}
+/* Our Team */
+.ourteamtitle{
+    width: 100%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+    color: #070024;
+}
+.otmain{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.otprofile-card{
+    position: relative;
+    width: 240px;
+    height: 240px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 22px #3336;
+    transition: 0.6s;
+
+}
+.otprofile-card:hover{
+    border-radius: 10px;
+    height: 290px;
+}
+.otprofile-card .otimg{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 0.6s;
+    z-index: 99;
+}
+.otprofile-card:hover .otimg{
+    transform: translateY(-60px);
+}
+.otimg img{
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 22px #3336;
+    transition: 0.6s;
+}
+.otprofile-card:hover img{
+    border-radius: 10px;
+}
+.otcaption{
+    text-align: center;
+    transform: translateY(-80px);
+    opacity: 0;
+    transition: 0.6s;
+}
+.otprofile-card:hover .otcaption{
+    opacity: 1;
+}
+.otcaption p{
+    font-size: 17px;
+    color: #0c52a1;
+    margin: 2px 0 6px 0;
+    font-family: Mukta;
+}
+.otcaption h3{
+    font-size: 21px;
+    font-family: Karla;
+}
+.otcaption .otsocial-links a{
+    color: #333;
+    margin-right: 8px;
+    font-size: 18px;
+    transition: 0.6s;
+}
+.otsocial-links a:hover{
+    color: #0c52a1;
+}
+/* PartnerShip School */
+.pstitle{
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+    color: #070024;
+}
+/* Review */
+.reviewtitle{
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+    color: #070024;
+}
