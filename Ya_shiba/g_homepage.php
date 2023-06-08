@@ -22,7 +22,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "g_homepage.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="57" height="50" alt="" ></a>
+            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "g_homepage.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="55" height="50" alt="" ></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -56,7 +56,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Our Team
                             </a>
-                            <a class="nav-link" href="#PSchool">
+                            <a class="nav-link" href="#PScholl">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Partnership Schools
                             </a>
@@ -76,26 +76,26 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
-                        <!-- Event and Advertisement Slider -->
+                        <!--Slider -->
                         <div id="imageSlider">
-                            <div class="slider">
+                            <div class="islider">
                                 <!--radio buttons -->
-                                <div class="slides">
+                                <div class="islides">
                                 <input type="radio" name="radio-btn" id="radio1">
                                 <input type="radio" name="radio-btn" id="radio2">
                                 <input type="radio" name="radio-btn" id="radio3">
                                 <input type="radio" name="radio-btn" id="radio4">
                                 <!-- slide images -->
-                                <div class="slide first">
+                                <div class="islide first">
                                     <img src="image/Event1.png" alt="Sustainable Agriculture Summit" title="Sustainable Agriculture Summit">
                                 </div>
-                                <div class="slide">
+                                <div class="islide">
                                     <img src="image/Event2.png" alt="10th EcoFarm Conference" title="10th EcoFarm Conference">
                                 </div>
-                                <div class="slide">
+                                <div class="islide">
                                     <img src="image/Advertisement1.png" alt="Agriculture Farming Service" title="Agriculture Farming Service">
                                 </div>
-                                <div class="slide">
+                                <div class="islide">
                                     <img src="image/FAQ.png" alt="Advertisment/Event FAQ" title="Advertisment/Event FAQ">
                                 </div>
                                 <!-- automatic navigation button -->
@@ -108,10 +108,10 @@
                                 </div>
                                 <!-- manual navigation button -->
                                 <div class="navigation-manual">
-                                    <label for="radio1" class="manual-btn"></label>
-                                    <label for="radio2" class="manual-btn"></label>
-                                    <label for="radio3" class="manual-btn"></label>
-                                    <label for="radio4" class="manual-btn"></label>
+                                <label for="radio1" class="manual-btn"></label>
+                                <label for="radio2" class="manual-btn"></label>
+                                <label for="radio3" class="manual-btn"></label>
+                                <label for="radio4" class="manual-btn"></label>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                                             <i class="fa-solid fa-user" style="height:80%;width:80%;border-radius:50%;"></i>
                                         </div>
                                         <h3>User Friendly</h3>
-                                        <p>
+                                        <p style ="font-family:Mukta;">
                                         Designed with simplicity in mind, our user-friendly platform offers intuitive interfaces, easy navigation, and hassle-free access to learning materials. Empowering learners of all backgrounds to 
                                         effortlessly explore, engage, and excel in their educational journey.
                                         </p>
@@ -140,7 +140,7 @@
                                             <i class="fa-solid fa-shield-halved" style="height:85%;width:85%;border-radius:50%;"></i>
                                         </div>
                                         <h3>Super Secure</h3>
-                                        <p>
+                                        <p style ="font-family:Mukta;">
                                         Your data security is paramount. With robust encryption, strict privacy protocols, and advanced authentication mechanisms, we provide a super secure learning environment, 
                                         ensuring your information and learning experience are protected at all times.
                                         </p>
@@ -153,7 +153,7 @@
                                             <i class="fa-solid fa-headset"style="height:85%;width:85%;border-radius:50%;"></i>
                                         </div>
                                         <h3>Progress Tracking</h3>
-                                        <p>
+                                        <p style ="font-family:Mukta;">
                                         Track your progress with easily. Our platform enables you to monitor your achievements, receive feedback, and stay motivated 
                                         as you chart your learning journey and achieve your educational goals.
                                         </p>
@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="otcaption">
                                         <h3>She Jun Yuan</h3>
-                                        <p>Project Manager</p>
+                                        <p style ="font-family:Mukta;">Project Manager</p>
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/jason.she.39/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/junyuan.she/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="otcaption">
                                         <h3>Teoh Mae Kay</h3>
-                                        <p>System Analyst</p>
+                                        <p style ="font-family:Mukta;">System Analyst</p>
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/mk.1007" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/mk.07x/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="otcaption">
                                         <h3>Tay Hui Yee</h3>
-                                        <p>Back-End Developer</p>
+                                        <p style ="font-family:Mukta;">Back-End Developer</p>
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/profile.php?id=100002569878309" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/tayyy_hy/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="otcaption">
                                         <h3>Bernard Ong Yuzhe</h3>
-                                        <p>Front-End Developer</p>
+                                        <p style ="font-family:Mukta;">Front-End Developer</p>
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/bernard.ong.92798" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/bernardyuzzzzz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -226,18 +226,172 @@
                             </div>
                         </section>
                         <section id="PScholl">
-                            <div class="pstitle">
+                            <div class="pscontainer">
                                 <h1>Partnership Schools</h1>
-
+                            </div>
+                            <div class="slider">
+                                <div class="slider-track">
+                                    <div class="slide">
+                                        <img src="img/MCM.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/MLK.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seri Botani.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/SMK_Bandar_Puchong_Jaya_(A).png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/ST.John.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seri Kembangan.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seksyen 3.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seri Serdang.gif" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/MCM.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/MLK.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seri Botani.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/SMK_Bandar_Puchong_Jaya_(A).png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/ST.John.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seri Kembangan.png" alt="logo">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="img/Seksyen 3.png" alt="logo">
+                                    </div>
+                                </div>
                             </div>
                         </section>
                         <section id="Review">
-                            <div class="reviewtitle">
-                                <h1>Review</h1>
-                                
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10 col-xl-8 text-center">
+                                <h1 class="reviewtitle">Review</h1>
+                                <p class="mb-4 pb-2 mb-md-5 pb-md-0" style ="font-family:Mukta;">
+                                The Ya-Shiba E-Learning System is an innovative online platform that provides comprehensive educational 
+                                resources and interactive tools for learners of all ages, fostering engaging and effective remote learning experiences.
+                                </p>
+                                </div>
                             </div>
-                            
-                        </section>   
+
+                            <div class="row text-center">
+                                <div class="col-md-4 mb-5 mb-md-0">
+                                <div class="d-flex justify-content-center mb-4">
+                                    <img src="img/KPM.jpg"
+                                    class="rounded-circle shadow-1-strong" width="150" height="150" />
+                                </div>
+                                <h5 class="mb-3">Kementerian Pendidikan Malaysia</h5>
+                                <h6 class="text-primary mb-3">Malaysian Institute of Education </h6>
+                                <p class="px-xl-3" style ="font-family:Mukta;">
+                                    <i class="fas fa-quote-left pe-2"></i>With its comprehensive curriculum, interactive modules, and user-friendly interface, it has successfully enhanced remote learning experiences. 
+                                    The system's adaptability and extensive resources make it a valuable tool for educators and students alike. Highly recommended it to all school in Malaysia
+                                </p>
+                                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+                                    </li>
+                                </ul>
+                                </div>
+                                <div class="col-md-4 mb-5 mb-md-0">
+                                <div class="d-flex justify-content-center mb-4">
+                                    <img src="img/Lecturer.jpg"
+                                    class="rounded-circle shadow-1-strong" width="150" height="150" />
+                                </div>
+                                <h5 class="mb-3">Mr. Dhason</h5>
+                                <h6 class="text-primary mb-3">SDP Lecturer</h6>
+                                <p class="px-xl-3" style ="font-family:Mukta;">
+                                    <i class="fas fa-quote-left pe-2"></i>I am absolutely thrilled with the Ya-Shiba E-Learning System! It offers a seamless and user-friendly interface, a vast library of educational content, and interactive features that enhance student engagement. 
+                                    It has revolutionized my teaching experience, making remote instruction a breeze. A true game-changer!
+                                </p>
+                                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                </ul>
+                                </div>
+                                <div class="col-md-4 mb-0">
+                                <div class="d-flex justify-content-center mb-4">
+                                    <img src="img/Seksyen 3.png"
+                                    class="rounded-circle shadow-1-strong" width="150" height="150" />
+                                </div>
+                                <h5 class="mb-3">SMK Seksyen 3 Bandar Kinrara</h5>
+                                <h6 class="text-primary mb-3">students</h6>
+                                <p class="px-xl-3" style ="font-family:Mukta;">
+                                    <i class="fas fa-quote-left pe-2"></i>
+                                    As a secondary school student, I highly recommend the Ya-Shiba E-Learning System. It offers a wide range of subjects with interactive lessons and quizzes that keep me engaged. 
+                                    The platform's user-friendly interface and comprehensive resources have greatly enhanced my learning experience.
+                                </p>
+                                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                    </li>
+                                    <li>
+                                    <i class="far fa-star fa-sm text-warning"></i>
+                                    </li>
+                                </ul>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="JoinUs">
+                            <div>
+                                <h1 class="jointitle">Join Us Now!!!!</h1>
+                                <h3 class="joincaption">Sign Up by pressing the link below</h3>
+                            </div>
+                            <button class="signupb">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Sign Up
+                                </span>
+                            </button>
+                        </section>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

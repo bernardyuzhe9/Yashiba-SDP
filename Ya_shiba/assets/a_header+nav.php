@@ -19,7 +19,7 @@
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "a_dashboard.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="57" height="50" alt="" ></a>
+            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "a_dashboard.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="55" height="50" alt="" ></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
