@@ -177,7 +177,6 @@
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/jason.she.39/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/junyuan.she/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                                            <a href="#"><i class="fa-solid fa-phone"></i></a>
                                             <a href="#"><i class="fa-solid fa-envelope"></i></a>
                                         </div>
                                     </div>
@@ -192,7 +191,6 @@
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/mk.1007" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/mk.07x/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                                            <a href="#"><i class="fa-solid fa-phone"></i></a>
                                             <a href="#"><i class="fa-solid fa-envelope"></i></a>
                                         </div>
                                     </div>
@@ -207,14 +205,13 @@
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/profile.php?id=100002569878309" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/tayyy_hy/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                                            <a href="#"><i class="fa-solid fa-phone"></i></a>
                                             <a href="#"><i class="fa-solid fa-envelope"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="otprofile-card">
                                     <div class="otimg">
-                                        <img src="img/Huiyee.png" alt="Huiyee">
+                                        <img src="img/Bernard.jpg" alt="Huiyee">
                                     </div>
                                     <div class="otcaption">
                                         <h3>Bernard Ong Yuzhe</h3>
@@ -222,22 +219,24 @@
                                         <div class="otsocial-links">
                                             <a href="https://www.facebook.com/bernard.ong.92798" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                                             <a href="https://www.instagram.com/bernardyuzzzzz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                                            <a href="#"><i class="fa-solid fa-phone"></i></a>
                                             <a href="#"><i class="fa-solid fa-envelope"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
-                        <section id="PSchool">
+                        <section id="PScholl">
                             <div class="pstitle">
                                 <h1>Partnership Schools</h1>
+
                             </div>
-                        </section> 
+                        </section>
                         <section id="Review">
                             <div class="reviewtitle">
                                 <h1>Review</h1>
+                                
                             </div>
+                            
                         </section>   
                     </div>
                 </main>
