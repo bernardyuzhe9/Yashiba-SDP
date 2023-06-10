@@ -1,0 +1,88 @@
+
+    /*button box*/
+    .button-box {
+        width: 100px;
+        margin: 10px auto;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        box-shadow: 0 0 20px 9px #4f27181f;
+        border-radius: 30px;
+        background: #0b90e2;
+      }
+
+    /*Code colour*/
+    .toggle-btn{
+        font-size: 10px;
+      padding: 10px 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline:#999;
+      position: relative;
+      color: rgb(255, 255, 255);
+      
+    }
+
+.edit-acc {
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+  
+  }
+
+  .editAcc {
+    color: #0b90e2;
+    display: inline;
+    justify-content: center; 
+    align-items: center;
+    position: center;
+    margin-left: 30px;
+    border: solid 2px #2076ab;
+    border-radius: 10px;
+    background: none;
+    padding: 15px;
+    font-size: 15px;
+    width: 500px;
+ 
+  }
+    
+    
+    /*checkbox*/
+    .checkbox{
+    margin: 30px 10px 30px 0;
+    
+    }
+    
+    
+    .spantick{
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    display: inline;
+    
+    }
+
+
+    .page{
+
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 40px 10px 0px;
+    
+    }
+
+    .btn{
+        font-size: 100px;
+        cursor: pointer;
+        background: #0b90e2;
+        color: rgb(255, 255, 255);  
+        width: 100px;
+        box-shadow: 0 0 20px 9px #4f27181f;
+        border-radius: 30px;
+    }
+    
+      
+    

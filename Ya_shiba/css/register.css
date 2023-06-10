@@ -1,0 +1,183 @@
+
+.flow{
+    justify-content: center;
+    align-items: center;
+    cursor:auto;
+} 
+
+
+.login-container{
+    margin: 0 10px;
+    
+    position: center;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    transition: height 0.2s ;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s ease;
+}
+
+
+.title{
+    width: 94%;
+    position: relative;
+    font-size: 20px;
+    display: block;
+    font-weight: bold;
+    left:20px;
+   
+} 
+.page{
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+
+}
+
+  
+  .login-container:hover {
+    background-color: #999;
+  }
+  
+  .login-container:active {
+    background-color: #fff19a;
+  }
+
+  .login-container.active {
+    background-color: #fff19a;
+    z-index: 1;
+    box-shadow: 10px 10px 20px rgba(49, 52, 56, 0.52);
+
+  }
+
+
+
+ .reg-content{
+  font-size: 25px;
+  z-index: 2;
+  position: relative;
+ }
+
+
+/* Edit Profile border position */
+.edit-acc {
+  margin-top: 20px;
+  position: relative;
+  display: inline-block;
+
+}
+/* Edit Profile border before*/
+.editAcc {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  position: center;
+  margin-left: 30px;
+  border: solid 2px #758058;
+  border-radius: 10px;
+  background: none;
+  padding: 15px;
+  color: #22303b;
+  font-size: 15px;
+  width: 500px;
+  margin-left: 650px;
+}
+.user-label {
+  position: absolute;
+  margin-left: 400px;
+  top: 10px;
+  color: #728277;
+  background-color: #fff;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);    
+  font-size: 14px;
+}
+/* Edit Profile border after*/
+.editAcc:focus, .editAcc:valid {
+  outline: none;
+  border: 2px solid #365268;
+}
+/* Edit Profile wording above*/
+.editAcc:focus ~ label, .editAcc:valid ~ label {
+  background-color: #fff;
+  padding: 2px;
+  color: #365268;
+  font-size: 14px;
+  font-weight: 500;
+  left: 25px;
+}
+
+/* Submit Button */
+.submit{
+  position: relative;
+  margin: 20px;
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #365268;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-radius: 5s;
+  margin-top: 30px;
+  margin-left: 800px;
+}
+
+
+
+.edit-acc span{
+  font-size: 14px;
+  left: 1200px;
+  color: red;
+  font-display: inline;
+  position: absolute;
+  top: 12px;
+  
+}
+
+#submit-error{
+  color: red;
+  font-size: 14px;
+  left: 1200px;
+}
+
+.input-group-contact span .i{
+  color: seagreen ;
+  width: 10px;
+  height: 10px;
+
+}
+
+    /*button box*/
+    .button-box {
+      width: 100px;
+      margin: 10px auto;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      box-shadow: 0 0 20px 9px #4f27181f;
+      border-radius: 30px;
+      background: #0b90e2;
+    }
+
+  /*Code colour*/
+  .toggle-btn{
+      font-size: 10px;
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline:#999;
+    position: relative;
+    color: rgb(255, 255, 255);
+    
+  }
