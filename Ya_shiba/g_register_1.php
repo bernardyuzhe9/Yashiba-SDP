@@ -40,9 +40,9 @@ if(isset($_POST['register'])){
     VALUES ('" . $_SESSION['sclid'] . "', '$username', '$name', '$email', $contact_number, '$password', '$role', '$user_status', '$reg_date')";
     if(mysqli_query($connection,$query)){
         if($user_status==="Pending"){
-            echo '<script>alert("Account request was sent. Please wait for the approval of the Admin, will contact you once the validation done")</script>';
+            echo '<script>alert("Account request was sent. Please wait for the approval of the Admin, will contact you once the validation done"); window.location.href="g_homepage.php"</script>';
         }else{
-            echo '<script>alert("Account created successfully. You can proceed to Register"); window.location.href = "a_manage_report.php";</script>';
+            echo '<script>alert("Account created successfully. You can proceed to Login"); window.location.href = "g_login.php";</script>';
         }
         
     }else{

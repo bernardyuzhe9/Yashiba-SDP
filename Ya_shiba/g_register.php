@@ -35,7 +35,7 @@ else {
       session_start();
       $_SESSION['sclid'] =$row['SCHOOL_ID'] ;
       $_SESSION['role'] = $role;
-      header("Location: register_1.php");
+      header("Location: g_register_1.php");
   } else{
       
     echo '<script>alert("Wrong School ID. Please try again")</script>';

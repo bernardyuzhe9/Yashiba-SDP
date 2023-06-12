@@ -39,7 +39,7 @@ if(isset($_POST['login'])){
               
           }
           else if ($_SESSION['role']=="Admin" && $_SESSION['user_status']=="Active"){
-            header("Location: a_homepage.php");
+            header("Location: a_dashboard.php");
             
         }
           else{
