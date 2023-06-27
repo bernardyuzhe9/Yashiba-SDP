@@ -36,7 +36,7 @@
             <div class="task-pic">
             <img src="" alt=" ">
             </div>
-            <div class="task"><div>Task Name</div><div style="font-size: 12px;">posted date</div></div>
+            <div class="task"><div>Task Name</div><div style="font-size: 12px;">posted date</div></div>  </div>
     </div><hr style="border:1px solid #365268;margin-top:-10px;">
     <div class="mid-content">
    
