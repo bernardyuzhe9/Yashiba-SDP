@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="css/g_homepage.css">
 
     </head>
@@ -63,6 +64,10 @@
                             <a class="nav-link" href="#Review">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Review
+                            </a>
+                            <a class="nav-link" href="#ContactUs">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Contact Us
                             </a>
                         </div>
                     </div>
@@ -381,16 +386,40 @@
                                 </div>
                             </div>
                         </section>
+                        <section id="ContactUs">
+                            <div class="pscontainer">
+                                <h1>Contact Us</h1>
+                                <h6 style="text-align: center;">If your school like to request to use our e-learning platform, you can contact us through the method below.It will take 2 to 3 working days</h6>
+                            </div>
+                            <div class="contactUs">
+                                <div class="contactus">
+                                    <div class="cucard">
+                                        <i class="card-icon far fa-envelope"></i>
+                                        <p style ="font-family:Mukta;">yashiba@gmail.com</p>
+                                    </div>
+                                    <div class="cucard">
+                                        <i class="card-icon fas fa-phone"></i>
+                                        <p style ="font-family:Mukta;">03-19203819</p>
+                                    </div>
+                                    <div class="cucard">
+                                        <i class="card-icon fab fa-instagram"></i>
+                                        <p style ="font-family:Mukta;">yashiba2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <section id="JoinUs">
                             <div>
                                 <h1 class="jointitle">Join Us Now!!!!</h1>
                                 <h3 class="joincaption">Sign Up by pressing the link below</h3>
                             </div>
+                            <a href="g_register.php">
                             <button class="signupb">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Sign Up
                                 </span>
                             </button>
+                            </a>
                         </section>
                     </div>
                 </main>
