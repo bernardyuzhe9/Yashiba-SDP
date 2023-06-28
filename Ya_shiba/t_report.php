@@ -15,11 +15,16 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                Description bla bla bla
+                        <form>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Please enter your full name">
                             </div>
+                            <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
+                        </form>
                     </div>
                 </main>
                 <?php

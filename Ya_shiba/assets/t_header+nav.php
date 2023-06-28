@@ -15,7 +15,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
-    </head>    
+    </head>
+    <body>   
     <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "t_homepage.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="55" height="50" alt="" ></a>
@@ -33,7 +34,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="g_homepage.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="t_user_profile.php">View Profile</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#">Log Out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,7 +53,7 @@
                                 All Classes
                             </a>
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="t_create_classes.php">
+                            <a class="nav-link" href="#" id="createclasslink">
                                 <div class="sb-nav-link-icon"><i class="fas fa-square-plus"></i></div>
                                 Create Classes
                             </a>
@@ -74,6 +77,45 @@
                     </div>
                 </nav>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="createclassmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">  
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Class Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Please enter your class name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                    <label for="formFile" class="form-label">Class Background</label>
+                    <input class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </body>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var joinClassLink = document.getElementById("createclasslink");
+                joinClassLink.addEventListener("click", function(event) {
+                    event.preventDefault(); 
+                    var modal = new bootstrap.Modal(document.getElementById("createclassmodal"));
+                    modal.show();
+                });
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>

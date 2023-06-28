@@ -6,18 +6,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<title>Hidden Class - Teacher</title>
+<title>Profile Details - Teacher</title>
     <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Hidden Classes</h1>
+                        <h1 class="mt-4">Profile Details</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                Description bla bla bla
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 100px; height: 100px; margin-bottom: 10px">
+                            </div>
+                            <div class="dropdown col-auto">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Setting
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="t_edit_profile.php">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Deactivate Account</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Username</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">School Name</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                         </div>
                     </div>

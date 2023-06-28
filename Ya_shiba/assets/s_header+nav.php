@@ -53,7 +53,7 @@
                                 All Classes
                             </a>
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#" id="joinClassLink">
                                 <div class="sb-nav-link-icon"><i class="fas fa-arrow-right-to-bracket"></i></i></div>
                                 Join Class
                             </a>
@@ -73,7 +73,35 @@
                     </div>
                 </nav>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="joinClassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">  
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Join Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="exampleFormControlInput1" class="form-label">Enter class code</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cn81ka#">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Confirm</button>
+                </div>
+                </div>
+            </div>
+            </div>
         </body>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var joinClassLink = document.getElementById("joinClassLink");
+                joinClassLink.addEventListener("click", function(event) {
+                    event.preventDefault(); 
+                    var modal = new bootstrap.Modal(document.getElementById("joinClassModal"));
+                    modal.show();
+                });
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>

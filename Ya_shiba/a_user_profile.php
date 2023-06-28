@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<title>Profile Details - Student</title>
+<title>Profile Details - Admin</title>
     <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
@@ -24,22 +24,22 @@
                                 Setting
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="s_edit_profile.php">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="a_edit_profile.php">Edit Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Deactivate Account</a></li>
                             </ul>
                             </div>
                         </div>
                         <div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Username</label>
                                 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">School Name</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
                                 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                             <div class="mb-3">
