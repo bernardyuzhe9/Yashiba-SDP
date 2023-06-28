@@ -92,16 +92,16 @@
                                 <input type="radio" name="radio-btn" id="radio4">
                                 <!-- slide images -->
                                 <div class="islide first">
-                                    <img src="image/Event1.png" alt="Sustainable Agriculture Summit" title="Sustainable Agriculture Summit">
+                                    <img src="img/Slider1.png" alt="User Friendly" title="User Friendly">
                                 </div>
                                 <div class="islide">
-                                    <img src="image/Event2.png" alt="10th EcoFarm Conference" title="10th EcoFarm Conference">
+                                    <img src="img/Slider2.png" alt="Super Secure" title="Super Secure">
                                 </div>
                                 <div class="islide">
-                                    <img src="image/Advertisement1.png" alt="Agriculture Farming Service" title="Agriculture Farming Service">
+                                    <img src="img/Slider3.png" alt="Progress Tracking" title="Progress Tracking">
                                 </div>
                                 <div class="islide">
-                                    <img src="image/FAQ.png" alt="Advertisment/Event FAQ" title="Advertisment/Event FAQ">
+                                    <img src="img/Slider4.png" alt="School Request" title="School Request">
                                 </div>
                                 <!-- automatic navigation button -->
                                 <div class="navigation-auto">
