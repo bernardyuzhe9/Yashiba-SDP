@@ -25,6 +25,11 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         </form>
+                        <div class="d-flex flex-column align-items-center"> 
+                            <div class="mb-3">
+                            <button type="button" class="btn btn-primary" style="width:150px">Submit</button>
+                            </div>
+                        </div>
                     </div>
                 </main>
                 <?php
