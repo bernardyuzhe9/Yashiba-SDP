@@ -115,10 +115,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-4">
+                                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
+                                        </div>
+                                        <h6 style="margin-left: 30px">Name:</h6>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
+                    <div class="mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-4">
+                                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
+                                        </div>
+                                        <h6 style="margin-left: 30px">Name:</h6>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 </div>
