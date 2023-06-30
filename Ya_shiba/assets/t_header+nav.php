@@ -61,7 +61,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye-slash"></i></div>
                                 Hidden Classes
                             </a>
-                            <a class="nav-link" href="t_student_batch.php">
+                            <a class="nav-link" href="t_student_batch_main.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Student Batch
                             </a>
