@@ -91,7 +91,7 @@ if(isset($_POST['post-submit']) ){
 
 }
   
-mysqli_close($connection);
+// mysqli_close($connection);
     ?>
 
 
