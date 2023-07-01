@@ -76,7 +76,7 @@ if(isset($_POST['post-submit']) ){
         $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
         VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
         mysqli_query($connection,$sql);
-        $classroomId = mysqli_insert_id($conn);
+        $classroomId = mysqli_insert_id($connection);
         $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 
         VALUES ('$classroomId','$userid','$status')";
 
