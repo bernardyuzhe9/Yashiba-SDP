@@ -20,9 +20,9 @@
 
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
-    if (isset($_POST['teacher_report'])) {
-        $title = $_POST['t_report'];
-        $message = $_POST['t_message'];
+    if (isset($_POST['report'])) {
+        $title = $_POST['r_title'];
+        $message = $_POST['r_message'];
         $status = 'Unsolved'; 
         
         // Insert data into the report table
@@ -51,21 +51,20 @@
                             <li class="breadcrumb-item"></li>
                         </ol>
                         <form method="post">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Title Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="r_title">
+                        </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Title Name</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="t_report">
-                            </div>
+                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="r_message"></textarea>
+                        </div>
+                        <div class="d-flex flex-column align-items-center"> 
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="t_message"></textarea>
+                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="report" value="Submit">Submit</button>
                             </div>
-                            </form>
-                            <div class="d-flex flex-column align-items-center"> 
-                                <div class="mb-3">
-                                <button type="button" class="btn btn-primary" style="width:150px" name="teacher_report" value="Submit">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                        </form> 
                     </div>
                 </main>
                 <?php

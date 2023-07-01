@@ -20,9 +20,9 @@
 
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
-    if (isset($_POST['student_report'])) {
-        $title = $_POST['s_report'];
-        $message = $_POST['s_message'];
+    if (isset($_POST['report'])) {
+        $title = $_POST['r_title'];
+        $message = $_POST['r_message'];
         $status = 'Unsolved'; 
         
         // Insert data into the report table
@@ -53,15 +53,15 @@
                         <form method="post">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Title Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="s_report">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="r_title">
                         </div>
                             <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="s_message"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="r_message"></textarea>
                         </div>
                         <div class="d-flex flex-column align-items-center"> 
                             <div class="mb-3">
-                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="student_report" value="Submit">Submit</button>
+                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="report" value="Submit">Submit</button>
                             </div>
                         </div>
                         </form> 
