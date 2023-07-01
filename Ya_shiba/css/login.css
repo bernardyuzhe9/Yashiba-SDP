@@ -1,99 +1,95 @@
-    .toggle-btn {
-      font-weight: Bold;
-      margin: 10px auto;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #0b90e2;
-      color: #ffffff;
-      border: none;
-      border-radius: 30px;
-      width: 100px;
-      height: 45px;
-      transition: .3s;
-    }
-    
-    .toggle-btn:hover {
-      background-color: #1a96e3;
-      box-shadow: 0 0 0 5px #3b83f65f;
-      color: #fff;
-    }
+.toggle-btn {
+  font-weight: Bold;
+  margin: 10px auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #0b90e2;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  width: 100px;
+  height: 45px;
+  transition: .3s;
+}
+
+.toggle-btn:hover {
+  background-color: #1a96e3;
+  box-shadow: 0 0 0 5px #3b83f65f;
+  color: #fff;
+}
 
 .edit-acc {
-    margin-top: 20px;
-    position: relative;
-    display: inline-block;
-  
-  }
+  margin-top: 20px;
+  position: relative;
+  display: inline-block;
+}
 
+.editAcc {
+  color: #0b90e2;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  position: center;
+  margin-left: 30px;
+  border: solid 2px #2076ab;
+  border-radius: 10px;
+  background: none;
+  padding: 15px;
+  font-size: 15px;
+  width: 500px;
+}
+
+/*checkbox*/
+.checkbox {
+  margin: 30px 10px 30px 0;
+}
+
+.spantick {
+  color: #777;
+  font-size: 12px;
+  bottom: 68px;
+  display: inline;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 40px 10px 0px;
+}
+
+.loginb {
+  padding: 12.5px 30px;
+  width: 150px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #0b90e2;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.loginb:hover {
+  background-color: #3ca0e2;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+.loginb:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
   .editAcc {
-    color: #0b90e2;
-    display: inline;
-    justify-content: center; 
-    align-items: center;
-    position: center;
-    margin-left: 30px;
-    border: solid 2px #2076ab;
-    border-radius: 10px;
-    background: none;
-    padding: 15px;
-    font-size: 15px;
-    width: 500px;
- 
+    width: 100%;
+    max-width: 300px;
   }
-    
-    
-    /*checkbox*/
-    .checkbox{
-    margin: 30px 10px 30px 0;
-    
-    }
-    
-    
-    .spantick{
-    color: #777;
-    font-size: 12px;
-    bottom: 68px;
-    display: inline;
-    
-    }
-
-
-    .page{
-
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 40px 10px 0px;
-    
-    }
-
-    .loginb {
-      padding: 12.5px 30px;
-      width: 150px;
-      border: 0;
-      border-radius: 100px;
-      background-color: #0b90e2;
-      color: #ffffff;
-      font-weight: Bold;
-      transition: all 0.5s;
-      -webkit-transition: all 0.5s;
-    }
-    
-    .loginb:hover {
-      background-color: #3ca0e2;
-      box-shadow: 0 0 20px #6fc5ff50;
-      transform: scale(1.1);
-    }
-    
-    .loginb:active {
-      background-color: #3d94cf;
-      transition: all 0.25s;
-      -webkit-transition: all 0.25s;
-      box-shadow: none;
-      transform: scale(0.98);
-    }
-    
+}
       
     

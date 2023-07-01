@@ -11,13 +11,13 @@
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">All Classes</h1>
+                        <h1 class="mt-4" style="font-family:Karla;font-weight:bold;">All Classes</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
                         <div class="row">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                            <div class="list-group" style="margin-bottom: 10px;">
+                                <a href="#" class="list-group-item list-group-item-action active" aria-current="true" style="font-family:Karla;font-weight:bold;">
                                 To Do List
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action">A second link item</a>
@@ -25,8 +25,8 @@
                                 <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
                                 <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://t4.ftcdn.net/jpg/02/97/79/83/360_F_297798377_VB9egqGnRKcZxU53wybEHLRnnTrcvlAH.jpg"  style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -39,8 +39,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://c4.wallpaperflare.com/wallpaper/307/10/490/eromanga-sensei-izumi-sagiri-wallpaper-preview.jpg" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -53,8 +53,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://images4.alphacoders.com/747/747593.png" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -67,8 +67,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://images.alphacoders.com/995/995884.png" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -81,8 +81,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://images2.alphacoders.com/713/713297.png" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -95,8 +95,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;">
+                                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ae67dbcc-91f7-4369-a654-3159c9f4a09f/dfnirdv-be480234-a8f7-4317-82f5-1535072eec37.jpg/v1/fill/w_1192,h_670,q_70,strp/high_quality_4k_lycoris_recoil_wallpaper_by_sdugoten_dfnirdv-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvYWU2N2RiY2MtOTFmNy00MzY5LWE2NTQtMzE1OWM5ZjRhMDlmXC9kZm5pcmR2LWJlNDgwMjM0LWE4ZjctNDMxNy04MmY1LTE1MzUwNzJlZWMzNy5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.uxTAXMhmvZ93rmeZQlszCoq0b7zg8Sp1305gCw9VOgM" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

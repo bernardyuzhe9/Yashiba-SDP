@@ -96,7 +96,7 @@ if(isset($_POST['login'])){
 </div>
     <div class="center">
     <div class="page">
-        <h1 style="margin-bottom:-60px; color: #070024;">Login Page</h1>
+        <h1 style="margin-bottom:-60px; color: #070024;font-family:Karla;font-weight:bold;">Login Page</h1>
     </div>
     <div class="page">
     <div class="edit-acc" style="margin-top:100px;">

@@ -26,7 +26,7 @@
                                 <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem; margin-right: 15px; margin-top: 10px">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;" alt="...">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq7ewmEma7rocqY7Wg0RBo5eXWkIh9p4S7RXAtYVGSVAWFh3pJCMwTlVIEa5mpXT6QEDg&usqp=CAU" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

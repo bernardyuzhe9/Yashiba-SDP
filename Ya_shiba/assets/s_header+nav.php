@@ -43,7 +43,7 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav" style ="font-family:Nunito;">
-                <!-- sideNav bg color-->>
+                <!-- sideNav bg color-->
                 <nav class="sb-sidenav accordion sb-sidenav-white" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">

@@ -18,7 +18,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="css/g_homepage.css">
-
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
@@ -76,7 +75,7 @@
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="text-align: center;">Welcome to Ya-Shiba</h1>
+                        <h1 class="mt-4" style="text-align: center;font-family:Karla;font-weight:bold;">Welcome to Ya-Shiba</h1>
                         <h3 class="mt-2" style="font-family:Karla;text-align: center;">Unlock your potential with Ya-Shiba!</h3>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
@@ -122,7 +121,7 @@
                         </div>
                         <section id="whyChooseUs">
                             <div class="featureRow">
-                                <h1>Why Choose Us</h1>
+                                <h1 style="font-family:Karla;font-weight:bold;">Why Choose Us</h1>
                             </div>
                             <div class="featureRow">
                                 <!-- featureColumn One -->
@@ -169,7 +168,7 @@
                         <!-- Our Team -->
                         <section id= "OurTeam">
                             <div class="ourteamtitle">
-                                <h1>Our Team</h1>
+                                <h1 style="font-family:Karla;font-weight:bold;">Our Team</h1>
                             </div>
                             <div class="otmain">
                                 <div class="otprofile-card">
@@ -232,7 +231,7 @@
                         </section>
                         <section id="PScholl">
                             <div class="pscontainer">
-                                <h1>Partnership Schools</h1>
+                                <h1 style="font-family:Karla;font-weight:bold;">Partnership Schools</h1>
                             </div>
                             <div class="slider">
                                 <div class="slider-track">
@@ -287,7 +286,7 @@
                         <section id="Review">
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-10 col-xl-8 text-center">
-                                <h1 class="reviewtitle">Review</h1>
+                                <h1 class="reviewtitle" style="font-family:Karla;font-weight:bold;">Review</h1>
                                 <p class="mb-4 pb-2 mb-md-5 pb-md-0" style ="font-family:Mukta;">
                                 The Ya-Shiba E-Learning System is an innovative online platform that provides comprehensive educational 
                                 resources and interactive tools for learners of all ages, fostering engaging and effective remote learning experiences.
@@ -388,7 +387,7 @@
                         </section>
                         <section id="ContactUs">
                             <div class="pscontainer">
-                                <h1>Contact Us</h1>
+                                <h1 style="font-family:Karla;font-weight:bold;">Contact Us</h1>
                                 <h6 style="text-align: center;">If your school like to request to use our e-learning platform, you can contact us through the method below.It will take 2 to 3 working days</h6>
                             </div>
                             <div class="contactUs">
@@ -410,7 +409,7 @@
                         </section>
                         <section id="JoinUs">
                             <div>
-                                <h1 class="jointitle">Join Us Now!!!!</h1>
+                                <h1 class="jointitle" style="font-family:Karla;font-weight:bold;">Join Us Now!!!!</h1>
                                 <h3 class="joincaption">Sign Up by pressing the link below</h3>
                             </div>
                             <a href="g_register.php">
