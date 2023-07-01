@@ -18,10 +18,7 @@
         <ul>
             <li class="course-name">Course Name</li>
             <li>
-                <button class="blog-btn" name="Task">Task</button>
-            </li>
-            <li>
-                <button class="blog-btn" name="Material">Material</button>
+                <button class="blog-btn" name="Task">Work</button>
             </li>
             <li>
                 <button class="blog-btn" name="People">People</button>
@@ -36,7 +33,7 @@
             <div class="task-pic">
             <img src="" alt=" ">
             </div>
-            <div class="task"><div>Task Name</div><div style="font-size: 12px;">posted date</div></div>  </div>
+            <div class="task"><div>Task Name</div><div style="font-size: 12px;">due date</div></div>  </div>
     </div><hr style="border:1px solid #365268;margin-top:-10px;">
     <div class="mid-content">
    
@@ -45,8 +42,13 @@
                     <div class="description">Task DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask Description</div>
                    
                     <hr style="border:1px solid #365268;">
-                    <div ><a class="viewbtn"  href="post.php?pid=<?php echo $row['POST_ID'];?>">View</a>   </div>  
-            </div> </div>
+                    <div class="right flow">
+                <div>
+                    <a class="viewbtn" href="post.php?pid=<?php echo $row['POST_ID'];?>">Review Task</a>
+                </div>
+            </div>
+
+                </div> </div>
 </div>
 
     </body>
