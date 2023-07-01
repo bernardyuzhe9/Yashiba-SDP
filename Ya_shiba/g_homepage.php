@@ -50,23 +50,23 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link" href="#whyChooseUs">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                                 Why Choose Us?
                             </a>
                             <a class="nav-link" href="#OurTeam">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                                 Our Team
                             </a>
                             <a class="nav-link" href="#PScholl">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
                                 Partnership Schools
                             </a>
                             <a class="nav-link" href="#Review">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-pencil"></i></div>
                                 Review
                             </a>
                             <a class="nav-link" href="#ContactUs">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-phone"></i></div>
                                 Contact Us
                             </a>
                         </div>

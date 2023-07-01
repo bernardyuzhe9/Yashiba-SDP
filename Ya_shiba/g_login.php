@@ -93,6 +93,10 @@ if(isset($_POST['login'])){
     <div class="button-box">
     <a href="g_register.php">
         <button type="button" class="toggle-btn" >Register</button></a>
+</div>
+    <div class="center">
+    <div class="page">
+        <h1 style="margin-bottom:-60px; color: #070024;">Login Page</h1>
     </div>
     <div class="page">
     <div class="edit-acc" style="margin-top:100px;">
@@ -112,7 +116,8 @@ if(isset($_POST['login'])){
     <span class="spantick" required>Remember Me</span>
     </div>
     <div class="page">
-    <button type="submit" class="btn" name="login">Log In</button>
+    <button type="submit" class="loginb" name="login">Log In</button>
+    </div>
     </div>
     </form>
 

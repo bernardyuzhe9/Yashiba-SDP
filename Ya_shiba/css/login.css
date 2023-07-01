@@ -1,27 +1,22 @@
-
-    /*button box*/
-    .button-box {
-        width: 100px;
-        margin: 10px auto;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        box-shadow: 0 0 20px 9px #4f27181f;
-        border-radius: 30px;
-        background: #0b90e2;
-      }
-
-    /*Code colour*/
-    .toggle-btn{
-      font-size: 10px;
-      padding: 10px 30px;
-      cursor: pointer;
-      background: transparent;
-      border: 0;
-      outline:#999;
-      position: relative;
-      color: rgb(255, 255, 255);
-      
+    .toggle-btn {
+      font-weight: Bold;
+      margin: 10px auto;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #0b90e2;
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      width: 100px;
+      height: 45px;
+      transition: .3s;
+    }
+    
+    .toggle-btn:hover {
+      background-color: #1a96e3;
+      box-shadow: 0 0 0 5px #3b83f65f;
+      color: #fff;
     }
 
 .edit-acc {
@@ -74,14 +69,30 @@
     
     }
 
-    .btn{
-        font-size: 100px;
-        cursor: pointer;
-        background: #0b90e2;
-        color: rgb(255, 255, 255);  
-        width: 100px;
-        box-shadow: 0 0 20px 9px #4f27181f;
-        border-radius: 30px;
+    .loginb {
+      padding: 12.5px 30px;
+      width: 150px;
+      border: 0;
+      border-radius: 100px;
+      background-color: #0b90e2;
+      color: #ffffff;
+      font-weight: Bold;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+    }
+    
+    .loginb:hover {
+      background-color: #3ca0e2;
+      box-shadow: 0 0 20px #6fc5ff50;
+      transform: scale(1.1);
+    }
+    
+    .loginb:active {
+      background-color: #3d94cf;
+      transition: all 0.25s;
+      -webkit-transition: all 0.25s;
+      box-shadow: none;
+      transform: scale(0.98);
     }
     
       

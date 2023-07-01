@@ -48,11 +48,11 @@
   }
   
   .login-container:active {
-    background-color: #fff19a;
+    background-color: #a5e5ff;
   }
 
   .login-container.active {
-    background-color: #fff19a;
+    background-color: #a5e5ff;
     z-index: 1;
     box-shadow: 10px 10px 20px rgba(49, 52, 56, 0.52);
 
@@ -157,27 +157,17 @@
 
 }
 
-    /*button box*/
-    .button-box {
-      width: 100px;
-      margin: 10px auto;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      box-shadow: 0 0 20px 9px #4f27181f;
-      border-radius: 30px;
-      background: #0b90e2;
-    }
-
-  /*Code colour*/
-  .toggle-btn{
-      font-size: 10px;
-    padding: 10px 30px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    outline:#999;
-    position: relative;
-    color: rgb(255, 255, 255);
-    
+  .toggle-btn {
+    font-weight: Bold;
+    margin: 10px auto;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0b90e2;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    width: 100px;
+    height: 45px;
+    transition: .3s;
   }
