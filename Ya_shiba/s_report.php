@@ -3,9 +3,7 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/s_header+nav.php');
-?>
 
-<?php
     $host = 'localhost';
     $user = 'root';
     $password = '';
@@ -23,20 +21,27 @@
     if (isset($_POST['report'])) {
         $title = $_POST['r_title'];
         $message = $_POST['r_message'];
-        $status = 'Unsolved'; 
-        
-        // Insert data into the report table
-        $query = "INSERT INTO report (USER_ID, REPORT_NAME, REPORT_DESCRIPTION, REPORT_STATUS)
-        VALUES ('{$_SESSION['id']}', '$title', '$message', '$status')";
+        $status = 'Unsolved';
 
-        if (mysqli_query($connection, $query)) {
-            // echo 'Message sent successfully';
-        } else {
-            // echo 'Message sent unsuccessfully, please try again later';
+        if(empty($title) || empty($message)){
+            echo '<script>alert("Please fill in the details")</script>';
+        }else{
+            // Insert data into the report table
+            $query = "INSERT INTO report (USER_ID, REPORT_NAME, REPORT_DESCRIPTION, REPORT_STATUS)
+            VALUES ('{$_SESSION['id']}', '$title', '$message', '$status')";
+
+            if (mysqli_query($connection, $query)) {
+                echo '<script>alert("Report sent successfully, the admin will solve the issue soon")</script>';
+            } else {
+                echo '<script>alert("Report sent unsuccessfully, please try again later")</script>';
+            }
         }
+        
     }
 
     mysqli_close($connection);
+
+   
 ?>
 
 <!DOCTYPE html>
@@ -53,15 +58,15 @@
                         <form method="post">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Title Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="r_title">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="r_title" >
                         </div>
                             <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="r_message"></textarea>
+                            <label for="exampleFormControlTextarea1" class="form-label">Report Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="r_message" ></textarea>
                         </div>
                         <div class="d-flex flex-column align-items-center"> 
                             <div class="mb-3">
-                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="report" value="Submit">Submit</button>
+                            <button type="submit" class="submitbtn" style="width:150px" name="report" value="Submit"><span>Submit</span></button>
                             </div>
                         </div>
                         </form> 
