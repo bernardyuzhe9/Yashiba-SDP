@@ -1,3 +1,88 @@
+
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'yashiba';
+$connection= mysqli_connect($host,$user,$password,$database);
+
+
+
+if ($connection === false){
+    die('Connection failed' . mysqli_connect_error());
+}
+
+
+date_default_timezone_set('Asia/Kuala_Lumpur');
+   
+
+
+if(isset($_POST['post-submit']) ){
+    $title= $_POST['title'];
+    $description= $_POST['description'];
+    $post_date=date('Y/m/d H:i:s');
+    
+
+
+    if(isset($_FILES['my_image'] )){
+     
+   
+      $img_name=$_FILES['my_image']['name'];
+      // $img_name=empty($_POST['image'])?"":$_FILES['my_image']['name'];
+      $img_size=$_FILES['my_image']['size'];
+      $tmp_name=$_FILES['my_image']['tmp_name'];
+      $error=$_FILES['my_image']['error'];
+  
+      if($error === 0){
+          if($img_size>1250000){
+              $em="sorry your file is too lagre";
+              header("Location: postupload.php?error=$em");
+          }else{
+              $img_ex = pathinfo($img_name,PATHINFO_EXTENSION);
+              $img_ex_lc = strtolower($img_ex);
+              $allowed_exs=array("jpg","jpeg","png");
+              
+              
+              if(in_array( $img_ex_lc,$allowed_exs)){
+  
+                  $new_img_name=uniqid("IMG-",true).'.'.$img_ex_lc ;
+                  $img_upload_path='posts/'.$new_img_name;
+                  move_uploaded_file($tmp_name,$img_upload_path);
+                  //Insert into database
+                  echo '<script>alert("You submited")</script>';
+                  $sql = "INSERT INTO post (USER_ID , CATEGORY , TITLE , TITLE_DESCRIPTION, IMAGE , POST_SUBMIT_DATE) 
+                  VALUES ('{$_SESSION['id']}','$category','$title','$description','$new_img_name','$post_date')";
+
+                  mysqli_query($connection,$sql);
+              }else{
+                  $em="You cant upload this type of files";
+            
+              }
+          }
+      }else{
+ 
+        mysqli_query($connection, "INSERT INTO post (USER_ID , CATEGORY , TITLE , TITLE_DESCRIPTION,POST_SUBMIT_DATE) 
+    VALUES ('{$_SESSION['id']}','$category','$title','$description','$post_date')");
+    
+   
+        echo '<script>alert("Upload successfully")</script>';
+      
+        }
+    } 
+  
+    if($_SESSION['role']=="User"){ 
+    header("Location: customerhomepage.php");
+  } else{
+      header("Location: adminhomepage.php");
+    }
+}
+  
+mysqli_close($connection);
+    ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,6 +163,7 @@
                 </nav>
             </div>
             <!-- Modal -->
+
             <div class="modal fade" id="createclassmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">  
                 <div class="modal-content">
@@ -85,10 +171,16 @@
                     <h5 class="modal-title" id="exampleModalLabel">Create Class</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form class="flow" action="#" method="post" onsubmit="return validateClassForm()">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Class Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Please enter your class name">
+                        <input type="text" class="form-control" placeholder="Please enter your class name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label" >Class Code</label>
+                        <input type="text" class="form-control"   id="codeInput" onkeyup="validateCode()" placeholder="Please enter your class code (3 letters 4 digits) ">
+                        <span  id =codeC-error></span>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
@@ -101,7 +193,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Confirm</button>
+                    <span  id =submitC-error></span>
                 </div>
+
+                </form>
                 </div>
             </div>
             </div>
@@ -116,8 +211,10 @@
                 });
             });
         </script>
+        <script src="validation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
 </html>
+

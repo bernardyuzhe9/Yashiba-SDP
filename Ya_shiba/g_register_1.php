@@ -144,7 +144,7 @@ mysqli_close($connection);
     </div>
     <div class="textSubmit">
         <button  type="submit" class="submit" id="submitButton" name="register">REGISTER</button>
-            <span  id =submit-error></span>
+            <span  id =submitR-error></span>
         
    
     </form>
@@ -154,8 +154,8 @@ mysqli_close($connection);
 </body>
 </html>
 
-<script src="validation.js"></script>
-<script>
+<script src="assets/validation.js"></script>
+<!-- <script>
 const wrapper = document.querySelector("picture-wrapper");
   const defaultBtn= document.querySelector("#default-btn");
   const customBtn= document.querySelector("#custom-btn");
@@ -183,12 +183,12 @@ const wrapper = document.querySelector("picture-wrapper");
         function removeImg(){
             img.src=""; 
             defaultBtn.value="";
-        }
+        } -->
 </script>
 <script src="validationscript.js">
 
-function validateUForm()
-		{
-			return false;
-		}
-</script>
+// function validateUForm()
+// 		{
+// 			return false;
+// 		}
+// </script>

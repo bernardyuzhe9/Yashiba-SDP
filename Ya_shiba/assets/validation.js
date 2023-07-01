@@ -6,7 +6,10 @@ var emailError = document.getElementById("emailR-error");
 var passwordR1Error = document.getElementById("passwordR1-error");
 var passwordR2Error = document.getElementById("passwordR2-error");
 var submitError = document.getElementById("submitR-error");
-var usersubmitError = document.getElementById("submitU-error");
+var usersubmitError = document.getElementById("submitC-error");
+var classcodeError = document.getElementById("codeC-error");
+
+
 
 function validateRUsername(){
     var username= document.getElementById("user_usernameR").value;
@@ -83,6 +86,32 @@ function validateREmail(){
         emailError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
         return true;
     }}
+
+function validateCode() {
+    var code = document.getElementById("codeInput").value;
+    var codeFormat = /^[A-Za-z]{3}\d{4}$/;
+    if (code.length === 0) {
+        classcodeError.innerHTML = "Code is required";
+        return false;
+    } else if (!code.match(codeFormat)) {
+        classcodeError.innerHTML = "Invalid Code";
+        return false;
+    } else {
+        classcodeError.innerHTML = "<img src=\"img/checkcircle.png\" width=\"20px\" height=\"20px\">";
+        return true;
+    }
+    }
+      
+
+function validateClassForm(){
+    if(!validateCode()){
+        usersubmitError.innerHTML="Please fix the error to submit";
+        usersubmitError.style.display="block";
+        setTimeout(function(){usersubmitError.style.display="none"},1000)
+        return false;
+    }
+}
+
 
 
 function validateRForm(){
