@@ -1,0 +1,16 @@
+span{
+    font-size: 10px;
+    color: rgb(255, 52, 52);
+    position: absolute;
+    right:17px;
+    margin: 5px 0px;
+  }
+  
+#submitC-error{
+    font-size: 10px;
+    color: rgb(255, 52, 52);
+    position: absolute;
+    padding-right: 100px;
+    margin: 5px 0px;
+
+}

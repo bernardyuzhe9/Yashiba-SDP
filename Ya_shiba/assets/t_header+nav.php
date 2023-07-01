@@ -18,12 +18,20 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 
 
 if(isset($_POST['post-submit']) ){
-    $title= $_POST['title'];
+    $class= $_POST['class'];
     $description= $_POST['description'];
-    $post_date=date('Y/m/d H:i:s');
-    
+    $classcode= $_POST['classcodetxt'];
+    $number="1";
+    $task_number="0";
+    $userid="1";
+    $status="Show";
+    $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
+    $row = mysqli_fetch_assoc($query1); 
+    $count = mysqli_num_rows($query1);
+    if($count == 1){
+        echo '<script>alert("There is repeated classcode, please try another username ")</script>';
 
-
+    }else{
     if(isset($_FILES['my_image'] )){
      
    
@@ -46,35 +54,41 @@ if(isset($_POST['post-submit']) ){
               if(in_array( $img_ex_lc,$allowed_exs)){
   
                   $new_img_name=uniqid("IMG-",true).'.'.$img_ex_lc ;
-                  $img_upload_path='posts/'.$new_img_name;
+                  $img_upload_path='classroom/'.$new_img_name;
                   move_uploaded_file($tmp_name,$img_upload_path);
                   //Insert into database
                   echo '<script>alert("You submited")</script>';
-                  $sql = "INSERT INTO post (USER_ID , CATEGORY , TITLE , TITLE_DESCRIPTION, IMAGE , POST_SUBMIT_DATE) 
-                  VALUES ('{$_SESSION['id']}','$category','$title','$description','$new_img_name','$post_date')";
-
+                  $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
+                  VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
                   mysqli_query($connection,$sql);
+                  $classroomId = mysqli_insert_id($connection);
+                  $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 
+                  VALUES ('$classroomId','$userid','$status')";
+
+                  mysqli_query($connection,$sql2);
               }else{
                   $em="You cant upload this type of files";
             
               }
           }
       }else{
- 
-        mysqli_query($connection, "INSERT INTO post (USER_ID , CATEGORY , TITLE , TITLE_DESCRIPTION,POST_SUBMIT_DATE) 
-    VALUES ('{$_SESSION['id']}','$category','$title','$description','$post_date')");
-    
-   
-        echo '<script>alert("Upload successfully")</script>';
+        $new_img_name="hihi.png";
+        $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
+        VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
+        mysqli_query($connection,$sql);
+        $classroomId = mysqli_insert_id($conn);
+        $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 
+        VALUES ('$classroomId','$userid','$status')";
+
+        mysqli_query($connection,$sql2);
       
         }
     } 
+
   
-    if($_SESSION['role']=="User"){ 
-    header("Location: customerhomepage.php");
-  } else{
-      header("Location: adminhomepage.php");
-    }
+   
+}
+
 }
   
 mysqli_close($connection);
@@ -94,6 +108,8 @@ mysqli_close($connection);
         <link rel="shortcut icon" href="img/Logo(Ya-Shiba).png">   
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/nav+body.css" rel="stylesheet" />
+        <link href="css/test.css" rel="stylesheet" />
+
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,34 +182,37 @@ mysqli_close($connection);
 
             <div class="modal fade" id="createclassmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">  
+            <form enctype="multipart/form-data"  class="flow" action="#" method="post" onsubmit="return validateClassForm()">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Create Class</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form class="flow" action="#" method="post" onsubmit="return validateClassForm()">
+               
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Class Name</label>
-                        <input type="text" class="form-control" placeholder="Please enter your class name">
+                        <input type="text" class="form-control" required placeholder="Please enter your class name" name="class">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label" >Class Code</label>
-                        <input type="text" class="form-control"   id="codeInput" onkeyup="validateCode()" placeholder="Please enter your class code (3 letters 4 digits) ">
                         <span  id =codeC-error></span>
+                        <input type="text" class="form-control"  required id="codeInput" name="classcodetxt" onkeyup="validateCode()" placeholder="Please enter your class code (4 letters 4 digits) ">
+                       
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="description"></textarea>
                     </div>
                     <div class="mb-3">
                     <label for="formFile" class="form-label">Class Background</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile"  name="my_image">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Confirm</button>
                     <span  id =submitC-error></span>
+                    <button type="submit" class="btn btn-primary" name="post-submit">Confirm</button>
+                    
                 </div>
 
                 </form>
@@ -211,7 +230,7 @@ mysqli_close($connection);
                 });
             });
         </script>
-        <script src="validation.js"></script>
+        <script src="assets/validation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>

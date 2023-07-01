@@ -89,7 +89,7 @@ function validateREmail(){
 
 function validateCode() {
     var code = document.getElementById("codeInput").value;
-    var codeFormat = /^[A-Za-z]{3}\d{4}$/;
+    var codeFormat = /^[A-Za-z]{4}\d{4}$/;
     if (code.length === 0) {
         classcodeError.innerHTML = "Code is required";
         return false;
