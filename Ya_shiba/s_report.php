@@ -1,7 +1,42 @@
 <?php
+    session_start();
     $title = 'Home';
     $page = 'home';
     include_once('assets/s_header+nav.php');
+?>
+
+<?php
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $database = 'yashiba';
+    $connection = mysqli_connect($host, $user, $password, $database);
+
+    if ($connection === false){
+        die('Connection failed' . mysqli_connect_error());
+    }else{
+        // echo 'Connection establised successfully <br>';
+     }
+
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+
+    if (isset($_POST['student_report'])) {
+        $title = $_POST['s_report'];
+        $message = $_POST['s_message'];
+        $status = 'Unsolved'; 
+        
+        // Insert data into the report table
+        $query = "INSERT INTO report (USER_ID, REPORT_NAME, REPORT_DESCRIPTION, REPORT_STATUS)
+        VALUES ('{$_SESSION['id']}', '$title', '$message', '$status')";
+
+        if (mysqli_query($connection, $query)) {
+            // echo 'Message sent successfully';
+        } else {
+            // echo 'Message sent unsuccessfully, please try again later';
+        }
+    }
+
+    mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -15,21 +50,21 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
-                        <form>
+                        <form method="post">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Please enter your full name">
+                            <label for="exampleFormControlInput1" class="form-label">Title Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="s_report">
                         </div>
                             <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="s_message"></textarea>
                         </div>
-                        </form>
                         <div class="d-flex flex-column align-items-center"> 
                             <div class="mb-3">
-                            <button type="button" class="btn btn-primary" style="width:150px">Submit</button>
+                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="student_report" value="Submit">Submit</button>
                             </div>
                         </div>
+                        </form> 
                     </div>
                 </main>
                 <?php
