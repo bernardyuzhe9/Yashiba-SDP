@@ -21,14 +21,15 @@ if(isset($_POST['register'])){
     $email= $_POST['email'];
     $password= $_POST['txtPasswordR'];
     $role=$_SESSION['role'];
-    $contact_number= $_POST['phone'];
+    $contact_number=$_POST['txtphone'];
     $reg_date=date('Y/m/d H:i:s');
-
+    
     $query1 =mysqli_query($connection,"SELECT * FROM yashiba_user WHERE USERNAME = '$username'");
     $row = mysqli_fetch_assoc($query1); 
     $count = mysqli_num_rows($query1);
     if($count == 1){
-        echo '<script>alert("There is repeated username, please try another username")</script>';
+        echo '<script>alert("There is repeated username, please try another username ")</script>';
+
     }else{
     if($_SESSION['role']==="Student"){
         $user_status='Active';
@@ -123,7 +124,7 @@ mysqli_close($connection);
            
         </div>
         <div class="edit-acc">
-            <input type="text" name="phone" autocomplete="off" class="editAcc" id="user_contact_phone" onkeyup="validateRPhone()"required >
+            <input type="text" name="txtphone" autocomplete="off" class="editAcc" id="user_contact_phone" onkeyup="validateRPhone()"required >
              <label class="user-label">Phone</label><span id = phoneR-error></span>
            
         </div>

@@ -1,0 +1,377 @@
+
+
+  .blog-navigation-container nav {
+    display: flex;
+    padding: auto;
+    width: 100%;
+    margin: auto;
+    position:relative;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.blog-navigation-container nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+    
+}
+.profile{
+    width: 200px;
+    font-size: 17px;
+    color: #333;
+    margin-top: -20px;
+}
+.blog-btn{
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: all 400ms;
+    border: none;
+    background-color:#ffffff;
+
+}
+
+.blog-navigation-container nav ul li {
+    padding: 20px;
+    display: flex;
+    align-items: center; 
+}
+
+
+.active ,.blog-navigation-container nav .blog-btn:hover {
+    color: #75c1e7;
+}
+.course-name {
+    margin-right: auto;
+    font-weight: bold;
+    color: #333333;
+}
+
+.flow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    cursor: default;
+} 
+
+.block{
+    top: 100px;
+    height: 100%;
+    width: 100%;
+
+    display:block;
+    position:absolute;
+    background: #723939;
+    z-index: 1;
+    
+}
+.container1{
+    
+    margin-left:50px;
+padding-top:20px;
+    width: 800px;
+    min-height: 300px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    transition: height 0.2s ease;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  
+}
+.container2{
+    
+    margin-left:50px;
+    width: 400px;
+    padding: 20px;
+    min-height: 90px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    transition: height 0.2s ease;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  
+}
+.container3{
+    
+    margin-left:50px;
+    width: 400px;
+    min-height: 100px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    background: #fff;
+    padding: 20px;
+    transition: height 0.2s ease;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+}
+
+.top-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    margin-top: -20px;
+    
+    
+}
+.mid-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    
+    
+}
+.date{
+    position: flex;
+   
+    font-size: 12px;
+}
+.profile-pic{
+    cursor: default;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #c2cdda;
+    display: flex;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+.profile-pic img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.task{
+    width: 200px;
+    font-size: 17px;
+    margin-left: 20px;
+    color: #333;
+}
+.midtask{
+    width: 350px;
+    font-size: 17px;
+
+    color: #333;
+}
+.sidtask{
+    width: 100px;
+    font-size: 17px;
+
+    color: #333;
+}
+
+.comment{
+   
+    display: flex;
+}
+
+.comment-below{
+    min-width: 590px;
+    font-size: 12px;
+    
+
+    color: #625f5f;
+   
+    position: relative;
+    text-align: left;
+    display: absolute;
+    padding-right: 5px;
+    word-wrap: break-word;
+}
+.forinline{
+    display:inline;
+    width: 640px;
+}
+/* .title{
+    position: relative;
+    white-space: nowrap;
+    min-width: 10px;
+    font-size: 20px;
+    display: block;
+    font-weight: bold;
+    left:20px;
+} */
+
+.title{
+    width: 94%;
+    position: relative;
+    font-size: 20px;
+    display: block;
+    font-weight: bold;
+    left:20px;
+   
+} 
+.bigcontainer {
+    padding: 20px 20px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+
+.description{
+    
+    width: 94%;
+    position: relative;
+    font-size: 17px;
+    display: block;
+    text-align: left;
+
+    
+}
+
+.category{
+    position: relative;
+    white-space: nowrap;
+    
+    left: 20px;
+
+    font-size: 13px;
+    background: rgb(51, 75, 40);
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-radius: 50px;
+    border: none;
+
+    box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px 10px 10px -1px rgba(255, 255, 255, 0.7)
+
+}
+.img-content{
+    position: relative;
+    display:block;
+    width: 758px;
+    height: 400px;
+    object-fit: cover;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+
+}
+.img-content img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-content{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px 20px;
+    
+}
+.bottom-content .left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+}
+.bottom-content .profile-details{
+    margin: 5px 0;
+}
+.profile-details .profile-pic {
+    width: 50px;
+    height: 50px;
+}
+.profile-details p{
+    margin-left: 10px;
+    font-size: 14px;
+}
+.profile-details p span{
+    font-weight: 700;
+    color: #333;
+}
+
+.icons .icon + .icon{
+    margin-left: 20px;
+}
+
+.save svg:hover{
+    fill: gray;
+    cursor: pointer;
+}
+
+.comment-section{
+    border-top: 1px solid rgb(182,182,182);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search{
+    width: 95%;
+    height: 40px;
+    position: relative;
+}
+.search input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.post{
+    color: #000000;
+    height: 20px;
+}
+
+.btns{
+    position: relative;
+    display: flex;
+}
+
+
+.like:visited , .unlike:visited {
+	color: #eb6a49;
+  }
+
+.like , .unlike{
+    padding-right: 10px;
+    left: 100px;
+}
+.delete{
+    display: fixed;
+    font-size: 10px;
+    
+    width: 150px;
+    margin-left: 600px;
+    margin-top: -30px;
+    align-items: right;
+    color: #eb6a49;
+    
+    cursor: pointer;
+    
+}
+
+.deletepost{
+    display: fixed;
+    font-size: 10px;
+    width: 50px;
+    
+    align-items: right;
+    color: #eb6a49;
+    border-radius: 10%;
+    cursor: pointer;
+    
+}

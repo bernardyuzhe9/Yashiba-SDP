@@ -1,6 +1,6 @@
 .container {
     width: 900px;
-    height: 260px;
+    height: 250px;
     margin: 40px auto 50px;
     display: flex;
     justify-content: center;
@@ -25,23 +25,30 @@
     justify-content: center;
     align-items: center;
 }  
+
+.side{
+
+    display: flex;
+    justify-content: auto;
+    align-items: auto;
+}  
 .viewbtn {
     display: inline-block;
     padding: 5px 15px;
-    background-color: rgb(86, 87, 87);
+    background-color: #007bff;
     color: #ffffff;
     text-decoration: none;
     border-radius: 10px;
-    border: 3px solid rgb(86, 87, 87);
+    border: 3px solid #007bff;
     cursor: pointer;
     margin-left: 20px;
 
 }
 
 .viewbtn:hover{
-    color:rgb(86, 87, 87);
+    color: #007bff;
     background-color: transparent;
-    border: 3px solid rgb(86, 87, 87);
+    border: 3px solid  #007bff;
    
 }
 
@@ -66,9 +73,8 @@
     color: #4b6258;
     width: 95%;
     position: relative;
-    font-size: 17px;
+    font-size: 12px;
     display: block;
-    left:20px;
     text-align: left;
     word-break: break-all;
 }
@@ -91,6 +97,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px;
+    margin-top: -20px;
+    
+    
+}
+.mid-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
     
     
 }
@@ -98,7 +113,6 @@
 .date{
     position: flex;
    
-    padding-left: 20px;
     font-size: 12px;
 }
 .task-pic{
@@ -122,6 +136,18 @@
     width: 200px;
     font-size: 17px;
     margin-left: 20px;
+    color: #333;
+}
+.midtask{
+    width: 350px;
+    font-size: 17px;
+
+    color: #333;
+}
+.sidtask{
+    width: 100px;
+    font-size: 17px;
+
     color: #333;
 }
 
