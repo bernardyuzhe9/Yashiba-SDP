@@ -96,4 +96,25 @@
   opacity: 1;
   right: 0;
  }
-  
+/* View Button */
+.viewbtn {
+  margin-left: 30px;
+  margin-top: -15px;
+  font-size: 14px;
+  padding: 0.5em 2em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background: dodgerblue;
+  color: white;
+  border-radius: 4px;
+  vertical-align: middle; /* Add this line */
+}
+ 
+.viewbtn:hover {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+ }
+ 
+.viewbtn:active {
+  transform: translate(0em, 0.2em);
+ }

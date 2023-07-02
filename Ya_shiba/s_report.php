@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $title = 'Home';
     $page = 'home';
     include_once('assets/s_header+nav.php');
@@ -76,6 +75,7 @@
                     $title = 'Home';
                     $page = 'home';
                     include_once('assets/footer.php');
+                    include_once('assets/s_joinclass.php');
                 ?>
             </div>
         </div>

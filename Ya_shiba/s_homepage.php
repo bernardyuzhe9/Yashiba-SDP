@@ -2,6 +2,17 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/s_header+nav.php');
+
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $database = 'yashiba';
+    $connection= mysqli_connect($host,$user,$password,$database);
+    
+    if ($connection === false){
+        die('Connection failed' . mysqli_connect_error());
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -116,8 +127,10 @@
                     $title = 'Home';
                     $page = 'home';
                     include_once('assets/footer.php');
+                    include_once('assets/s_joinclass.php');
                 ?>
             </div>
         </div>
+        
     </body>
 </html>

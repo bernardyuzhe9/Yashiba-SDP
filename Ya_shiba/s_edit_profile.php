@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Password</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="password">
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                             </div>
                         </div>
                         <div>
@@ -54,6 +54,7 @@
                     $title = 'Home';
                     $page = 'home';
                     include_once('assets/footer.php');
+                    include_once('assets/s_joinclass.php');
                 ?>
             </div>
         </div>

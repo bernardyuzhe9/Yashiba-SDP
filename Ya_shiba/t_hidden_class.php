@@ -50,11 +50,11 @@ $classes = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USE
 
                                $classdetails = mysqli_fetch_assoc($classdetails)
                             ?>
-                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;height:400px;max-height:400px;">
+                            <div class="card" style="width: 18rem; margin-right: 60px; margin-top: 10px;margin-bottom:15px;height:400px;max-height:400px;">
                                 <img src="classroom/<?php echo $classdetails["CLASS_BACKGROUND"]; ?>" style="height: 150px; object-fit: cover;width: 17.9rem;margin-left:-12px;border-radius:5px;"alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $classdetails["CLASS_NAME"]; ?></h5>
-                                    <p class="card-text"style="height:120px;"><?php echo strlen($classdetails["CLASS_DESCRIPTION"]) > 100 ? substr($classdetails["CLASS_DESCRIPTION"], 0, 150) . "..." : $classdetails["CLASS_DESCRIPTION"]; ?>
+                                    <p class="card-text"style="height:120px;font-family:Mukta;"><?php echo strlen($classdetails["CLASS_DESCRIPTION"]) > 100 ? substr($classdetails["CLASS_DESCRIPTION"], 0, 150) . "..." : $classdetails["CLASS_DESCRIPTION"]; ?>
                                     <hr class="divider" />
                                     <form action="#" method="post">
                                     <a href="#" >
@@ -65,6 +65,11 @@ $classes = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USE
                                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                     
                                     </svg>
+                                    </a>
+                                    </button>
+                                    <a>
+                                    <button type="submit" class="viewbtn" name="goclass">
+                                    View
                                     </a>
                                     </button>
                                     
