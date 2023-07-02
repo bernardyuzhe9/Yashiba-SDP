@@ -3,6 +3,11 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
+
+    $taskid = $_SESSION['taskid'];
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +21,7 @@
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
-            <li class="course-name">Course Name</li>
+            <li class="course-name"><?php echo $_SESSION['classroomname']; ?></li>
         </ul>
     </nav>
 </div>  

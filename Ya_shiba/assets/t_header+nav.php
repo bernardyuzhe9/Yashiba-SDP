@@ -199,7 +199,7 @@ if(isset($_POST['post-submit']) ){
                        
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                        <label for="exampleFormControlTextarea1" class="form-label">Class description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="description"></textarea>
                     </div>
                     <div class="mb-3">

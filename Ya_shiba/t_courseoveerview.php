@@ -6,53 +6,92 @@
     $page = 'home';
     include_once('assets/t_header+nav.php'); 
     
-    if(isset($_POST['task-submit']) ){
-      $class= $_POST['class'];
-      $description= $_POST['description'];
-      $classcode= $_POST['classcodetxt'];
-      $number="1";
-      $task_number="0";
-      $userid="1";
-      $status="Show";
-      $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
-      $row = mysqli_fetch_assoc($query1); 
-      $count = mysqli_num_rows($query1);
-      if($count == 1){
-          // echo '<script>alert("There is repeated classcode, please try another username ")</script>';
-  
-      }else{
-     
-        if (isset($_FILES["files"])) {
-          $fileCount = count($_FILES["files"]["name"]);
+    
+    $assigned = (int)$_SESSION['classroomnstudent'] -1;
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+
+
+    if(isset($_POST['review-task'])){
+        
+ 
+      $_SESSION['taskid']=$_POST['taskid'];
+      echo '<script>window.location.href = "t_viewtask.php";</script>';
+      exit();
+  }
+
+  if(isset($_POST['review-work'])){
+        
+    $_SESSION['taskid']=$_POST['taskid'];
       
-          // Loop through each file
-          for ($i = 0; $i < $fileCount; $i++) {
-            $fileName = $_FILES["files"]["name"][$i];
-            $fileTmp = $_FILES["files"]["tmp_name"][$i];
-            $fileSize = $_FILES["files"]["size"][$i];
-            $fileError = $_FILES["files"]["error"][$i];
+    echo '<script>window.location.href = "t_viewwork.php";</script>';
+    exit();
+}
+
+
+
+    if(isset($_POST['add-submit']) ){
       
-            // Handle the file upload
-            if ($fileError === UPLOAD_ERR_OK) {
-              // Generate a unique name for the file
-              $uniqueName = uniqid() . "_" . $fileName;
-              $uploadPath = $uploadDirectory . $uniqueName;
-      
+      $taskname= $_POST['tasknametxt'];
+      $description= $_POST['taskdestxt'];
+      $post_date=date('Y/m/d H:i:s');
+    
+
+      $due=date('Y-m-d', strtotime($_POST['duetxt']));
+      $classcat=$_POST['taskcattxt'];
+      $point=$_POST['pointtxt'];
+      $message="0";
+      $handin="0";     
+
+
+if (isset($_FILES["files"])) {
+  $fileCount = count($_FILES["files"]["name"]);
+
+  if ($fileCount > 5) {
+      echo "Only a maximum of 5 files can be uploaded.";
+  } else {
+      // Insert a new row into the database
+      $query3 = "INSERT INTO task (CLASSROOM_ID,TASK_NAME,TASK_DESCRIPTION,UPLOAD_FILE_NUM,TASK_CREATE_TIME,TASK_SUBMIT_DATE,TASK_CATEGORY,POINT,MESSAGES_NUM,HAND_IN_NUM) VALUES
+       ('{$_SESSION['classroomid']}','$taskname','$description','$fileCount','$post_date','$due','$classcat','$point','$message','$handin')";
+      mysqli_query($connection, $query3);
+      $taskid = mysqli_insert_id($connection);
+      $query2 = "INSERT INTO tec_uploaded_file (TASK_ID) VALUES ('$taskid')";
+      mysqli_query($connection, $query2);
+      $uploadedFileId = mysqli_insert_id($connection);
+
+      // Loop through each file
+      for ($i = 0; $i < $fileCount; $i++) {
+          $fileName = $_FILES["files"]["name"][$i];
+          $fileTmp = $_FILES["files"]["tmp_name"][$i];
+
+          // Check if the file is uploaded successfully
+          if (is_uploaded_file($fileTmp)) {
               // Move the file to the desired location
-              if (move_uploaded_file($fileTmp, $uploadPath)) {
-                echo "File uploaded successfully: " . $fileName . "<br>";
-              } else {
-                echo "Failed to move file: " . $fileName . "<br>";
-              }
-            } else {
+              $destination = "lect_task/" . $fileName;
+              move_uploaded_file($fileTmp, $destination);
+
+              // Update the database with the filename
+              $column = "FILE_" . ($i + 1);
+              $query = "UPDATE tec_uploaded_file SET $column = '$fileName' WHERE UPLOADED_FILE_ID = '$uploadedFileId'";
+              mysqli_query($connection, $query);
+
+              echo "File uploaded successfully: " . $fileName . "<br>";
+          } else {
               echo "Error uploading file: " . $fileName . "<br>";
-            }
           }
-        }
+      }
+  }
+} else{
+  
+  $fileCount = "0";
+  $query4 = "INSERT INTO task (CLASSROOM_ID,TASK_NAME,TASK_DESCRIPTION,UPLOAD_FILE_NUM,TASK_CREATE_TIME,TASK_SUBMIT_DATE,TASK_CATEGORY,POINT,MESSAGES_NUM,HAND_IN_NUM) VALUES
+('{$_SESSION['classroomid']}','$taskname','$description','$fileCount','$post_date','$due','$classcat','$point','$message','$handin')";
+mysqli_query($connection, $query4);
+
+}
+      
   
     
      
-  }
   
   }
 
@@ -95,8 +134,10 @@
     </nav>
     </div>
     <?php   while ($row = mysqli_fetch_array($tasks)) { ?>
+    <form action="#" method="post"> 
     <div class="container">
         <div class="wrapper">
+        <input type="hidden" name="taskid" value="<?php echo $row["TASK_ID"]; ?>">
             <div class="top-content">
                 <div class="left flow">
                     <div class="task-pic">
@@ -115,13 +156,13 @@
             <div class="mid-content">
                 <div class="left flow">
                     <div class="midtask">
-                        <div class="date"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
-                        <div class="description"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                        <div class="date"><?php echo $row["TASK_CREATE_TIME"]; ?></div>
+                        <div class="description"><?php echo $row["TASK_DESCRIPTION"]; ?></div>
                     </div>
                 </div>
                 <div class="right flow">
                     <div class="sidtask">
-                        <div ><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                        <div ><?php echo $row["MESSAGES_NUM"]; ?></div>
                         <div style="font-size: 12px;">Comment</div>
                     </div>
                     <div class="sidtask">
@@ -129,7 +170,7 @@
                         <div style="font-size: 12px;">Handed in</div>
                     </div>
                     <div class="sidtasks">
-                        <div><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                        <div><?php echo $assigned ?></div>
                         <div style="font-size: 12px;">Assigned</div>
                     </div>
                 </div>
@@ -137,15 +178,16 @@
             <hr style="border:1px solid #365268;">
             <div class="right flow">
                 <div>
-                    <a class="viewbtn" href="post.php?pid=<?php echo $row['POST_ID'];?>">Review Task</a>
+                    <button class="viewbtn" type="submit" name="review-task">Review Task</button>
                 </div>
                 <div>
-                    <a class="viewbtn" href="post.php?pid=<?php echo $row['POST_ID'];?>">Review Work</a>
+                    <button class="viewbtn" type="submit" name="review-work">Mark the Work</button>
                 </div>
             </div>
         </div>
     </div>
     <?php   } ?>
+    </form>
 
 </body>
 </html>
@@ -162,7 +204,7 @@
       <div class="modal-footer" style="justify-content:center;">
         <button class="btn btn-primary" data-bs-target="#task" data-bs-toggle="modal" data-bs-dismiss="modal">Task</button>
         <button class="btn btn-primary" data-bs-target="#material" data-bs-toggle="modal" data-bs-dismiss="modal">Material</button>
-        <button class="btn btn-primary" data-bs-target="#quiz" data-bs-toggle="modal" data-bs-dismiss="modal">Quiz</button>
+        <button class="btn btn-primary" data-bs-target="#annoucement" data-bs-toggle="modal" data-bs-dismiss="modal">Annoucement</button>
 
       </div>
     </div>
@@ -176,38 +218,39 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Task</h5>
-        <input type="hidden" name="taskcat" value="Task">
+        <input type="hidden" name="taskcattxt" value="Task">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="Title">
+                <input type="text" class="form-control"  name="tasknametxt">
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" id="Description"></textarea>
+            <textarea class="form-control" name="taskdestxt"></textarea>
             </div>
        
         <div class="mb-3">
                 <label for="Point" class="col-form-label" name="pointtxt">Point</label>
-                <input type="text" class="form-control" id="Point">
+                <input type="text" class="form-control" name="pointtxt">
             </div>
      
         <div class="mb-3">
-        <input type="hidden" name="additional" value="Null">
+
                 <label for="due" class="col-form-label">Due</label>
-                <input type="text" class="form-control" id="due">
+                <input type="text" class="form-control" id="due" name="duetxt" >
 
             </div>
         <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Upload</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" name="files[]" multiple>
         </div>
+    
         </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+        <button class="btn btn-secondary" type="button" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
         <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
@@ -215,42 +258,33 @@
   </form>
 </div>
 
-<div class="modal fade" id="quiz" aria-hidden="true" tabindex="-1">
+<div class="modal fade" id="annoucement" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-xl">
   <form action="#" method="post" enctype="multipart/form-data">
 
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Quiz</h5>
-        <input type="hidden" name="taskcat" value="Quiz">
+        <h5 class="modal-title">Annoucement</h5>
+        <input type="hidden" name="taskcattxt" value="Annoucement">
+        
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="Title">
+                <input type="text" class="form-control" name="tasknametxt">
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" id="Description"></textarea>
-            </div>
-       
-        <div class="mb-3">
-                <label for="Point" class="col-form-label">Paste Form</label>
-                <input type="text" name="additional" class="form-control" id="formlink">
-                <button class="btn btn-light btn-sm" onclick="openNewTab()" style="margin-top:10px;padding: 5px 5px; font-size: 12px;">Create a form</button>
-
-            </div>
-     
-        <div class="mb-3">
-                <label for="due" class="col-form-label">Due</label>
-                <input type="text" class="form-control" id="due">
-
+            <textarea class="form-control" name="taskdestxt"></textarea>
             </div>
         </div>
+        <input type="hidden" name="duetxt" value="0000-00-00">
+        <input type="hidden" name="pointtxt" value="0">
+        
       <div class="modal-footer">
-      <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+      <button class="btn btn-secondary" type="button" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
         <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
@@ -266,27 +300,30 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" >Study Material</h5>
-        <input type="hidden" name="taskcat" value="Material">
+        <input type="hidden" name="taskcattxt" value="Material">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="Title">
+                <input type="text" class="form-control" name="tasknametxt">
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" id="Description"></textarea>
+            <textarea class="form-control" name="taskdestxt"></textarea>
             </div>
+            <input type="hidden" name="duetxt" value="None">
+            <input type="hidden" name="pointtxt" value="0">
+
         <div class="mb-3">
         <input type="hidden" name="additional" value="Null">
                 <label for="formFileMultiple" class="form-label">Upload</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" name="files[]" multiple>
         </div>
         </div>
       <div class="modal-footer">
-      <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+      <button class="btn btn-secondary" type="button" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
         <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
@@ -299,7 +336,9 @@
   // Open a new tab or window
   window.open("https://docs.google.com/forms/u/0/?tgif=d", "_blank");
 } 
-  $(function() {
-    $("#due").datepicker();
+$(function() {
+  $("#due").datepicker({
+    dateFormat: "yy-mm-dd"  // Specify the desired date format
   });
+});
 </script>
