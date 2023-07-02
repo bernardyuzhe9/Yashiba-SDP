@@ -1,3 +1,12 @@
+<?php
+session_start();
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'yashiba';
+$connection= mysqli_connect($host,$user,$password,$database);
+?>
+
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
@@ -75,7 +84,7 @@
                                 </nav>
                             </div>
                             <a class="nav-link" href="a_manage_report.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
                                 Manage Report
                             </a>
                             <a class="nav-link" href="a_teacher_request.php">

@@ -57,7 +57,7 @@
                                 <b>School Accounts</b>
                             </div>
                             <div class="card-body"  style ="font-family:Mukta;">
-                                <table class="table table-hover table-striped table-bordered"  id="sortTable">
+                                <table class="table table-hover table-striped table-bordered " id="sortTable" >
                                     <thead style="background-color: #bcd2e1fe;">
                                         <tr>
                                             <th class="text-center">School ID</th>

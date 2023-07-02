@@ -2,6 +2,13 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/a_header+nav.php');
+    $query=
+    'SELECT yashiba_user.USER_ID, yashiba_user.USER_PROFILE, yashiba_user.USERNAME, yashiba_user.USER_NAME, 
+    yashiba_user.EMAIL, yashiba_school.SCHOOL_NAME, yashiba_user.REGISTERED_DATE FROM yashiba_user
+    INNER JOIN yashiba_school ON yashiba_school.SCHOOL_ID = yashiba_user.SCHOOL_ID 
+    WHERE ROLE="Student" 
+    ORDER BY USER_ID ASC'; 
+    $results = mysqli_query($connection, $query);
 ?>
 
 <!DOCTYPE html>
@@ -46,75 +53,40 @@
                             </div>
                             <div class="card-body" style ="font-family:Mukta;">
                             <table class="table table-hover table-striped table-bordered"  id="sortTable">
-                                    <thead style="background-color: #bcd2e1fe;">
+                                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                         <tr>
-                                            <th class="text-center">Profile</th>
-                                            <th class="text-center">Student ID</th>
-                                            <th class="text-center">Username</th>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">School</th>
-                                            <th class="text-center">Batch ID</th>
-                                            <th class="text-center">Register Date</th>
-                                            <th class="text-center">Status</th>
+                                            <th>Student ID</th>
+                                            <th>Profile</th>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>School</th>
+                                            <th>Batch ID</th>
+                                            <th>Registered Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        while ($row = mysqli_fetch_assoc($results)){
+                                    ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>a</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
+                                            <td><?php echo $row['USER_ID']. ' ';?></td>
+                                            <td><img src="img/<?php echo $row['USER_PROFILE']. ' ';?>"></td>
+                                            <td><?php echo $row['USERNAME']. ' ';?></td>
+                                            <td><?php echo $row['USER_NAME']. ' ';?></td>
+                                            <td><?php echo $row['EMAIL']. ' ';?></td>
+                                            <td><?php echo $row['SCHOOL_NAME']. ' ';?></td>
+                                            <td></td>
+                                            <td><?php echo $row['REGISTERED_DATE']. ' ';?></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>b</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>d</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>e</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>c</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
+                                    <?php
+                                        }
+                                        mysqli_close($connection);
+                                    ?>
                                     </tbody>
                                 </table>
                                 <script>$('#sortTable').DataTable();</script>

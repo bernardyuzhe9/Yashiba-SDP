@@ -2,6 +2,8 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/a_header+nav.php');
+    $query='SELECT * FROM yashiba_school ORDER BY SCHOOL_ID ASC'; 
+    $results = mysqli_query($connection, $query);
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="button.css">
         <style>
             .table-hover tbody tr:hover td {
                 background-color: #bcd2e1fe;
@@ -25,10 +28,16 @@
         </style>
     </head>
     <body class="sb-nav-fixed">
-            <div id="layoutSidenav_content" class="bg-light">
+        <div id="layoutSidenav_content" class="bg-light">
+            
                 <main>
+
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style ="font-family:Karla; color: #03396c;"><b>School Account Details</b></h1>
+                        <div>
+                            <button role="button" class="addSchBtn"><i class="fa-solid fa-plus" style="color: #03396c;"></i>SCHOOL</button>
+
+                            <h1 class="mt-4" style ="font-family:Karla; color: #03396c;"><b>School Account Details</b></h1>
+                        </div>  
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="a_dashboard.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">School Account</li>
@@ -46,52 +55,33 @@
                                 <b>School Accounts</b>
                             </div>
                             <div class="card-body"  style ="font-family:Mukta;">
-                                <table class="table table-hover table-striped table-bordered"  id="sortTable">
-                                    <thead style="background-color: #bcd2e1fe;">
+                                <table class="table table-hover table-striped table-bordered "  id="sortTable" >
+                                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                         <tr>
-                                            <th class="text-center">School ID</th>
-                                            <th class="text-center">School Name</th>
-                                            <th class="text-center">Address</th>
-                                            <th class="text-center">Person in charge</th>
-                                            <th class="text-center">Contact Number</th>
+                                            <th >School ID</th>
+                                            <th>School Name</th>
+                                            <th>Address</th>
+                                            <th>Person in charge</th>
+                                            <th>Contact Number</th>
+                                            <th>Registered Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        while ($row = mysqli_fetch_assoc($results)){
+                                    ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <td><?php echo $row['SCHOOL_ID']. ' ';?></td>
+                                            <td><?php echo $row['SCHOOL_NAME']. ' ';?></td>
+                                            <td><?php echo $row['SCHOOL_ADDRESS']. ' ';?></td>
+                                            <td><?php echo $row['PERSON_IN_CHARGE']. ' ';?></td>
+                                            <td><?php echo $row['PERSON_IN_CHARGE_PHONE']. ' ';?></td>
+                                            <td><?php echo $row['SCHOOL_REGISTER_DATE']. ' ';?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
+                                    <?php
+                                        }
+                                        mysqli_close($connection);
+                                    ?>
                                     </tbody>
                                 </table>
                                 <script>$('#sortTable').DataTable();</script>
