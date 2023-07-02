@@ -1,11 +1,7 @@
 <?php
-    session_start();
     $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
-?>
-
-<?php
     $host = 'localhost';
     $user = 'root';
     $password = '';
@@ -43,9 +39,7 @@
 
     mysqli_close($connection);
 ?>
-<header>
-    <link rel="stylesheet" href="button.css">
-</header>
+
 <!DOCTYPE html>
 <html lang="en">
 <title>Report - Teacher</title>
@@ -68,7 +62,7 @@
                         </div>
                         <div class="d-flex flex-column align-items-center"> 
                             <div class="mb-3">
-                            <button type="submit" class="btn btn-primary submit" style="width:150px" name="report" value="Submit">Submit</button>
+                            <button type="submit" class="submitbtn" style="width:150px" name="report" value="Submit"><span>Submit</span></button>
                             </div>
                         </div>
                         </form> 

@@ -17,7 +17,7 @@
                         </ol>
                         <div class="row justify-content-between">
                             <div class="col-4">
-                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 100px; height: 100px; margin-bottom: 10px">
+                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 150px; height: 150px; margin-bottom: 10px">
                             </div>
                             <div class="dropdown col-auto">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,11 +35,22 @@
                                 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">School Name</label>
+                                <label for="exampleFormControlInput1" class="form-label">Name</label>
                                 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div><div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">School Name</label>
                                 <input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
                             </div>
                         </div>

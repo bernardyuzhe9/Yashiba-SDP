@@ -1,7 +1,7 @@
 <?php
     $title = 'Home';
     $page = 'home';
-    include_once('assets/s_header+nav.php');
+    include_once('assets/a_header+nav.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
                         </ol>
                         <div class="row align-items-start">
                             <div class="col">
-                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 100px; height: 100px; margin-bottom: 10px">
+                            <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 150px; height: 150px; margin-bottom: 10px">
                             </div>
                         </div>
                         <div>
@@ -31,11 +31,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your full name">
+                                <label for="exampleFormControlInput1" class="form-label">Contact Numer</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="0123456789">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="password">
                             </div>
                         </div>
                         <div>

@@ -107,7 +107,7 @@ if(isset($_POST['post-submit']) ){
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/nav+body.css" rel="stylesheet" />
         <link href="css/test.css" rel="stylesheet" />
-
+        <link rel="stylesheet" href="css/button.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,7 +142,7 @@ if(isset($_POST['post-submit']) ){
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav" style ="font-family:Nunito;">
-                <!-- sideNav bg color-->>
+                <!-- sideNav bg color-->
                 <nav class="sb-sidenav accordion sb-sidenav-white" id="sidenavAccordion">
                     <div class="sb-sidenav-menu" >
                         <div class="nav">
