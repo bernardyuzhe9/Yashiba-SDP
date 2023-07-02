@@ -1,6 +1,9 @@
 <?php
 
-
+ $title = 'Home';
+    $page = 'home';
+    include_once('assets/t_header+nav.php');
+    
 $host = 'localhost';
 $user = 'root';
 $password = '';
@@ -12,9 +15,7 @@ $connection= mysqli_connect($host,$user,$password,$database);
 if ($connection === false){
     die('Connection failed' . mysqli_connect_error());
 }
-    $title = 'Home';
-    $page = 'home';
-    include_once('assets/t_header+nav.php');
+   
 
     if (isset($_POST['hide'])) {
         $newstatus = "Hidden";
@@ -23,6 +24,24 @@ if ($connection === false){
             mysqli_query($connection, "UPDATE enrolled_classroom SET STATUS='$newstatus' WHERE CLASSROOM_ID='$classroomID'");    
         }
     }
+
+    if(isset($_POST['goclass'])){
+        
+        $classroomid = $_POST['classroomid'];
+        
+    $query = "SELECT * FROM classroom WHERE CLASSROOM_ID = '$classroomid'";
+    $results = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($results); //$row['email']
+    $count = mysqli_num_rows($results); //1 or 0
+    if($count == 1){
+        
+        $_SESSION['classroomid'] = $row['CLASSROOM_ID'];
+        $_SESSION['classroomname'] = $row['CLASS_NAME'];
+        $_SESSION['classroomnstudent'] = $row['CLASS_NAME'];
+        echo '<script>window.location.href = "t_courseoveerview.php";</script>';
+        exit();
+    }}
+
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +96,11 @@ $classes = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USE
                                         <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
                                         <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
                                     </svg>
+                                    </a>
+                                    </button>
+                                    <a>
+                                    <button type="submit" class="hide-button" name="goclass" style="background: none; border: none;">
+                                    CLICK ME
                                     </a>
                                     </button>
                            </form>

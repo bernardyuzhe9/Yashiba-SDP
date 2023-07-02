@@ -1,8 +1,68 @@
 
 <?php
+
+
     $title = 'Home';
     $page = 'home';
-    include_once('assets/t_header+nav.php');
+    include_once('assets/t_header+nav.php'); 
+    
+    if(isset($_POST['task-submit']) ){
+      $class= $_POST['class'];
+      $description= $_POST['description'];
+      $classcode= $_POST['classcodetxt'];
+      $number="1";
+      $task_number="0";
+      $userid="1";
+      $status="Show";
+      $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
+      $row = mysqli_fetch_assoc($query1); 
+      $count = mysqli_num_rows($query1);
+      if($count == 1){
+          // echo '<script>alert("There is repeated classcode, please try another username ")</script>';
+  
+      }else{
+     
+        if (isset($_FILES["files"])) {
+          $fileCount = count($_FILES["files"]["name"]);
+      
+          // Loop through each file
+          for ($i = 0; $i < $fileCount; $i++) {
+            $fileName = $_FILES["files"]["name"][$i];
+            $fileTmp = $_FILES["files"]["tmp_name"][$i];
+            $fileSize = $_FILES["files"]["size"][$i];
+            $fileError = $_FILES["files"]["error"][$i];
+      
+            // Handle the file upload
+            if ($fileError === UPLOAD_ERR_OK) {
+              // Generate a unique name for the file
+              $uniqueName = uniqid() . "_" . $fileName;
+              $uploadPath = $uploadDirectory . $uniqueName;
+      
+              // Move the file to the desired location
+              if (move_uploaded_file($fileTmp, $uploadPath)) {
+                echo "File uploaded successfully: " . $fileName . "<br>";
+              } else {
+                echo "Failed to move file: " . $fileName . "<br>";
+              }
+            } else {
+              echo "Error uploading file: " . $fileName . "<br>";
+            }
+          }
+        }
+  
+    
+     
+  }
+  
+  }
+
+
+
+
+    $tasks = mysqli_query($connection, "SELECT * FROM task WHERE CLASSROOM_ID = {$_SESSION['classroomid']} ORDER BY TASK_ID DESC");
+
+    // $class = mysqli_fetch_assoc($tasks);
+    // $count = mysqli_num_rows($tasks);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +79,7 @@
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
-            <li class="course-name">Course Name</li>
+            <li class="course-name"><?php echo $_SESSION['classroomname']; ?></li>
             <li>
                 <div  data-bs-toggle="modal" href="#createbtn">
                 <i class="fa-solid fa-plus"></i>
@@ -34,6 +94,7 @@
         </ul>
     </nav>
     </div>
+    <?php   while ($row = mysqli_fetch_array($tasks)) { ?>
     <div class="container">
         <div class="wrapper">
             <div class="top-content">
@@ -42,8 +103,8 @@
                         <img src="" alt="">
                     </div>
                     <div class="task">
-                        <div>Task Name</div>
-                        <div style="font-size: 12px;">due date</div>
+                        <div><?php echo $row["TASK_NAME"]; ?></div>
+                        <div style="font-size: 12px;"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
                     </div>
                 </div>
                 <div class="right flow" style="font-size: 12px;">
@@ -54,21 +115,21 @@
             <div class="mid-content">
                 <div class="left flow">
                     <div class="midtask">
-                        <div class="date">Date</div>
-                        <div class="description">Task DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask DescriptionTask Description</div>
+                        <div class="date"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                        <div class="description"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
                     </div>
                 </div>
                 <div class="right flow">
                     <div class="sidtask">
-                        <div >0</div>
+                        <div ><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
                         <div style="font-size: 12px;">Comment</div>
                     </div>
                     <div class="sidtask">
-                        <div>1</div>
+                        <div><?php echo $row["HAND_IN_NUM"]; ?></div>
                         <div style="font-size: 12px;">Handed in</div>
                     </div>
                     <div class="sidtasks">
-                        <div>2</div>
+                        <div><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
                         <div style="font-size: 12px;">Assigned</div>
                     </div>
                 </div>
@@ -84,6 +145,8 @@
             </div>
         </div>
     </div>
+    <?php   } ?>
+
 </body>
 </html>
 <div class="modal fade" id="createbtn" aria-hidden="true"  tabindex="-1">
@@ -108,9 +171,12 @@
 </div>
 <div class="modal fade" id="task" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-xl">
+  <form action="#" method="post" enctype="multipart/form-data">
+
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Task</h5>
+        <input type="hidden" name="taskcat" value="Task">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -125,11 +191,12 @@
             </div>
        
         <div class="mb-3">
-                <label for="Point" class="col-form-label">Point</label>
+                <label for="Point" class="col-form-label" name="pointtxt">Point</label>
                 <input type="text" class="form-control" id="Point">
             </div>
      
         <div class="mb-3">
+        <input type="hidden" name="additional" value="Null">
                 <label for="due" class="col-form-label">Due</label>
                 <input type="text" class="form-control" id="due">
 
@@ -141,17 +208,21 @@
         </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 <div class="modal fade" id="quiz" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-xl">
+  <form action="#" method="post" enctype="multipart/form-data">
+
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Quiz</h5>
+        <input type="hidden" name="taskcat" value="Quiz">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -167,7 +238,7 @@
        
         <div class="mb-3">
                 <label for="Point" class="col-form-label">Paste Form</label>
-                <input type="text" class="form-control" id="formlink">
+                <input type="text" name="additional" class="form-control" id="formlink">
                 <button class="btn btn-light btn-sm" onclick="openNewTab()" style="margin-top:10px;padding: 5px 5px; font-size: 12px;">Create a form</button>
 
             </div>
@@ -180,18 +251,22 @@
         </div>
       <div class="modal-footer">
       <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 
 <div class="modal fade" id="material" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-xl">
+  <form action="#" method="post" enctype="multipart/form-data">
+
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" >Material</h5>
+        <h5 class="modal-title" >Study Material</h5>
+        <input type="hidden" name="taskcat" value="Material">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -205,16 +280,18 @@
             <textarea class="form-control" id="Description"></textarea>
             </div>
         <div class="mb-3">
+        <input type="hidden" name="additional" value="Null">
                 <label for="formFileMultiple" class="form-label">Upload</label>
                 <input class="form-control" type="file" id="formFileMultiple" multiple>
         </div>
         </div>
       <div class="modal-footer">
       <button class="btn btn-secondary" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit" name="add-submit">Submit</button>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 <script>

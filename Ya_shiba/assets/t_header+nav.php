@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 $host = 'localhost';
 $user = 'root';
 $password = '';
@@ -29,7 +30,7 @@ if(isset($_POST['post-submit']) ){
     $row = mysqli_fetch_assoc($query1); 
     $count = mysqli_num_rows($query1);
     if($count == 1){
-        echo '<script>alert("There is repeated classcode, please try another username ")</script>';
+        // echo '<script>alert("There is repeated classcode, please try another username ")</script>';
 
     }else{
     if(isset($_FILES['my_image'] )){
@@ -44,7 +45,7 @@ if(isset($_POST['post-submit']) ){
       if($error === 0){
           if($img_size>1250000){
               $em="sorry your file is too lagre";
-              header("Location: postupload.php?error=$em");
+            //   header("Location: postupload.php?error=$em");
           }else{
               $img_ex = pathinfo($img_name,PATHINFO_EXTENSION);
               $img_ex_lc = strtolower($img_ex);
@@ -57,7 +58,7 @@ if(isset($_POST['post-submit']) ){
                   $img_upload_path='classroom/'.$new_img_name;
                   move_uploaded_file($tmp_name,$img_upload_path);
                   //Insert into database
-                  echo '<script>alert("You submited")</script>';
+                //   echo '<script>alert("You submited")</script>';
                   $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
                   VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
                   mysqli_query($connection,$sql);
@@ -93,9 +94,6 @@ if(isset($_POST['post-submit']) ){
   
 // mysqli_close($connection);
     ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
