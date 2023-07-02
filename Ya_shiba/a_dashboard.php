@@ -7,60 +7,66 @@
 <!DOCTYPE html>
 <title>Dashboard - Admin</title>
 <html lang="en">
-
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .table-hover tbody tr:hover td {
+                background-color: #bcd2e1fe;
+            }                     
+        </style>
+    </head>
     <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4" style ="font-family:Mukta; color: #03396c;"><b>Dashboard</b></h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="row">
+                        <div class="row" style ="font-family:Mukta; color: #03396c;">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                                        <i class="fa-solid fa-chart-area me-1" style="color: #03396c;"></i>
+                                        <b>Daily Interactions</b>
                                     </div>
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-lg-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
+                                        <i class="fa-solid fa-users me-1" style="color: #03396c;"></i>
+                                        <b>Total Accounts</b>
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Accounts Data
+                            <div class="card-header" style ="font-family:Mukta; color: #03396c;">
+                                <i class="fa-solid fa-school me-1" style="color: #03396c;"></i>
+                                <b>School Accounts</b>
                             </div>
-                            <div class="card-body" style ="font-family:Mukta;">
-                                <table id="datatablesSimple">
-                                    <thead>
+                            <div class="card-body"  style ="font-family:Mukta;">
+                                <table class="table table-hover table-striped table-bordered"  id="sortTable">
+                                    <thead style="background-color: #bcd2e1fe;">
                                         <tr>
-                                            <th>School ID</th>
-                                            <th>School Name</th>
-                                            <th>Address</th>
-                                            <th>Person in charge</th>
-                                            <th>Contact Number</th>
+                                            <th class="text-center">School ID</th>
+                                            <th class="text-center">School Name</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Person in charge</th>
+                                            <th class="text-center">Contact Number</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>School ID</th>
-                                            <th>School Name</th>
-                                            <th>Address</th>
-                                            <th>Person in charge</th>
-                                            <th>Contact Number</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
@@ -176,6 +182,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <script>$('#sortTable').DataTable();</script>
                             </div>
                     </div>
                 </main>

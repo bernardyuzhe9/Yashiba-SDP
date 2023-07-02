@@ -1,7 +1,7 @@
 <?php
     $title = 'Home';
     $page = 'home';
-    include_once('assets/s_header+nav.php');
+    include_once('assets/a_header+nav.php');
 ?>
 
 <!DOCTYPE html>

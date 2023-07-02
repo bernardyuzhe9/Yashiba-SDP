@@ -69,7 +69,7 @@
                                         Teacher Accounts
                                     </a>
                                     <a class="nav-link" href="a_student_acc.php">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                                        <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                         Student Accounts
                                     </a>
                                 </nav>
@@ -82,11 +82,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
                                 Teacher Request
                             </a>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Bla - Bla
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
