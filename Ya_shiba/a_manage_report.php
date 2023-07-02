@@ -35,7 +35,8 @@
                         </ol>
                         <div class="card mb-4" style ="font-family:Mukta; color: #03396c;">
                             <div class="card-body">
-                                <b></b>
+                                <b>Efficiently track and organize student and teacher reports 
+                                    for streamlined management and improved collaboration.</b>
                             </div>
                         </div>
                         <div class="card mb-4">

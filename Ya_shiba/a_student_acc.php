@@ -73,7 +73,7 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $row['USER_ID']. ' ';?></td>
-                                            <td><img src="img/<?php echo $row['USER_PROFILE']. ' ';?>"></td>
+                                            <td><img src="img/<?php echo $row['USER_PROFILE']. ' ';?>" style="width:70px;height:70px;vertical-align:middle;horizontal:align:center;border-radius:50%"></td>
                                             <td><?php echo $row['USERNAME']. ' ';?></td>
                                             <td><?php echo $row['USER_NAME']. ' ';?></td>
                                             <td><?php echo $row['EMAIL']. ' ';?></td>

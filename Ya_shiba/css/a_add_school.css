@@ -1,0 +1,129 @@
+
+.flow{
+    justify-content: center;
+    align-items: center;
+    cursor:auto;
+} 
+
+/* .title{
+    width: 94%;
+    position: relative;
+    font-size: 20px;
+    display: block;
+    font-weight: bold;
+    left:20px;
+   
+}  */
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+/* Edit School Acc border position */
+.edit-sch {
+  margin-top: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Edit School Account border before*/
+.editSch {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  position: center;
+  margin-left: 30px;
+  border: solid 2px #758058;
+  border-radius: 10px;
+  background: none;
+  padding: 15px;
+  color: #22303b;
+  font-size: 16px;
+  width: 500px;
+  margin-left: 650px;
+}
+
+.sch-label {
+  position: absolute;
+  margin-left: 400px;
+  top: 10px;
+  color: #728277;
+  background-color: #fff;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);    
+  font-size: 18px;
+}
+
+/* Edit School Account border after*/
+.editSch:focus, .editSch:valid {
+  outline: none;
+  border: 2px solid #365268;
+}
+
+/* Edit School Account wording above*/
+.editSch:focus ~ label, .editSch:valid ~ label {
+  background-color: #fff;
+  padding: 2px;
+  color: #365268;
+  font-size: 18px;
+  font-weight: 500;
+  left: 25px;
+}
+
+/* Add School Button */
+.addBtn{
+  position: relative;
+  margin: 20px;
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #365268;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-radius: 5s;
+  margin-top: 50px;
+  margin-left: 700px;
+}
+
+.edit-sch span{
+  font-size: 14px;
+  left: 1200px;
+  color: red;
+  font-display: inline;
+  position: absolute;
+  top: 12px;
+  
+}
+
+#addSch-error{
+  color: red;
+  font-size: 14px;
+  left: 1200px;
+}
+
+.input-group-contact span .i{
+  color: seagreen ;
+  width: 10px;
+  height: 10px;
+
+}
+
+.toggle-btn {
+    font-weight: Bold;
+    margin: 10px auto;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0b90e2;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    width: 100px;
+    height: 45px;
+    transition: .3s;
+}

@@ -35,7 +35,7 @@
                         </ol>
                         <div class="card mb-4" style ="font-family:Mukta; color: #03396c;">
                             <div class="card-body">
-                                <b></b>
+                                <b>Streamline teacher onboarding to our e-learning platform with efficient management of joining requests.</b>
                             </div>
                         </div>
                         <div class="card mb-4">

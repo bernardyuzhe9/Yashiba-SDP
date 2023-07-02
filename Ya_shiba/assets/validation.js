@@ -160,3 +160,118 @@ function validatePassword2() {
         return true;  
     }  
 }
+
+//ADD SCHOOL ACCOUNT  
+var schIDError = document.getElementById("sch_ID_ER");
+var schNameError = document.getElementById("sch_name_ER");
+var schAddressError = document.getElementById("sch_address_ER");
+var schPicError = document.getElementById("sch_pic_ER");
+var schContactError = document.getElementById("sch_contact_ER");
+var schBtnError = document.getElementById("sch_btn_ER");
+
+
+function validateSchID(){
+    var schoolID= document.getElementById("sch_ID").value;
+    var schoolIDFormat= /^SCKL\d{3}$/
+    if(schoolID.match(" ")){
+        schIDError.innerHTML="No space is required";
+        return false;}
+
+    if (!schoolID.match(schoolIDFormat)){
+        schIDError.innerHTML="Invalid School ID!";
+        return valid;}
+    else{
+        schIDError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;    
+        /* 
+            School ID can only have: 
+            - 4 Uppercase Letter (A-Z)
+            - 3 Numbers (0-9)
+        */
+       
+    }
+}
+
+
+function validateSchName(){
+    var schoolName= document.getElementById("sch_name").value;
+    if(schoolName.length==0){
+        schNameError.innerHTML="School Name is required";
+        return false;
+        /* to set or return the HTML constent of an element.*/
+    }
+    
+    else{
+        schNameError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;
+    }
+}
+
+function validateSchAddress(){
+    var schoolAddress= document.getElementById("sch_address").value;
+    var schoolAddressFormat= /^[A-Za-z0-9,().\s]+$/
+    if(schoolAddress.length===0){
+        schAddressError.innerHTML="School Address is required";
+        return false;}
+
+    if (!schoolAddress.match(schoolAddressFormat)){
+        schAddressError.innerHTML="Invalid School Address!";
+        return valid;}
+    else{
+        schAddressError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;    
+        /* 
+            School Address can only have: 
+            - Letters (A-Z a-z)
+            - Numbers (0-9)
+            - Special characters (, . ())
+        */
+       
+    }
+}
+
+function validateSchPic(){
+    var schoolPic= document.getElementById("sch_pic").value;
+    if(schoolPic.length==0){
+        schPicError.innerHTML="Person-In-Charge's Name is required";
+        return false;
+        /* to set or return the HTML constent of an element.*/
+    }
+
+    else{
+        schPicError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;
+    }
+}
+
+function validateSchContact(){
+    var schoolContact= document.getElementById("sch_contact").value;
+
+    if(schoolContact.length==0){
+        schContactError.innerHTML="School Contact Number is required";
+        return false;
+        /* to set or return the HTML content of an element.*/
+    }
+
+    if(isNaN(schoolContact)){
+        schContactError.innerHTML="Only write digit not character";
+        return false;
+    }
+    if(schoolContact.length!=10){
+        schContactError.innerHTML="Contact number only can be 10 digits";
+        return false;
+    }
+    else{
+        schContactError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;
+    }
+}
+
+function validateSchBtnForm(){
+    if(!validateSchID()||!validateSchName()|| !validateSchAddress()||!validateSchPic()|| !validateSchContact()){
+        schBtnError.innerHTML="Please fix the error to submit";
+        schBtnError.style.display="block";
+        setTimeout(function(){schBtnError.style.display="none"},1000)
+        return false;
+    }
+}

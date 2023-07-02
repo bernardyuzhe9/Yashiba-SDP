@@ -20,11 +20,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="button.css">
+        <link rel="stylesheet" href="css/button.css">
         <style>
             .table-hover tbody tr:hover td {
                 background-color: #bcd2e1fe;
-            }                     
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -33,10 +33,15 @@
                 <main>
 
                     <div class="container-fluid px-4">
-                        <div>
-                            <button role="button" class="addSchBtn"><i class="fa-solid fa-plus" style="color: #03396c;"></i>SCHOOL</button>
-
-                            <h1 class="mt-4" style ="font-family:Karla; color: #03396c;"><b>School Account Details</b></h1>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h1 class="mt-4" style ="font-family:Karla; color: #03396c;"><b>School Account Details</b></h1>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="a_add_school.php">
+                                    <button type="button" class="addSchBtn mt-4" ><i class="fa-solid fa-plus me-2" style="color: #03396c;"></i>SCHOOL</button>
+                                </a>
+                            </div>
                         </div>  
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="a_dashboard.php">Dashboard</a></li>
