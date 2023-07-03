@@ -23,7 +23,7 @@ if(isset($_POST['post-submit']) ){
     $description= $_POST['description'];
     $classcode= $_POST['classcodetxt'];
     $number="1";
-    $task_number="0";
+    // $task_number="0";
     $userid="1";
     $status="Show";
     $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
@@ -59,8 +59,8 @@ if(isset($_POST['post-submit']) ){
                   move_uploaded_file($tmp_name,$img_upload_path);
                   //Insert into database
                 //   echo '<script>alert("You submited")</script>';
-                  $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
-                  VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
+                  $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM) 
+                  VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number')"; 
                   mysqli_query($connection,$sql);
                   $classroomId = mysqli_insert_id($connection);
                   $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 
@@ -74,8 +74,8 @@ if(isset($_POST['post-submit']) ){
           }
       }else{
         $new_img_name="hihi.png";
-        $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM,TASK_NUM) 
-        VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number','$task_number')"; 
+        $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM) 
+        VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number')"; 
         mysqli_query($connection,$sql);
         $classroomId = mysqli_insert_id($connection);
         $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 

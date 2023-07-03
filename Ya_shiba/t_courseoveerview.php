@@ -14,14 +14,14 @@
     if(isset($_POST['review-task'])){
         
  
-      $_SESSION['taskid']=$_POST['taskid'];
+      $_SESSION['taskid']=$_POST['review-task'];
       echo '<script>window.location.href = "t_viewtask.php";</script>';
       exit();
   }
 
   if(isset($_POST['review-work'])){
         
-    $_SESSION['taskid']=$_POST['taskid'];
+    $_SESSION['taskid']=$_POST['review-work'];
       
     echo '<script>window.location.href = "t_viewwork.php";</script>';
     exit();
@@ -137,7 +137,6 @@ mysqli_query($connection, $query4);
     <form action="#" method="post"> 
     <div class="container">
         <div class="wrapper">
-        <input type="hidden" name="taskid" value="<?php echo $row["TASK_ID"]; ?>">
             <div class="top-content">
                 <div class="left flow">
                     <div class="task-pic">
@@ -178,10 +177,10 @@ mysqli_query($connection, $query4);
             <hr style="border:1px solid #365268;">
             <div class="right flow">
                 <div>
-                    <button class="viewbtn" type="submit" name="review-task">Review Task</button>
+                    <button class="viewbtn" type="submit" name="review-task" value="<?php echo $row["TASK_ID"]; ?>">Review Task</button>
                 </div>
                 <div>
-                    <button class="viewbtn" type="submit" name="review-work">Mark the Work</button>
+                    <button class="viewbtn" type="submit" name="review-work" value="<?php echo $row["TASK_ID"]; ?>">Mark the Work</button>
                 </div>
             </div>
         </div>

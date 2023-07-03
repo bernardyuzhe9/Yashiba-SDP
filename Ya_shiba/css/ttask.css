@@ -27,7 +27,7 @@
     width: 200px;
     font-size: 17px;
     color: #333;
-    margin-top: -20px;
+    margin-top: -10px;
 }
 .blog-btn{
     text-decoration: none;
@@ -79,7 +79,7 @@
     margin-left:50px;
 padding-top:20px;
     width: 800px;
-    min-height: 300px;
+    min-height: 200px;
     overflow: hidden;
     background: #fff;
     border-radius: 10px;
@@ -351,27 +351,15 @@ padding-top:20px;
     left: 100px;
 }
 .delete{
-    display: fixed;
+    display: flex;
     font-size: 10px;
-    
-    width: 150px;
-    margin-left: 600px;
-    margin-top: -30px;
-    align-items: right;
-    color: #eb6a49;
-    
-    cursor: pointer;
-    
-}
+    width: 100px;
+    margin-left:70px;
 
-.deletepost{
-    display: fixed;
-    font-size: 10px;
-    width: 50px;
-    
     align-items: right;
     color: #eb6a49;
-    border-radius: 10%;
+    background: none;
     cursor: pointer;
+    border: none;
     
 }
