@@ -45,7 +45,7 @@ $connection= mysqli_connect($host,$user,$password,$database);
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="a_user_profile.php">View Profile</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#">Log Out</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                     </ul>
                 </li>
             </ul>

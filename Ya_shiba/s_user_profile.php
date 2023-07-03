@@ -2,6 +2,30 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/s_header+nav.php');
+
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $database = 'yashiba';
+    $connection= mysqli_connect($host,$user,$password,$database);
+
+
+
+    if ($connection === false){
+        die('Connection failed' . mysqli_connect_error());
+    }
+    if(isset($_POST['deactivate'])){
+        $status='Deactivated';
+        $updateQuery = "UPDATE `yashiba_user` 
+        SET `USER_STATUS`='$status' WHERE `USER_ID`=" . $_SESSION['id'];
+        if(mysqli_query($connection, $updateQuery)){
+            echo '<script>alert("Your account is deactivated")</script>';
+            echo '<script>window.location.href = "logout.php";</script>';
+        }else {
+            echo"Error, something went wrong!";
+            mysqli_close($connection);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +68,28 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="s_edit_profile.php">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="#" id="deactivate">Deactivate Account</a></li>
+                                <li><a class="dropdown-item" href="#" id="DeactivateLink">Deactivate Account</a></li>
                             </ul>
+                            </div>
+                            <div class="modal fade" id="DeactivateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">  
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" style="font-family:Karla;font-weight:bold;">Deactivate Account</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="" method="post">
+                                    <div class="modal-body">
+                                        <img src="img/warning.png" alt="warning" style="display: block; margin-left: auto; margin-right: auto;margin-bottom:15px;" height=100px weight=100px>
+                                        <p style="font-family:Karla;text-align:center;">Are you sure that you want to deactivate your account？</p>
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="submit" class="decbtns" name="deactivate">
+                                        Deactivate
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -89,4 +133,14 @@
             </div>
         </div>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var DeactivateLink = document.getElementById("DeactivateLink");
+            DeactivateLink.addEventListener("click", function(event) {
+                event.preventDefault(); 
+                var modal = new bootstrap.Modal(document.getElementById("DeactivateModal"));
+                modal.show();
+            });
+        });
+    </script>
 </html>

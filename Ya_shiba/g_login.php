@@ -14,6 +14,10 @@ if ($connection === false){
  
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
 if(isset($_POST['login'])){
     $username = $_POST['txtusername'];
     $password = $_POST['txtpassword'];
@@ -25,7 +29,6 @@ if(isset($_POST['login'])){
     $count = mysqli_num_rows($results); //1 or 0
     
     if($count == 1){
-        session_start();
         $_SESSION['id'] = $row['USER_ID'];
         $_SESSION['role'] = $row['ROLE'];
         $_SESSION['user_status'] = $row['USER_STATUS'];
