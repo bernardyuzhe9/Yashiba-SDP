@@ -205,9 +205,14 @@ mysqli_query($connection, $query4);
                 <div>
                     <button class="viewbtn" type="submit" name="review-task" value="<?php echo $row["TASK_ID"]; ?>">Review Task</button>
                 </div>
-                <div>
+                <?php if($row['TASK_CATEGORY'] == "Task") {?>
+                     
+<div>
+                  
                     <button class="viewbtn" type="submit" name="review-work" value="<?php echo $row["TASK_ID"]; ?>">Mark the Work</button>
                 </div>
+        <?php }?>
+                
             </div>
         </div>
     </div>

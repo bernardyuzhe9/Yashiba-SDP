@@ -269,6 +269,7 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
                 </div>
             </div>
     </div>
+    <?php if($row['TASK_CATEGORY'] == "Task") {?>
     <form action="#" method="post">
     <div class="flow">
             <div class="container2">
@@ -280,6 +281,7 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
             </div>
     </div>
     </form>
+    <?php }?>
     
 </div>
 <form action="#" method="post" enctype="multipart/form-data">

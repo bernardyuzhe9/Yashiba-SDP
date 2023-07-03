@@ -190,18 +190,18 @@ if (isset($_POST['uploadgrading'])) {
               <div><?php echo $markingprofile['USER_NAME']; ?></div>
             </div>
           </div>
-          <div class="content">
-            <div><?php echo $row5['MARKING_STATUS']; ?></div>
+          <div class="content" style="width:120px">
+            <div style="width: 100%;"><?php echo $row5['MARKING_STATUS']; ?></div>
           </div>
           <div class="content" style="width:50px">
-            <div><?php echo $row5['MARKED']; ?>%</div>
+            <div ><?php echo $row5['MARKED']; ?>%</div>
           </div>
           <div class="content"  style="width:300px;">
             <div style="width: 100%;word-wrap: break-word;"><?php echo $row5['FEEDBACK']; ?></div>
           </div>
 
           <div class="content">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-markingid="<?php echo $markingId ?>" name="markingbutton"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+            <button type="button" style="background:none;border:none;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-markingid="<?php echo $markingId ?>" name="markingbutton"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
           </div>
 
         
