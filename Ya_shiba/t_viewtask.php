@@ -68,7 +68,7 @@ ini_set('display_errors', 1);
     $fileCount = count($_FILES["files"]["name"]);
   
     if ($fileCount > 5) {
-        echo "Only a maximum of 5 files can be uploaded.";
+        echo '<script>alert("Only a maximum of 5 files can be uploaded")</script>';
     } else {
         // Insert a new row into the database
         mysqli_query($connection, "UPDATE task SET UPLOAD_FILE_NUM='$fileCount' WHERE TASK_ID=".$_SESSION['taskid']);    
@@ -94,10 +94,13 @@ ini_set('display_errors', 1);
                 mysqli_query($connection, $query);
                     mysqli_query($connection, "UPDATE task SET UPLOAD_FILE_NUM='$fileCount' WHERE TASK_ID=".$_SESSION['taskid']);    
 
-  
-                echo "File uploaded successfully: " . $fileName . "<br>";
+                    echo '<script>alert("File uploaded successfully")</script>';
+
+             
             } else {
-                echo "Error uploading file: " . $fileName . "<br>";
+              
+                echo '<script>alert("Error uploading file")</script>';
+
             }
         }
     }
@@ -150,7 +153,12 @@ $selectedpost = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_
             <div class="top-content">
                 <div class="left flow">
                     <div class="profile-pic">
-                        <img src="" alt="">
+                    <?php if($row["TASK_CATEGORY"] =="Task") {?>
+                      <img src="assets\img\task.png" alt="">
+      <?php }else if($row["TASK_CATEGORY"] =="Material") {?>
+        <img src="assets\img\material.png" alt="">
+        <?php }else{?><img src="assets\img\annoucement.png" alt="">
+        <?php }?>
                     </div>
                     <div class="profile">
                         <div><?php echo $row['TASK_NAME']; ?></div>
@@ -158,7 +166,7 @@ $selectedpost = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_
                     </div>
                 </div>
                 <div class="right flow" style="font-size: 12px;">
-                <button class="delete" style="padding-left:60px"name="delete ">
+                <button class="delete" style="padding-left:60px"name="deletetask">
                                 <i class="fa-solid fa-trash"></i>
                                  </button>
                 </div>

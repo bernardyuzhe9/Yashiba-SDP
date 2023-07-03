@@ -42,39 +42,35 @@
   }
   
   .profile{
-    width: 200px;
+    width: 100px;
     font-size: 17px;
     color: #333;
     margin-left: 20px;
 
 }
 .content{
-  width: 30px;
+  width: 100px;
   font-size: 17px;
   color: #625e5e;
-  margin-left: 30px;
-  margin-right: 30px;
+  /* margin-left: 30px;
+  margin-right: 30px; */
 }
 
 .comment{
    
     display: flex;
 }
-/* .container2 {
-    min-height: 50px;
-    height: 100vh;
-    padding: 20px;
-    padding: 20px 20px;
-    display: inline-flex;
-    justify-content: space-between;
-    min-height:00px;
-    border: 2px solid #c2cdda;
-} */
+.card-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .container3 {
   min-height: 50px;
+  width: 100vw;
   padding: 20px;
-  padding: 20px 20px;
-  display: inline-flex;
+  padding-bottom: 10px;
+  /* padding: 20px 20px; */
+  display: absolute;
   justify-content: center;
   border: 1px solid #c2cdda;
   min-height:00px;
@@ -137,5 +133,60 @@
   justify-content: space-between;
   border: 1px solid #c2cdda;
   min-height:00px;
+  
+}
+.blog-navigation-container nav {
+  display: flex;
+  padding: auto;
+  width: 100%;
+  margin: auto;
+  position:relative;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.blog-navigation-container nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  
+  
+}.blog-btn{
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+  transition: all 400ms;
+  border: none;
+  background-color:#ffffff;
+
+}
+
+.blog-navigation-container nav ul li {
+  padding: 20px;
+  display: flex;
+  align-items: center; 
+}
+.course-name {
+  margin-right: auto;
+  font-weight: bold;
+  color: #333333;
+}
+.downloadbutton{
+  display: flex;
+  font-size: 10px;
+  width: 100px;
+  margin-left:70px;
+
+  align-items: right;
+  color: #eb6a49;
+  background: none;
+  cursor: pointer;
+  border: none;
   
 }

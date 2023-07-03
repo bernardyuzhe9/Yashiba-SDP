@@ -3,6 +3,7 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
+    date_default_timezone_set('Asia/Kuala_Lumpur');
 
     $_SESSION['id'] = "1";
     $selectedtask = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_SESSION['taskid']);
@@ -34,7 +35,8 @@
 
  // Retrieve all marks from the database for the given task
 $marksResult = mysqli_query($connection, "SELECT MARKED FROM marking WHERE TASK_ID = " . $_SESSION['taskid']);
-
+$lowestMark=0;
+$highestMark=0;
 $totalMarks = mysqli_num_rows($marksResult); // Total number of marks
 $pass = $row1['POINT'];
 $passCount = 0;
@@ -58,6 +60,42 @@ if ($totalMarks > 0) {
     $average = 0;
 }
 
+if (isset($_POST['uploadgrading'])) {
+
+  $status = "Graded";
+  $feedback = $_POST['feedbacktxt'];
+  $marked = $_POST['markedtxt'];
+  $markingId = $_POST['markingid'];
+  $markdate = date('Y/m/d H:i:s');
+
+
+  if (isset($_FILES["files"]) && is_array($_FILES["files"])) {
+    $fileCount = count($_FILES["files"]["name"]);
+
+    if ($fileCount > 1) {
+     
+      echo '<script>alert("Please select only one file to upload")</script>';
+    } else {
+      $fileName = $_FILES["files"]["name"][0];
+      $fileTmp = $_FILES["files"]["tmp_name"][0];
+
+      // Move the file to the desired location
+      $destination = "stu_task/" . $fileName;
+      if (move_uploaded_file($fileTmp, $destination)) {
+        mysqli_query($connection, "UPDATE marking SET MARKING_STATUS='$status', MARKING_DATE='$markdate', MARKED='$marked', RETURN_FILE='$fileName', FEEDBACK='$feedback' WHERE MARKING_ID='$markingId'");
+        echo '<script>alert("Marked successfully")</script>';
+        
+      } else {
+    
+        echo '<script>alert("Error uploading file")</script>';
+      }
+    }
+  } else {
+
+    echo '<script>alert("File upload failed. Please select a file to upload")</script>';
+        
+  }
+}
 
 
 ?>
@@ -128,89 +166,124 @@ if ($totalMarks > 0) {
   </div>
 </div>
 </div>
-
+<div class="container1">
 <div class="container3">
-<?php 
-    $markings = mysqli_query($connection, "SELECT * FROM marking WHERE TASK_ID=".$_SESSION['taskid']);
+<form action="#" method="post" enctype="multipart/form-data">
+  <?php
+  $markings = mysqli_query($connection, "SELECT * FROM marking WHERE TASK_ID=" . $_SESSION['taskid']);
+  while ($row5 = mysqli_fetch_array($markings)) {
+    $markingprofiles = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USER_ID=" . $row5['USER_ID'] . "");
+    $markingprofile = mysqli_fetch_assoc($markingprofiles);
+    $markingId = $row5['MARKING_ID']; 
+  ?>
 
-while ($row5 = mysqli_fetch_array($markings)) { 
-  $markingprofiles = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USER_ID=".$row5['USER_ID']."");
-  $markingprofile = mysqli_fetch_assoc($markingprofiles);
-
-?>
-  <!-- <div class="container2">
-    <div class="bottom-content" style="display: flex; justify-content: left; align-items: flex-start;">
-      <div class="profile-pic">
-        <img src="" alt="">
-      </div>
-      <div class="profile" style="    padding-top: 10px;">
-        <div>Name</div>
-      </div>
-    </div>
-  </div> -->
-  
-  
-    <div class="card-container">
-      <div class="card">
-        <div class="card-body" style="width: 100%; padding:10px;">
-          <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-              <div class="profile-pic"  style="margin-left: 30px;">
-                <img src="" alt="">
-              </div>
-              <div class="profile">
-                <div>Name</div>
-              </div>
+  <div class="card-container">
+    <!-- Card content -->
+    <div class="card">
+      <div class="card-body" style="width: 100%; padding:10px;">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <div class="profile-pic" style="margin-left: 30px;">
+              <img src="" alt="">
             </div>
             <div class="profile">
-                <div>Status</div>
+              <div><?php echo $markingprofile['USER_NAME']; ?></div>
             </div>
-            
-           
-               <div class="content" data-bs-toggle="modal"data-bs-target="#exampleModal">
-              <i class="fa-solid fa-arrow-up-from-bracket"></i>
-              </div>
-                         
-              <a href="#"> <div class="content">
-              <i class="fa-solid fa-download"></i></div>              </a>
-            
+          </div>
+          <div class="content">
+            <div><?php echo $row5['MARKING_STATUS']; ?></div>
+          </div>
+          <div class="content" style="width:50px">
+            <div><?php echo $row5['MARKED']; ?>%</div>
+          </div>
+          <div class="content"  style="width:300px;">
+            <div style="width: 100%;word-wrap: break-word;"><?php echo $row5['FEEDBACK']; ?></div>
+          </div>
+
+          <div class="content">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-markingid="<?php echo $markingId ?>" name="markingbutton"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+          </div>
+
+        
+            <div class="content">
+            <?php
+$taskfile = mysqli_query($connection, "SELECT * FROM marking WHERE MARKING_ID='" . $row5['MARKING_ID'] . "'");
+
+while ($wee = mysqli_fetch_assoc($taskfile)) {
+    $fileName = $wee['UPLOAD_FILE'];
+    $filePath = "stu_task/" . $fileName;
+
+    // Check if the file exists before displaying the download button
+    if (file_exists($filePath)) {
+        ?>
+   
+   
+            <a href="download2.php?file=<?php echo urlencode($fileName); ?>">
+            <i class="fa-solid fa-download"></i>
+          </a>
+
+        <?php
+    } else {
+        ?><i class="fa-sharp fa-solid fa-circle-exclamation"></i><?php
+    }
+}
+?>
+
+             
+            </div>
+      
         </div>
       </div>
     </div>
+  </div>
+  </form>
 
-<?php 
-}
-// while ($row5 = mysqli_fetch_array($markings)) { 
-?>  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <form action="#" method="post" enctype="multipart/form-data">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mark the task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">  
+
+          <h5 class="modal-title" id="exampleModalLabel">Mark the task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <div class="mb-3">
-          <label for="Task-file" class="col-form-label">Upload the file</label>
-          <input class="form-control" type="file" id="formFileMultiple" multiple>
+            <label for="Task-file" class="col-form-label">Upload the file  (<span id="markingIdLabel"></span>)</label>
+            <input class="form-control" type="file" name="files[]" multiple required>
           </div>
           <div class="mb-3">
             <label for="Feedback" class="col-form-label">Feedback</label>
-            <input type="text" class="form-control" id="Feedback">
+            <input type="text" class="form-control" name="feedbacktxt" required>
           </div>
           <div class="mb-3">
             <label for="Grade" class="col-form-label">Grade</label>
-            <input type="text" class="form-control" id="Grade">
+            <input type="text" class="form-control" name="markedtxt" required>
           </div>
+          <input type="hidden" id="markingIdInput" name="markingid" >
           
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Mark</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="uploadgrading" value="<?php echo $markingId ?>">Mark</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <?php
+  }
+  ?>
+</form>
+
+<script>
+  const modalButtons = document.querySelectorAll("[data-bs-target='#exampleModal']");
+  modalButtons.forEach((button) => {
+    button.addEventListener("click", function() {
+      const markingId = this.dataset.markingid;
+      document.getElementById("markingIdLabel").textContent = markingId;
+      document.getElementById("markingIdInput").value = markingId;
+    });
+  });
+</script>

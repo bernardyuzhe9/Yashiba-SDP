@@ -7,6 +7,7 @@
     align-items: center;
     overflow: hidden;
     background: #ffffffd7;
+
     border-radius: 10px;
     transition: height 0.2s ease;
     box-shadow: 7px 10px 20px 10px rgba(60, 63, 63, 0.16);
@@ -44,6 +45,20 @@
     margin-left: 20px;
 
 }
+.delete{
+    display: flex;
+    font-size: 10px;
+    width: 100px;
+    margin-left:70px;
+
+    align-items: right;
+    color: #eb6a49;
+    background: none;
+    cursor: pointer;
+    border: none;
+    
+}
+
 
 .viewbtn:hover{
     color: #007bff;

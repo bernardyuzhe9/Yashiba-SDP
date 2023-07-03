@@ -27,7 +27,19 @@
     exit();
 }
 
+if (isset($_POST['deletetask'])) {
+  $taskid1= $_POST['deletetask'];
+  $sql = "DELETE FROM task WHERE TASK_ID= $taskid1";
+  if (mysqli_query($connection, $sql)) {
+  
+      echo '<script>alert("Task deleted successfully")</script>';
 
+  } else {
+      echo "Error deleting record: " . mysqli_error($connection);
+  }
+
+
+}
 
     if(isset($_POST['add-submit']) ){
       
@@ -73,8 +85,8 @@ if (isset($_FILES["files"])) {
               $column = "FILE_" . ($i + 1);
               $query = "UPDATE tec_uploaded_file SET $column = '$fileName' WHERE UPLOADED_FILE_ID = '$uploadedFileId'";
               mysqli_query($connection, $query);
-
-              echo "File uploaded successfully: " . $fileName . "<br>";
+              echo '<script>alert("File uploaded successfully")</script>';
+        
           } else {
               echo "Error uploading file: " . $fileName . "<br>";
           }
@@ -135,12 +147,24 @@ mysqli_query($connection, $query4);
     </div>
     <?php   while ($row = mysqli_fetch_array($tasks)) { ?>
     <form action="#" method="post"> 
-    <div class="container">
+      
+    <?php if($row["TASK_CATEGORY"] =="Task") {?>
+      <div class="container" style="background: #f7adad;">
+      <?php }else if($row["TASK_CATEGORY"] =="Material") {?>
+                <div class="container">
+        <?php }else{?>
+        <div class="container" style="background:  #caf7ad;">
+        <?php }?>
         <div class="wrapper">
             <div class="top-content">
                 <div class="left flow">
                     <div class="task-pic">
-                        <img src="" alt="">
+                    <?php if($row["TASK_CATEGORY"] =="Task") {?>
+                      <img src="assets\img\task.png" alt="">
+      <?php }else if($row["TASK_CATEGORY"] =="Material") {?>
+        <img src="assets\img\material.png" alt="">
+        <?php }else{?><img src="assets\img\annoucement.png" alt="">
+        <?php }?>
                     </div>
                     <div class="task">
                         <div><?php echo $row["TASK_NAME"]; ?></div>
@@ -148,7 +172,9 @@ mysqli_query($connection, $query4);
                     </div>
                 </div>
                 <div class="right flow" style="font-size: 12px;">
-                    Delete
+                <button class="delete" style="padding-left:60px"name="deletetask" value="<?php echo $row["TASK_ID"]; ?>">
+                                <i class="fa-solid fa-trash"></i>
+                </button>
                 </div>
             </div>
             <hr style="border:1px solid #365268;margin-top:-10px;">
