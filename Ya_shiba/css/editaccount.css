@@ -1,0 +1,65 @@
+.picture-wrapper {
+    display: flex;
+    align-items: center;
+}
+.picture-wrapper .profile-pic {
+    margin-right: 50px; /* Adjust the spacing between the picture and the Choose File button */
+}
+/* Edit School Acc border position */
+.edit-acc {
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Edit School Account border before*/
+  .editAcc {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: center;
+    margin-left: 30px;
+    border: solid 2px #238bed;
+    border-radius: 10px;
+    background: none;
+    padding: 15px;
+    color: #22303b;
+    font-size: 16px;
+    width: 600px;
+    margin-left: 200px;
+  }
+  
+  .acc-label {
+    position: absolute;
+    margin-left: 0px;
+    top: 10px;
+    color: rgb(2, 2, 34);
+    pointer-events: none;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);    
+    font-size: 18px;
+  }
+  
+/* Edit School Account border after*/
+.editAcc:focus, .editAcc:valid {
+    outline: none;
+    border: 2px solid #365268;
+  }
+  
+  /* Edit School Account wording above*/
+  .editAcc:focus ~ label, .editAcc:valid ~ label {
+    padding: 2px;
+    color: #216497;
+    font-size: 18px;
+    font-weight: 500;
+    left: 25px;
+  }
+  
+  .edit-acc span{
+    font-size: 14px;
+    left: 825px;
+    color: red;
+    font-display: inline;
+    position: absolute;
+    top: 12px;
+    white-space: nowrap;
+  }

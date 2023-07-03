@@ -230,3 +230,85 @@
  .decbtns:active {
   padding-bottom: 10px;
  }
+ /* Cancel Button */
+ #cancel-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding:4px;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(255, 4, 4);
+  display: block;
+  z-index: 1; 
+}
+
+#cancel-btn i {
+  display: block;
+}
+
+#cancel-btn i:hover {
+  color: #e74c3c;
+}
+/* Save button */
+.savebtn {
+  --primary-color: #0b90e2;
+  --secondary-color: #fff;
+  --hover-color: #0b7ec6;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 0.7em 1.2em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 25px;
+}
+
+.savebtn .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.savebtn .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.savebtn .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.savebtn:hover {
+  background-color: var(--hover-color);
+}
+
+.savebtn:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.savebtn:hover .arrow:before {
+  right: 0;
+}

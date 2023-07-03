@@ -14,7 +14,7 @@
         die('Connection failed' . mysqli_connect_error());
     }
     if(isset($_POST['deactivate'])){
-        $status='Deactivated';
+        $status='Deactivate';
         $updateQuery = "UPDATE `yashiba_user` 
         SET `USER_STATUS`='$status' WHERE `USER_ID`=" . $_SESSION['id'];
         if(mysqli_query($connection, $updateQuery)){

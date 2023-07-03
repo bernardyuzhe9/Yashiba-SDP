@@ -50,19 +50,10 @@ function validateRName(){
 
 function validateRPhone(){
     var phone= document.getElementById("user_contact_phone").value;
+    var pattern = /^(01)[0-9]{1}[0-9]{7,8}$/;
 
-    if(phone.length==0){
-        phoneError.innerHTML="Phone number is required";
-        return false;
-        /* to set or return the HTML content of an element.*/
-    }
-
-    if(isNaN(phone)){
-        phoneError.innerHTML="User can only write digit not character";
-        return false;
-    }
-    if(phone.length!=10){
-        phoneError.innerHTML="Phone number only can be 10 digits";
+    if(!phone.match(pattern)){
+        phoneError.innerHTML="Phone number is not match";
         return false;
     }
     else{
@@ -185,7 +176,7 @@ function validateSchID(){
         return true;    
         /* 
             School ID can only have: 
-            - 4 Uppercase Letter (A-Z)
+            -SCKL
             - 3 Numbers (0-9)
         */
        
@@ -209,7 +200,7 @@ function validateSchName(){
 
 function validateSchAddress(){
     var schoolAddress= document.getElementById("sch_address").value;
-    var schoolAddressFormat= /^[A-Za-z0-9,().\s]+$/
+    var schoolAddressFormat= /^[a-zA-Z0-9(),./\s-]+$/
     if(schoolAddress.length===0){
         schAddressError.innerHTML="School Address is required";
         return false;}
@@ -273,5 +264,17 @@ function validateSchBtnForm(){
         schBtnError.style.display="block";
         setTimeout(function(){schBtnError.style.display="none"},1000)
         return false;
+    }
+}
+function validateUForm(){
+    if(!validateRUsername()||!validateREmail()||!validateRPhone()|| !validatePassword1()){
+        usersubmitError.innerHTML="Please fix the error to submit";
+        usersubmitError.style.display="block";
+        setTimeout(function(){usersubmitError.style.display="none"},1000)
+        return false;
+    }
+    else{
+        usersubmitError.innerHTML="YOU ARE RIGHT";
+        return true;
     }
 }
