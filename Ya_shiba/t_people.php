@@ -2,6 +2,54 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $database = 'yashiba';
+    $connection= mysqli_connect($host,$user,$password,$database);
+
+
+
+    if ($connection === false){
+        die('Connection failed' . mysqli_connect_error());
+    }
+    if(isset($_POST['delete4'])){
+        if(isset($_POST['user_id'])){
+            $user_id = $_POST['user_id'];
+            $classid = 12;
+            $getnumq = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classid'");
+            $row1 = mysqli_fetch_assoc($getnumq);
+            $number =$row1['NUM'];
+            mysqli_query($connection, "UPDATE classroom SET NUM=$number-1 WHERE CLASSROOM_ID='$classid'");
+            mysqli_query($connection, "DELETE FROM enrolled_classroom WHERE CLASSROOM_ID='$classid' AND USER_ID='$user_id'"); 
+            echo '<script>alert("The student has been removed from class")</script>';
+            
+        }   
+    }
+    if(isset($_POST['add'])){
+        if(isset($_POST['id'])){
+            $uid =$_POST['id'];
+            $classID = 12;
+            $status ="Show";
+            $getnumq = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classID'");
+            $rowcr = mysqli_fetch_assoc($getnumq);
+            $number =$rowcr['NUM'];
+            $checkq = mysqli_query($connection,"SELECT * FROM enrolled_classroom WHERE USER_ID='$uid' AND CLASSROOM_ID='$classID'");
+            $row = mysqli_fetch_assoc($checkq);
+            $count = mysqli_num_rows($checkq);
+            if($count == 1){
+                echo '<script>alert("Error! The student has been added before")</script>';
+            }else{
+                mysqli_query($connection, "INSERT INTO enrolled_classroom (CLASSROOM_ID, USER_ID, STATUS) VALUES ('$classID','$uid','$status')");
+                mysqli_query($connection, "UPDATE classroom SET NUM=$number+1 WHERE CLASSROOM_ID='$classID'");
+                echo '<script>alert("The student has been added to this class")</script>';
+            }
+        }
+    }
+    if(isset($_POST['confirm'])){
+        $batchid = $_POST['batchID'];
+        
+    }
 ?>
 
 <title>People - Student</title>
@@ -24,51 +72,97 @@
                     </div>
                 </div>
                 <hr class="border border-primary border-2 opacity-100">
-                <table class="table">
-                    <thead>
+                <table class="table table-hover  table-bordered">
+                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                         <tr>
                             <th scope="col">Profile</th>
                             <th scope="col">Name</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Jacob</td>
+                    <tbody class="text-center">
+                        <?php
+                        $classid = 12;
+                        $query = "SELECT yashiba_user.USER_PROFILE, yashiba_user.USER_NAME 
+                        FROM yashiba_user
+                        INNER JOIN enrolled_classroom ON yashiba_user.USER_ID = enrolled_classroom.USER_ID
+                        WHERE enrolled_classroom.CLASSROOM_ID = '$classid' AND yashiba_user.ROLE='Teacher'";
+                        $results = mysqli_query($connection, $query);
+                        while($row = mysqli_fetch_assoc($results)){
+                        ?>
+                        <tr style="vertical-align:middle;">
+                            <td scope="row">
+                            <?php
+                                if ($row["USER_PROFILE"] == null) {
+                            ?>
+                                <img src="img/profile picture.jpg" style="width: 70px; height: 70px; border-radius: 50%;">
+                                <?php
+                                } else {
+                            ?>
+                                <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                            <?php
+                                }
+                            ?>
+                            </td>
+                            <td ><?php echo $row['USER_NAME'];?></td>
                         </tr>
+                        <?php }?>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Jacob</td>
-                        </tr>
-                    </tfoot>
                 </table>
                 <div class="row">
+                        <?php
+                        $classid = 12;
+                        $query1 = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classid'");
+                        $row1 = mysqli_fetch_assoc($query1);
+                        ?>
                         <h3 class="col text-primary">Student</h3>
-                        <h6 class="col text-end" style="margin-top: 12px">73 Students</h3>
+                        <h6 class="col text-end" style="margin-top: 12px"><?php echo $row1["NUM"] ?> Students</h3>
                 </div>
+                <form action="#" method="post">
                 <hr class="border border-primary border-2 opacity-100">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Profile</th>
-                            <th scope="col">Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Jacob</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Jacob</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                    <table class="table table-hover  table-bordered">
+                        <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
+                            <tr>
+                                <th scope="col">Profile</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <?php
+                                $classid = 12;
+                                $query = "SELECT yashiba_user.USER_ID, yashiba_user.USER_PROFILE, yashiba_user.USER_NAME 
+                                FROM yashiba_user
+                                INNER JOIN enrolled_classroom ON yashiba_user.USER_ID = enrolled_classroom.USER_ID
+                                WHERE enrolled_classroom.CLASSROOM_ID = '$classid' AND yashiba_user.ROLE='Student'";
+                                $result = mysqli_query($connection, $query);
+                                while($rows = mysqli_fetch_assoc($result)){
+                            ?>
+                            <tr style="vertical-align:middle;">
+                                <td scope="row">
+                                <?php
+                                    if ($rows["USER_PROFILE"] == null) {
+                                ?>
+                                    <img src="img/profile picture.jpg" style="width: 70px; height: 70px; border-radius: 50%;">
+                                    <?php
+                                    } else {
+                                ?>
+                                    <img src="uploads/<?php echo $rows["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                                <?php
+                                    }
+                                ?>
+                                </td>
+                                <td ><?php echo $rows['USER_NAME'];?></td>
+                                <td style="text-align:center;white-space:nowrap;">
+                                    <input type="hidden" name="user_id" value="<?php echo $rows['USER_ID']; ?>">                                                                         
+                                    <button type="submit" class="delete-button" name="delete4" style="background: none; border: none;" onclick="return confirm('Are you sure you want to proceed?')">
+                                        <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
+                                    </button>                                               
+                                </td>
+                            </tr> 
+                            <?php }?>
+                        </tbody>
+                    </table>
+                </form>
             </div>
             <!-- main Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,83 +189,60 @@
                         </div>
                         <div class="modal-body">
                             <div class="d-flex flex-column align-items-center"> <!-- Center alignment -->
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Student Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1">
-                                </div>
-                                <div class="d-flex justify-content-end mb-3">
-                                    <button type="button" class="btn btn-primary">Confirm</button>
-                                </div>
-                            </div>
                             <div class="mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <div class="col-4">
-                                                    <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
-                                                </div>
-                                                <h6 style="margin-left: 30px">Name:</h6>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <div class="col-4">
-                                                    <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
-                                                </div>
-                                                <h6 style="margin-left: 30px">Name:</h6>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <div class="col-4">
-                                                    <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
-                                                </div>
-                                                <h6 style="margin-left: 30px">Name:</h6>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <div class="col-4">
-                                                    <img src="img/Jason.png" class="rounded-circle" alt="..." style="width: 50px; height: 50px;">
-                                                </div>
-                                                <h6 style="margin-left: 30px">Name:</h6>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
+                        <?php
+                            $schoolid = 'SCKL001';
+                            $sql2 = mysqli_query($connection, "SELECT USER_ID, USER_PROFILE, USER_NAME
+                                FROM yashiba_user
+                                WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student'
+                                ORDER BY USER_ID DESC
+                                LIMIT 4");
+                            while($school = mysqli_fetch_assoc($sql2)){
+                        ?>
+                            <div class="mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-4">
+                                                <?php
+                                                if ($school["USER_PROFILE"] == null) {
+                                                ?>
+                                                    <img src="img/profile picture.jpg" class="rounded-circle" style="width: 80px; height: 80px; border-radius: 50%; ">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <img src="uploads/<?php echo $school["USER_PROFILE"] ?>" class="rounded-circle" style="width: 80px; height: 80px; border-radius: 50%; ">
+                                                <?php
+                                                }
+                                                ?>
+                                                 </div>
+                                                <div class="d-flex flex-column">
+                                                    <h6 style="margin-left: 30px; margin-bottom: 0;margin-top:10px;">Name: </h6>
+                                                    <p style="margin-left: 30px; margin-top: 10px;"><?php echo $school['USER_NAME']?></p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <form action="#" method="post">
+                                                <input type="hidden" name="id" value="<?php echo $school['USER_ID'] ?>">
+                                                <button type="submit" class="btn btn-primary" name="add">Add</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -180,20 +251,22 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Student Batch</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add Student By Student Batch</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form action="#" method="post">
                         <div class="modal-body">
                             <div class="d-flex flex-column align-items-center"> <!-- Center alignment -->
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Student Batch ID</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" require placeholder="Example:YS0000" name="batchID">
                                 </div>
                                 <div class="d-flex justify-content-end mb-3">
-                                    <button type="button" class="btn btn-primary">Confirm</button>
+                                    <button type="submit" class="btn btn-primary" name="confirm">Confirm</button>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
