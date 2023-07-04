@@ -14,3 +14,10 @@ span{
     margin: 5px 0px;
 
 }
+#Create-error{
+  font-size: 10px;
+  color: rgb(255, 52, 52);
+  position: absolute;
+  padding-right: 100px;
+  margin: 5px 0px;  
+}
