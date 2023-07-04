@@ -33,6 +33,7 @@ if(isset($_POST['login'])){
         $_SESSION['role'] = $row['ROLE'];
         $_SESSION['user_status'] = $row['USER_STATUS'];
         $_SESSION['profile'] = $row['USER_PROFILE'];
+        $_SESSION['schoolid'] = $row['SCHOOL_ID'];
   
         if($_SESSION['role']=="Teacher" && $_SESSION['user_status']=="Active"){
           header("Location: t_homepage.php");
