@@ -77,11 +77,11 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $row['SCHOOL_ID']. ' ';?></td>
-                                            <td><?php echo $row['SCHOOL_NAME']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['SCHOOL_NAME']. ' ';?></td>
                                             <td><?php echo $row['SCHOOL_ADDRESS']. ' ';?></td>
-                                            <td><?php echo $row['PERSON_IN_CHARGE']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['PERSON_IN_CHARGE']. ' ';?></td>
                                             <td><?php echo $row['PERSON_IN_CHARGE_PHONE']. ' ';?></td>
-                                            <td><?php echo $row['SCHOOL_REGISTER_DATE']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['SCHOOL_REGISTER_DATE']. ' ';?></td>
                                         </tr>
                                     <?php
                                         }

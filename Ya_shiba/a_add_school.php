@@ -92,16 +92,10 @@ mysqli_close($connection);
                     <label class="sch-label"><b>Contact Number</b></label>
                     <span id = sch_contact_ER></span>
                 </div>
-                <!-- Register School Button -->
-                <!-- <div class="center">
-                    <div class="page"> -->
-                        <div class="textSubmit">
-                            <button type="addSch" class="addBtn" id="submitButton" name="addSch">ADD</button>
-                            <span  id =sch_btn_ER></span>
-                        </div>
-                    <!-- </div>
-                </div> -->
-        
+                <div class="textSubmit">
+                    <button type="addSch" class="addBtn" id="submitButton" name="addSch">ADD</button>
+                    <span id =sch_btn_ER></span>
+                </div>
             </form>
     <?php } ?>
     <script src="assets/validation.js"></script>

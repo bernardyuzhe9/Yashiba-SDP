@@ -2,6 +2,39 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/a_header+nav.php');
+    $query='SELECT * FROM yashiba_school ORDER BY SCHOOL_ID ASC'; 
+    $results = mysqli_query($connection, $query);
+
+    $query1="SELECT STUDENT_BATCH_ID, COUNT(USER_ID) as 'u_Count' FROM yashiba_user 
+             WHERE STUDENT_BATCH_ID!='NULL'
+             GROUP BY STUDENT_BATCH_ID 
+             ORDER BY u_Count DESC 
+             LIMIT 5"; 
+    $results1 = mysqli_query($connection, $query1);
+    $labels=[];
+    $values=[];
+    while ($row = mysqli_fetch_assoc($results1)) {
+        $batchID = $row['STUDENT_BATCH_ID'];
+        $userCount = $row['u_Count'];
+    
+        // Add the data to the arrays
+        $labels[] = $batchID;
+        $values[] = $userCount;
+    }
+    mysqli_free_result($results1);
+
+    $tec = mysqli_query($connection, "SELECT COUNT(*) as `count` FROM yashiba_user WHERE ROLE='Teacher'");
+    $no_tec = mysqli_fetch_assoc($tec);
+    
+    $stu = mysqli_query($connection,  "SELECT COUNT(*) as `count` FROM yashiba_user WHERE ROLE='Student'");
+    $no_stu = mysqli_fetch_assoc($stu);
+
+    $adm = mysqli_query($connection,  "SELECT COUNT(*) as `count` FROM yashiba_user WHERE ROLE='Admin'");
+    $no_adm = mysqli_fetch_assoc($adm);
+    
+    $status='Pending';
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +50,7 @@
         <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>        
         <style>
             .table-hover tbody tr:hover td {
                 background-color: #bcd2e1fe;
@@ -35,10 +69,12 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fa-solid fa-chart-area me-1" style="color: #03396c;"></i>
-                                        <b>Daily Interactions</b>
+                                        <i class="fa-solid fa-chart-column me-1" style="color: #03396c;"></i>
+                                        <b>Most Students in the Batch ID</b>
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body">
+                                        <canvas id="batchBarChart" width="100%" height="50"></canvas>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -47,7 +83,9 @@
                                         <i class="fa-solid fa-users me-1" style="color: #03396c;"></i>
                                         <b>Total Accounts</b>
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body">
+                                        <canvas id="tAccPieChart" width="100%" height="50"></canvas>
+                                    </div>
                                 </div>
                             </div>                            
                         </div>
@@ -57,133 +95,38 @@
                                 <b>School Accounts</b>
                             </div>
                             <div class="card-body"  style ="font-family:Mukta;">
-                                <table class="table table-hover table-striped table-bordered " id="sortTable" >
-                                    <thead style="background-color: #bcd2e1fe;">
+                                <table class="table table-hover table-striped table-bordered "  id="sortTable" >
+                                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                         <tr>
-                                            <th class="text-center">School ID</th>
-                                            <th class="text-center">School Name</th>
-                                            <th class="text-center">Address</th>
-                                            <th class="text-center">Person in charge</th>
-                                            <th class="text-center">Contact Number</th>
+                                            <th >School ID</th>
+                                            <th>School Name</th>
+                                            <th>Address</th>
+                                            <th>Person in charge</th>
+                                            <th>Contact Number</th>
+                                            <th>Registered Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        while ($row = mysqli_fetch_assoc($results)){
+                                    ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <td><?php echo $row['SCHOOL_ID']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['SCHOOL_NAME']. ' ';?></td>
+                                            <td><?php echo $row['SCHOOL_ADDRESS']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['PERSON_IN_CHARGE']. ' ';?></td>
+                                            <td><?php echo $row['PERSON_IN_CHARGE_PHONE']. ' ';?></td>
+                                            <td style="white-space:nowrap;"><?php echo $row['SCHOOL_REGISTER_DATE']. ' ';?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
+                                    <?php
+                                        }
+                                        mysqli_close($connection);
+                                    ?>
                                     </tbody>
                                 </table>
                                 <script>$('#sortTable').DataTable();</script>
                             </div>
+                        </div>
                     </div>
                 </main>
                 <?php
@@ -192,5 +135,66 @@
                     include_once('assets/footer.php');
                 ?>
             </div>
+        <script>
+            var pieChart = document.getElementById("tAccPieChart");
+            var tAccPieChart = new Chart(pieChart, {
+            type: 'pie',
+            data: {
+                labels: ["Admin", "Teacher", "Student"],
+                datasets: [{
+                data: [
+                    <?php if(isset($no_adm)){echo $no_adm['count'];}else{echo ('0');} ?>,
+                    <?php if(isset($no_tec)){echo $no_tec['count'];}else{echo ('0');} ?>,
+                    <?php if(isset($no_stu)){echo $no_stu['count'];}else{echo ('0');} ?>,
+                ],
+                backgroundColor: ['#585aad', '#58a1ad', '#5879ad'],
+                }],
+            },
+            });
+        </script>
+        <script>
+            var Labels = <?php echo json_encode($labels); ?>;
+            var Values = <?php echo json_encode($values); ?>;
+
+            var barChart = document.getElementById("batchBarChart");
+            var batchBarChart = new Chart(barChart, {
+                type: 'bar',
+                data: {
+                        
+                    labels: Labels,
+                    datasets: [{
+                        label: "Total Students",
+                        backgroundColor: "#5879ad",
+                        borderColor: "#5879ad",
+                        data: Values,
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 5
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 10,
+                                maxTicksLimit: 5
+                            },
+                            gridLines: {
+                                display: true
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: true
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

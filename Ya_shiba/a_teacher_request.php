@@ -2,6 +2,21 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/a_header+nav.php');
+    $query=
+    'SELECT yashiba_user.USER_ID, yashiba_user.USERNAME, yashiba_user.USER_NAME, yashiba_user.EMAIL, 
+    yashiba_user.CONTACT_NUMBER, yashiba_school.SCHOOL_NAME, yashiba_user.USER_STATUS FROM yashiba_user
+    INNER JOIN yashiba_school ON yashiba_school.SCHOOL_ID = yashiba_user.SCHOOL_ID 
+    WHERE ROLE="Teacher" AND (USER_STATUS="Pending" OR USER_STATUS="Rejected")
+    ORDER BY USER_ID ASC'; 
+    $results = mysqli_query($connection, $query);
+
+    $pending = mysqli_query($connection, "SELECT COUNT(*) as `count` FROM yashiba_user WHERE USER_STATUS='Pending'");
+    $no_pending = mysqli_fetch_assoc($pending);
+
+    $rejected = mysqli_query($connection, "SELECT COUNT(*) as `count` FROM yashiba_user WHERE USER_STATUS='Rejected'");
+    $no_rejected = mysqli_fetch_assoc($rejected);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +33,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <style>
             .table-hover tbody tr:hover td {
                 background-color: #bcd2e1fe;
@@ -40,10 +56,10 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header" style ="font-family:Mukta; color: #03396c;">
-                                <i class="fas fa-chart-area me-1"></i>
-                                <b>Request Tracked</b>
+                            <i class="fas fa-address-card me-1" style="color: #03396c;"></i>
+                                <b>Teacher Requests Tracked</b>
                             </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
+                            <div class="card-body"><canvas id="tRequestPieChart" width="100%" height="50"></canvas></div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header" style ="font-family:Mukta; color: #03396c;">
@@ -51,70 +67,65 @@
                                 <b>Teacher Requests</b>
                             </div>
                             <div class="card-body" style ="font-family:Mukta;">
-                            <table class="table table-hover table-striped table-bordered"  id="sortTable">
-                                    <thead style="background-color: #bcd2e1fe;">
+                                <table class="table table-hover table-striped table-bordered"  id="sortTable">
+                                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                         <tr>
-                                            <th class="text-center">User ID</th>
-                                            <th class="text-center">Username</th>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Contact Number</th>
-                                            <th class="text-center">School</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Action</th>
+                                            <th>User ID</th>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Contact Number</th>
+                                            <th>School</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                            <td>2011/04/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                            <td>2011/07/25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                            <td>2009/01/12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                            <td>2012/03/29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                            <td>2008/11/28</td>
-                                        </tr>
+                                        <?php
+                                            while ($row = mysqli_fetch_assoc($results)){
+                                        ?>                                        
+                                            <tr>
+                                                <td><?php echo $row['USER_ID']. ' ';?></td>
+                                                <td><?php echo $row['USERNAME']. ' ';?></td>
+                                                <td><?php echo $row['USER_NAME']. ' ';?></td>
+                                                <td><?php echo $row['EMAIL']. ' ';?></td>
+                                                <td><?php echo $row['CONTACT_NUMBER']. ' ';?></td>
+                                                <td><?php echo $row['SCHOOL_NAME']. ' ';?></td>
+                                                <td style="text-align:center;">
+                                                    <?php
+                                                        if($row['USER_STATUS'] == "Pending"){
+                                                    ?>
+                                                        <span class="badge rounded-pill d-inline" style="background-color:#e8cea5;color:#73521e;padding:4px 8px 4px 8px;">Pending</span>
+                                                    <?php
+                                                        }else if($row['USER_STATUS'] == "Rejected"){
+                                                    ?>
+                                                        <span class="badge rounded-pill d-inline" style="background-color:#e6979d;color:#422123;padding:4px 8px 4px 8px;">Rejected</span>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td style="text-align:center;whitespace:nowrap;width:100px;">
+                                                    <a href="a_solve_approve.php?userID=
+                                                        <?php echo $row['USER_ID'];?>" 
+                                                        onclick="alert('Teacher Request has been approved.')">
+                                                        <i class="fa-solid fa-circle-check me-2" style="color: #404a69;width:22px;height:22px;"></i>
+                                                    </a>
+                                                    <a href="a_rejected.php?userID=
+                                                        <?php echo $row['USER_ID'];?>" 
+                                                        onclick="alert('Teacher Request has been rejected.')">
+                                                        <i class="fa-solid fa-circle-xmark me-2" style="color: #404a69;width:22px;height:22px;"></i>
+                                                    </a>
+                                                    <a href="a_delete.php?userID=
+                                                        <?php echo $row['USER_ID'];?>" 
+                                                        onclick="alert('Teacher Request has been deleted.')">
+                                                        <i class="fa-solid fa-trash" style="color: #404a69;width:22px;height:22px;"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            }
+                                            mysqli_close($connection);
+                                        ?>                                    
                                     </tbody>
                                 </table>
                                 <script>$('#sortTable').DataTable();</script>
@@ -129,5 +140,21 @@
                 ?>
             </div>
         </div>
+        <script>
+            var pieChart = document.getElementById("tRequestPieChart");
+            var tRequestPieChart = new Chart(pieChart, {
+            type: 'pie',
+                data: {
+                    labels: ["Pending", "Rejected"],
+                    datasets: [{
+                    data: [
+                        <?php if(isset($no_pending)){echo $no_pending['count'];}else{echo ('0');} ?>,
+                        <?php if(isset($no_rejected)){echo $no_rejected['count'];}else{echo ('0');} ?>,
+                    ],
+                    backgroundColor: ['#58a1ad', '#5879ad'],
+                    }],
+                }
+            });
+        </script>
     </body>
 </html>

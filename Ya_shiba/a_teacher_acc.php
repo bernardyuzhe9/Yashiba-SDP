@@ -4,9 +4,9 @@
     include_once('assets/a_header+nav.php');
     $query=
     'SELECT yashiba_user.USER_ID, yashiba_user.USER_PROFILE, yashiba_user.USERNAME, yashiba_user.USER_NAME, 
-    yashiba_user.EMAIL, yashiba_school.SCHOOL_NAME, yashiba_user.REGISTERED_DATE FROM yashiba_user
+    yashiba_user.EMAIL, yashiba_school.SCHOOL_NAME, yashiba_user.REGISTERED_DATE, yashiba_user.USER_STATUS FROM yashiba_user
     INNER JOIN yashiba_school ON yashiba_school.SCHOOL_ID = yashiba_user.SCHOOL_ID 
-    WHERE ROLE="Teacher" 
+    WHERE ROLE="Teacher" AND (USER_STATUS="Active" OR USER_STATUS="Deactivate")
     ORDER BY USER_ID ASC'; 
     $results = mysqli_query($connection, $query);
 ?>
@@ -72,14 +72,45 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $row['USER_ID']. ' ';?></td>
-                                            <td><img src="img/<?php echo $row['USER_PROFILE']. ' ';?>"></td>
+                                            <td>
+                                                <?php
+                                                        if ($row["USER_PROFILE"] == null) {
+                                                ?>
+                                                        <img src="img/profile picture.jpg" style="width: 70px; height: 70px; border-radius: 50%; vertical-align:middle; horizontal-align:center;">
+                                                <?php
+                                                    } else {
+                                                ?>
+                                                        <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%; vertical-align:middle; horizontal-align:center;">
+                                                <?php
+                                                    }
+                                                ?>
+                                            </td>
                                             <td><?php echo $row['USERNAME']. ' ';?></td>
                                             <td><?php echo $row['USER_NAME']. ' ';?></td>
                                             <td><?php echo $row['EMAIL']. ' ';?></td>
                                             <td><?php echo $row['SCHOOL_NAME']. ' ';?></td>
                                             <td><?php echo $row['REGISTERED_DATE']. ' ';?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td style="text-align:center;">
+                                                <?php
+                                                    if($row['USER_STATUS'] == "Active"){
+                                                ?>
+                                                    <span class="badge rounded-pill d-inline" style="background-color:#c7d9bf;color:#374a2f;padding:4px 8px 4px 8px;">Active</span>
+                                                <?php
+                                                    }else if($row['USER_STATUS'] == "Deactivate"){
+                                                ?>
+                                                    <span class="badge rounded-pill d-inline" style="background-color:#e6979d;color:#422123;padding:4px 8px 4px 8px;">Deactivate</span>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td style="text-align:center;whitespace:nowrap;">
+                                                <i class="fa-solid fa-pen me-2" style="color: #404a69;width:25px;height:25px;"></i>                                               
+                                                <a href="a_delete.php?tecID=
+                                                    <?php echo $row['USER_ID'];?>" 
+                                                    onclick="alert('Teacher Account has been deleted.')">
+                                                    <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
+                                                </a>                                                
+                                            </td>
                                         </tr>
                                     <?php
                                         }
