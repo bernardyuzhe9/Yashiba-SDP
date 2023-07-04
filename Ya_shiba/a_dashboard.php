@@ -31,10 +31,6 @@
 
     $adm = mysqli_query($connection,  "SELECT COUNT(*) as `count` FROM yashiba_user WHERE ROLE='Admin'");
     $no_adm = mysqli_fetch_assoc($adm);
-    
-    $status='Pending';
-    
-
 ?>
 
 <!DOCTYPE html>
@@ -135,23 +131,25 @@
                     include_once('assets/footer.php');
                 ?>
             </div>
+        <!-- Pie Chart -->
         <script>
             var pieChart = document.getElementById("tAccPieChart");
             var tAccPieChart = new Chart(pieChart, {
-            type: 'pie',
-            data: {
-                labels: ["Admin", "Teacher", "Student"],
-                datasets: [{
-                data: [
-                    <?php if(isset($no_adm)){echo $no_adm['count'];}else{echo ('0');} ?>,
-                    <?php if(isset($no_tec)){echo $no_tec['count'];}else{echo ('0');} ?>,
-                    <?php if(isset($no_stu)){echo $no_stu['count'];}else{echo ('0');} ?>,
-                ],
-                backgroundColor: ['#585aad', '#58a1ad', '#5879ad'],
-                }],
-            },
+                type: 'pie',
+                data: {
+                    labels: ["Admin", "Teacher", "Student"],
+                    datasets: [{
+                        data: [
+                            <?php if(isset($no_adm)){echo $no_adm['count'];}else{echo ('0');} ?>,
+                            <?php if(isset($no_tec)){echo $no_tec['count'];}else{echo ('0');} ?>,
+                            <?php if(isset($no_stu)){echo $no_stu['count'];}else{echo ('0');} ?>,
+                        ],
+                        backgroundColor: ['#585aad', '#58a1ad', '#5879ad'],
+                    }],
+                },
             });
         </script>
+        <!-- Bar Chart -->
         <script>
             var Labels = <?php echo json_encode($labels); ?>;
             var Values = <?php echo json_encode($values); ?>;

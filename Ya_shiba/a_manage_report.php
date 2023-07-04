@@ -59,7 +59,7 @@
                             <i class="fa-solid fa-triangle-exclamation me-1" style="color: #03396c;"></i>
                                 <b>Reports Tracked</b>
                             </div>
-                            <div class="card-body"><canvas id="sReportPieChart" width="100%" height="50"></canvas></div>
+                            <div class="card-body"><canvas id="sReportPieChart" width="100%" height="20px"></canvas></div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header" style ="font-family:Mukta; color: #03396c;">
@@ -102,7 +102,7 @@
                                                     }
                                                 ?>
                                             </td>
-                                            <td style="text-align:center;">
+                                            <td style="text-align:center;white-space:nowrap;">
                                                 <a href="a_solve_approve.php?reportID=
                                                     <?php echo $row['REPOT_ID'];?>" 
                                                     onclick="alert('The report has been solved.')">
@@ -132,6 +132,7 @@
                     include_once('assets/footer.php');
                 ?>
             </div>
+        <!-- Pie Chart -->
         <script>
             var pieChart = document.getElementById("sReportPieChart");
             var sReportPieChart = new Chart(pieChart, {
