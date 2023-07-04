@@ -35,7 +35,7 @@
         echo '<script>window.location.href = "s_courseoverview.php";</script>';
         exit();
     }}
-
+  
 ?>
 
 <!DOCTYPE html>
