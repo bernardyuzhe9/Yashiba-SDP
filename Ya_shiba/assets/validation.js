@@ -278,3 +278,28 @@ function validateUForm(){
         return true;
     }
 }
+var schIDError = document.getElementById("batchID-error");
+var BatchIDError =document.getElementById("Create-error");
+
+function validateBatchID(){
+    var batchID = document.getElementById("batchid").value;
+    var pattern = /^(YS)[0-9]{4}$/;
+    if(!batchID.match(pattern)){
+        schIDError.innerHTML = "ID should start with YS and 4 digits";
+        return false;
+    }else{
+        schIDError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        return true;
+    }
+}
+function validateBIDForm(){
+    if(!validateBatchID()){
+        BatchIDError.innerHTML="Please fix the error to submit";
+        BatchIDError.style.display="block";
+        setTimeout(function(){BatchIDError.style.display="none"},1000)
+        return false;
+    }else{
+        BatchIDError.innerHTML="YOU ARE RIGHT";
+        return true;
+    }
+}

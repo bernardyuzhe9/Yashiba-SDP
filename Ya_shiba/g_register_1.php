@@ -22,7 +22,7 @@ if(isset($_POST['register'])){
     $password= $_POST['txtPasswordR'];
     $role=$_SESSION['role'];
     $contact_number=$_POST['txtphone'];
-    $reg_date=date('Y/m/d H:i:s');
+    $reg_date=
     
     $query1 =mysqli_query($connection,"SELECT * FROM yashiba_user WHERE USERNAME = '$username'");
     $row = mysqli_fetch_assoc($query1); 
