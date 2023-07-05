@@ -8,48 +8,74 @@
     $database = 'yashiba';
     $connection= mysqli_connect($host,$user,$password,$database);
 
+    $_SESSION['classroomid'] ="11";
 
+    $_SESSION['classroomnstudent'] ="1";
+    $classID = $_SESSION['classroomid'];
 
     if ($connection === false){
         die('Connection failed' . mysqli_connect_error());
     }
     if(isset($_POST['delete4'])){
-        if(isset($_POST['user_id'])){
-            $user_id = $_POST['user_id'];
-            $classid = 12;
-            $getnumq = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classid'");
+      
+            $user_id = $_POST['delete4'];
+
+            $getnumq = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classID'");
             $row1 = mysqli_fetch_assoc($getnumq);
             $number =$row1['NUM'];
-            mysqli_query($connection, "UPDATE classroom SET NUM=$number-1 WHERE CLASSROOM_ID='$classid'");
-            mysqli_query($connection, "DELETE FROM enrolled_classroom WHERE CLASSROOM_ID='$classid' AND USER_ID='$user_id'"); 
+            mysqli_query($connection, "UPDATE classroom SET NUM=$number-1 WHERE CLASSROOM_ID='$classID'");
+            mysqli_query($connection, "DELETE FROM enrolled_classroom WHERE CLASSROOM_ID='$classID' AND USER_ID='$user_id'"); 
             echo '<script>alert("The student has been removed from class")</script>';
             
-        }   
+         
     }
-    if(isset($_POST['add'])){
-        if(isset($_POST['id'])){
-            $uid =$_POST['id'];
-            $classID = 12;
-            $status ="Show";
-            $getnumq = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classID'");
-            $rowcr = mysqli_fetch_assoc($getnumq);
-            $number =$rowcr['NUM'];
-            $checkq = mysqli_query($connection,"SELECT * FROM enrolled_classroom WHERE USER_ID='$uid' AND CLASSROOM_ID='$classID'");
+    if (isset($_POST['add'])) {
+        if (isset($_POST['id'])) {
+            $uid = $_POST['id'];
+            echo $uid;
+            $status = "Show";
+            $getnumq = mysqli_query($connection, "SELECT * FROM classroom WHERE CLASSROOM_ID='$classID'");
+    
+            $checkq = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USER_ID='$uid' AND CLASSROOM_ID='$classID'");
             $row = mysqli_fetch_assoc($checkq);
             $count = mysqli_num_rows($checkq);
-            if($count == 1){
+            if ($count == 1) {
                 echo '<script>alert("Error! The student has been added before")</script>';
-            }else{
-                mysqli_query($connection, "INSERT INTO enrolled_classroom (CLASSROOM_ID, USER_ID, STATUS) VALUES ('$classID','$uid','$status')");
-                mysqli_query($connection, "UPDATE classroom SET NUM=$number+1 WHERE CLASSROOM_ID='$classID'");
+            } else {
+                $row2 = mysqli_fetch_array($getnumq);
+                if (empty($row2['NUM'])) {
+                    $number = 0;
+                } else {
+                    $number = $row2['NUM'];
+                }
+                
+                $number += 1; // Increment the number by 1
+    
+                $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID,USER_ID,STATUS) 
+                    VALUES ('$classID','$uid','$status')";
+    
+                mysqli_query($connection, $sql2);
+                mysqli_query($connection, "UPDATE classroom SET NUM='$number' WHERE CLASSROOM_ID='$classID'");
                 echo '<script>alert("The student has been added to this class")</script>';
             }
         }
     }
     if(isset($_POST['confirm'])){
         $batchid = $_POST['batchID'];
-        
-    }
+        $query = "SELECT * FROM student_batch WHERE STUDENT_BATCH_ID = '$batchid'";
+    $results = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($results); //$row['email']
+    $count = mysqli_num_rows($results); //1 or 0
+    
+    if($count == 1){
+        echo '<script>alert("Work")</script>';
+
+    }  else {
+        echo '<script>alert("Invalid Batch ID")</script>';
+
+    } 
+
+}
 ?>
 
 <title>People - Student</title>
@@ -81,11 +107,11 @@
                     </thead>
                     <tbody class="text-center">
                         <?php
-                        $classid = 12;
+                        
                         $query = "SELECT yashiba_user.USER_PROFILE, yashiba_user.USER_NAME 
                         FROM yashiba_user
                         INNER JOIN enrolled_classroom ON yashiba_user.USER_ID = enrolled_classroom.USER_ID
-                        WHERE enrolled_classroom.CLASSROOM_ID = '$classid' AND yashiba_user.ROLE='Teacher'";
+                        WHERE enrolled_classroom.CLASSROOM_ID = '$classID' AND yashiba_user.ROLE='Teacher'";
                         $results = mysqli_query($connection, $query);
                         while($row = mysqli_fetch_assoc($results)){
                         ?>
@@ -110,12 +136,13 @@
                 </table>
                 <div class="row">
                         <?php
-                        $classid = 12;
-                        $query1 = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classid'");
+                   
+                        $query1 = mysqli_query($connection,"SELECT * FROM classroom WHERE CLASSROOM_ID='$classID'");
                         $row1 = mysqli_fetch_assoc($query1);
+                        $studentnum= $row1["NUM"]-1;
                         ?>
                         <h3 class="col text-primary">Student</h3>
-                        <h6 class="col text-end" style="margin-top: 12px"><?php echo $row1["NUM"] ?> Students</h3>
+                        <h6 class="col text-end" style="margin-top: 12px"><?php echo $studentnum ?> Students</h3>
                 </div>
                 <form action="#" method="post">
                 <hr class="border border-primary border-2 opacity-100">
@@ -129,11 +156,11 @@
                         </thead>
                         <tbody class="text-center">
                             <?php
-                                $classid = 12;
+                            
                                 $query = "SELECT yashiba_user.USER_ID, yashiba_user.USER_PROFILE, yashiba_user.USER_NAME 
                                 FROM yashiba_user
                                 INNER JOIN enrolled_classroom ON yashiba_user.USER_ID = enrolled_classroom.USER_ID
-                                WHERE enrolled_classroom.CLASSROOM_ID = '$classid' AND yashiba_user.ROLE='Student'";
+                                WHERE enrolled_classroom.CLASSROOM_ID = '$classID' AND yashiba_user.ROLE='Student'";
                                 $result = mysqli_query($connection, $query);
                                 while($rows = mysqli_fetch_assoc($result)){
                             ?>
@@ -153,8 +180,8 @@
                                 </td>
                                 <td ><?php echo $rows['USER_NAME'];?></td>
                                 <td style="text-align:center;white-space:nowrap;">
-                                    <input type="hidden" name="user_id" value="<?php echo $rows['USER_ID']; ?>">                                                                         
-                                    <button type="submit" class="delete-button" name="delete4" style="background: none; border: none;" onclick="return confirm('Are you sure you want to proceed?')">
+                                    <input type="hidden" name="user_id" >                                                                         
+                                    <button type="submit" class="delete-button" name="delete4" value="<?php echo $rows['USER_ID']; ?>" style="background: none; border: none;" onclick="return confirm('Are you sure you want to proceed?')">
                                         <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
                                     </button>                                               
                                 </td>
@@ -202,10 +229,11 @@
                             $schoolid = 'SCKL001';
                             $sql2 = mysqli_query($connection, "SELECT USER_ID, USER_PROFILE, USER_NAME
                                 FROM yashiba_user
-                                WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student'
+                                WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student' 
                                 ORDER BY USER_ID DESC
                                 LIMIT 4");
                             while($school = mysqli_fetch_assoc($sql2)){
+
                         ?>
                             <div class="mb-3">
                                 <div class="card">
@@ -240,6 +268,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <?php
                         }
                         ?>
@@ -269,7 +298,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+             </div>
         </main>
         <?php
             $title = 'Home';

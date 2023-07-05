@@ -3,18 +3,9 @@
  $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
-    
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$database = 'yashiba';
-$connection= mysqli_connect($host,$user,$password,$database);
+ 
 
-
-
-if ($connection === false){
-    die('Connection failed' . mysqli_connect_error());
-}
+    $_SESSION['id']="1";
    
 
     if (isset($_POST['hide'])) {
@@ -63,16 +54,7 @@ if ($connection === false){
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>
                         </ol>
-                        <div class="row">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                                To Do List
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
-                            </div>
+                          <div class="row">
 
                             <?php 
 
@@ -123,9 +105,9 @@ if ($connection === false){
                                 </div>
                             </div>
                             <?php 
-                           }
+                           } 
                             ?>
-                        </div>
+                            </div> 
                     </div>
                 </main>
                 <?php

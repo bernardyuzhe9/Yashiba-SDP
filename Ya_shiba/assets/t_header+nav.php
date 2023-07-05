@@ -7,7 +7,7 @@ $password = '';
 $database = 'yashiba';
 $connection= mysqli_connect($host,$user,$password,$database);
 
-
+$_SESSION['id']="1";
 
 if ($connection === false){
     die('Connection failed' . mysqli_connect_error());
@@ -24,13 +24,13 @@ if(isset($_POST['post-submit']) ){
     $classcode= $_POST['classcodetxt'];
     $number="1";
     // $task_number="0";
-    $userid="1";
+    $userid=$_SESSION['id'];
     $status="Show";
     $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
     $row = mysqli_fetch_assoc($query1); 
     $count = mysqli_num_rows($query1);
     if($count == 1){
-        // echo '<script>alert("There is repeated classcode, please try another username ")</script>';
+        echo '<script>alert("There is repeated classcode, please try another username ")</script>';
 
     }else{
     if(isset($_FILES['my_image'] )){
@@ -58,7 +58,7 @@ if(isset($_POST['post-submit']) ){
                   $img_upload_path='classroom/'.$new_img_name;
                   move_uploaded_file($tmp_name,$img_upload_path);
                   //Insert into database
-                //   echo '<script>alert("You submited")</script>';
+                  echo '<script>alert("Classroom created")</script>';
                   $sql = "INSERT INTO classroom (CLASS_CODE, USER_ID , CLASS_NAME , CLASS_DESCRIPTION, CLASS_BACKGROUND , NUM) 
                   VALUES ('$classcode','$userid','$class','$description','$new_img_name','$number')"; 
                   mysqli_query($connection,$sql);
@@ -67,6 +67,7 @@ if(isset($_POST['post-submit']) ){
                   VALUES ('$classroomId','$userid','$status')";
 
                   mysqli_query($connection,$sql2);
+
               }else{
                   $em="You cant upload this type of files";
             

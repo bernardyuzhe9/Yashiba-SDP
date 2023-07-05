@@ -9,7 +9,7 @@
     $connection= mysqli_connect($host,$user,$password,$database);
 
 
-
+    $_SESSION['schoolid']="SCKL001";
     if ($connection === false){
         die('Connection failed' . mysqli_connect_error());
     }
@@ -71,11 +71,10 @@
                     <div class="d-grid gap-3">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Student</button>
                         <?php
-                            $studentbatchid = $_SESSION['student_batch_id'];
-                            $sql1 = mysqli_query($connection, "SELECT USER_PROFILE, USER_NAME
-                                FROM yashiba_user
-                                WHERE STUDENT_BATCH_ID = '$studentbatchid'");
-                            while($student = mysqli_fetch_assoc($sql1)){
+                      
+                      $sql1 = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE STUDENT_BATCH_ID = '{$_SESSION['student_batch_id']}'");
+                      if (!empty($sql1)) {
+    while ($student = mysqli_fetch_assoc($sql1)){
                         ?>
                         <div class="card">
                             <div class="card-body">
@@ -115,7 +114,9 @@
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                            <?php } }else {
+    echo "No students found.";}
+ ?>
                     </div>
                 </div>
                 <!-- Modal -->
@@ -146,6 +147,7 @@
                             LIMIT 4");
                         while($school = mysqli_fetch_assoc($sql2)){
                     ?>
+                    <form action="#" method="post">
                     <div class="mb-3">
                         <div class="card">
                             <div class="card-body">
@@ -170,7 +172,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <form action="#" method="post">
+                                        
                                         <input type="hidden" name="user_name1" value="<?php echo $school['USER_NAME'] ?>">
                                         <button type="submit" class="btn btn-primary" name="add">Add</button>
                                         </form>
