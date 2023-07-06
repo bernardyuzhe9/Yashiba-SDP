@@ -56,6 +56,10 @@
         <div id="layoutSidenav_content" class="bg-light">
             <main>
                 <div class="container-fluid px-4">
+                <div  style="margin: 30px 30px 30px 2px;">
+                <a href="t_student_batch_main.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
                     <?php
                         $sql = mysqli_query($connection, "SELECT STUDENT_BATCH_ID, STUDENT_BATCH_NAME
                             FROM student_batch

@@ -16,6 +16,10 @@
     <div id="layoutSidenav_content" class="bg-light">
         <main>
             <div class="container-fluid px-4">
+                <div style="margin: 30px 30px 30px 2px;">
+                    <a href="s_courseoverview.php">
+                    <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
                 <h1 class="mt-4">People Page</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"></li>

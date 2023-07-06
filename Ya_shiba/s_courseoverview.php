@@ -31,7 +31,9 @@
 </head>
 <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
+
                 <main>
+                    
                 <form action="#" method="post">
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>

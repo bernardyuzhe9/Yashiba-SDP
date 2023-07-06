@@ -63,8 +63,7 @@
     if($count == 1){
         $student="Student";
         $getStudentBatchQuery = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE STUDENT_BATCH_ID='$batchid' AND ROLE='$student' AND SCHOOL_ID ='$schoolid'");
-        // $row1 = mysqli_fetch_assoc($getStudentBatchQuery);
-        // $Count = mysqli_num_rows($getStudentBatchQuery);
+ 
         if (mysqli_num_rows($getStudentBatchQuery) > 0) {
 
         while ($studentBatchRow = mysqli_fetch_assoc($getStudentBatchQuery)) {
@@ -101,10 +100,14 @@
 ?>
 
 <title>People - Student</title>
-<body class="sb-nav-fixed">
+<body >
     <div id="layoutSidenav_content" class="bg-light">
         <main>
             <div class="container-fluid px-4">
+            <div  style="margin: 30px 30px 30px 2px;">
+                <a href="t_courseoveerview.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
                 <h1 class="mt-4">People Page</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"></li>

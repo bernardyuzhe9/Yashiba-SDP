@@ -153,33 +153,31 @@ function validatePassword2() {
 }
 
 //ADD SCHOOL ACCOUNT  
-var schIDError = document.getElementById("sch_ID_ER");
+var schIDError1 = document.getElementById("sch_id_ER");
 var schNameError = document.getElementById("sch_name_ER");
 var schAddressError = document.getElementById("sch_address_ER");
 var schPicError = document.getElementById("sch_pic_ER");
 var schContactError = document.getElementById("sch_contact_ER");
 var schBtnError = document.getElementById("sch_btn_ER");
+// var schIDError = document.getElementById("sch_ID_ER");
 
 
-function validateSchID(){
-    var schoolID= document.getElementById("sch_ID").value;
+function validateSchIDs(){
+    var schoolID= document.getElementById("schollid").value;
     var schoolIDFormat= /^SCKL\d{3}$/
-    if(schoolID.match(" ")){
-        schIDError.innerHTML="No space is required";
-        return false;}
+    if(schoolID.length===0){
+        schIDError1.innerHTML="No space is required";
+        return false;
+    }
 
     if (!schoolID.match(schoolIDFormat)){
-        schIDError.innerHTML="Invalid School ID!";
-        return valid;}
+        schIDError1.innerHTML="Invalid School ID!";
+        return false;
+    }
     else{
-        schIDError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
+        schIDError1.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
         return true;    
-        /* 
-            School ID can only have: 
-            -SCKL
-            - 3 Numbers (0-9)
-        */
-       
+     
     }
 }
 
@@ -200,23 +198,14 @@ function validateSchName(){
 
 function validateSchAddress(){
     var schoolAddress= document.getElementById("sch_address").value;
-    var schoolAddressFormat= /^[a-zA-Z0-9(),./\s-]+$/
     if(schoolAddress.length===0){
         schAddressError.innerHTML="School Address is required";
         return false;}
 
-    if (!schoolAddress.match(schoolAddressFormat)){
-        schAddressError.innerHTML="Invalid School Address!";
-        return valid;}
+
     else{
         schAddressError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";
         return true;    
-        /* 
-            School Address can only have: 
-            - Letters (A-Z a-z)
-            - Numbers (0-9)
-            - Special characters (, . ())
-        */
        
     }
 }
@@ -259,7 +248,7 @@ function validateSchContact(){
 }
 
 function validateSchBtnForm(){
-    if(!validateSchID()||!validateSchName()|| !validateSchAddress()||!validateSchPic()|| !validateSchContact()){
+    if(!validateSchIDs()||!validateSchName()|| !validateSchAddress()||!validateSchPic()|| !validateSchContact()){
         schBtnError.innerHTML="Please fix the error to submit";
         schBtnError.style.display="block";
         setTimeout(function(){schBtnError.style.display="none"},1000)

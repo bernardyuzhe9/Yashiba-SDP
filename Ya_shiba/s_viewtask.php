@@ -140,8 +140,14 @@ $row1 = mysqli_fetch_assoc($chckmarking);
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
 <div class="blog-navigation-container" id="blog-DIV">
+<div class="container-fluid px-4">
+                
     <nav>
         <ul>
+        <div  style="margin: 30px 30px 30px 2px;">
+                <a href="s_courseoverview.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
             <li class="course-name"><?php echo $_SESSION['classroomname']; ?></li>
         </ul>
     </nav>

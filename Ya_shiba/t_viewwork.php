@@ -114,6 +114,10 @@ if (isset($_POST['uploadgrading'])) {
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
+        <div  style="margin: 30px 30px 30px 30px;">
+                <a href="t_courseoveerview.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
             <li class="course-name"><?php echo $_SESSION['classroomname']; ?></li>
         </ul>
     </nav>

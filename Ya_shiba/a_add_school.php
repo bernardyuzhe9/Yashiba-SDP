@@ -11,32 +11,61 @@ if ($connection === false){
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
+// if(isset($_POST['addSch'])){
+    
+//     $schID= $_POST['schID'];
+//     $schName= $_POST['schName'];
+//     $address= $_POST['schAddress'];
+//     $pic= $_POST['schPic'];
+//     $contact=$_POST['schContact'];
+//     $rDate=date('Y/m/d H:i:s');
+    
+//     $query1 =mysqli_query($connection,"SELECT * FROM yashiba_school WHERE SCHOOL_ID = '$schID'");
+//     $row = mysqli_fetch_assoc($query1); 
+//     $count = mysqli_num_rows($query1);
+//     if($count == 1){
+//         echo '<script>alert("There is repeated school ID, please try another school ID ")</script>';
+
+//     }else{
+//     $query = "INSERT INTO yashiba_school (SCHOOL_ID,SCHOOL_NAME,SCHOOL_ADDRESS,PERSON_IN_CHARGE,PERSON_IN_CHARGE_PHONE,SCHOOL_REGISTER_DATE) 
+//     VALUES ('$schID', '$schName', '$address', '$pic', $contact, '$rDate')";
+//     if(mysqli_query($connection,$query)){
+//         echo '<script>alert("School Account was created successfully")</script>';
+//     }else{
+
+//       echo '<script>alert("School Account was not create, please try again")</script>';
+//     }}}
 if(isset($_POST['addSch'])){
-    
-    $schID= $_POST['schID'];
-    $schName= $_POST['schName'];
-    $address= $_POST['schAddress'];
-    $pic= $_POST['schPic'];
-    $contact=$_POST['schContact'];
-    $rDate=date('Y/m/d H:i:s');
-    
-    $query1 =mysqli_query($connection,"SELECT * FROM yashiba_school WHERE SCHOOL_ID = '$schID'");
-    $row = mysqli_fetch_assoc($query1); 
-    $count = mysqli_num_rows($query1);
-    if($count == 1){
-        echo '<script>alert("There is repeated school ID, please try another school ID ")</script>';
+    $schID = $_POST['schID'];
+    $schName = $_POST['schName'];
+    $address = $_POST['schAddress'];
+    $pic = $_POST['schPic'];
+    $contact = $_POST['schContact'];
+    $rDate = date('Y/m/d H:i:s');
+
+    $checkQuery = mysqli_prepare($connection, "SELECT * FROM yashiba_school WHERE SCHOOL_ID = ?");
+    mysqli_stmt_bind_param($checkQuery, 's', $schID);
+    mysqli_stmt_execute($checkQuery);
+    $result = mysqli_stmt_get_result($checkQuery);
+
+    if(mysqli_num_rows($result) > 0){
+        echo '<script>alert("There is a repeated school ID, please try another school ID")</script>';
 
     }else{
-    $query = "INSERT INTO yashiba_school (SCHOOL_ID,SCHOOL_NAME,SCHOOL_ADDRESS,PERSON_IN_CHARGE,PERSON_IN_CHARGE_PHONE,SCHOOL_REGISTER_DATE) 
-    VALUES ('$schID', '$schName', '$address', '$pic', $contact, '$rDate')";
-    if(mysqli_query($connection,$query)){
-        echo '<script>alert("School Account was created successfully")</script>';
-    }else{
+        $insertQuery = mysqli_prepare($connection, "INSERT INTO yashiba_school (SCHOOL_ID, SCHOOL_NAME, SCHOOL_ADDRESS, PERSON_IN_CHARGE, PERSON_IN_CHARGE_PHONE, SCHOOL_REGISTER_DATE) VALUES (?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($insertQuery, 'ssssis', $schID, $schName, $address, $pic, $contact, $rDate);
 
-      echo '<script>alert("School Account was not create, please try again")</script>';
-    }}}
+        if(mysqli_stmt_execute($insertQuery)){
 
-mysqli_close($connection);   
+            echo "School Account was created successfully";
+        }else{
+            echo '<script>alert("School Account was not created, please try again")</script>';
+
+
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -68,11 +97,12 @@ mysqli_close($connection);
             </div>
             <form class="flow" action="#" method="post"  onsubmit="return validateSchBtnForm()" style ="font-family:Mukta; color: #03396c;">
                 <div class="edit-sch">
-                    <input  type="text" name="schID" class="editSch" id="sch_ID" onkeyup="validateSchID()"required>
+                    <input  type="text" name="schID" autocomplete="off" class="editSch" id="schollid"   onkeyup="validateSchIDs()" required>
                     <label class="sch-label"><b>School ID</b></label>
-                    <span id = sch_ID_ER></span>
+                    <span id = sch_id_ER></span>
                 </div>
                 <div class="edit-sch">
+                    
                     <input  type="text" name="schName" autocomplete="off" class="editSch" id="sch_name"  onkeyup="validateSchName()" required>
                     <label class="sch-label"><b>School Name</b></label>
                     <span id = sch_name_ER></span>
@@ -93,7 +123,7 @@ mysqli_close($connection);
                     <span id = sch_contact_ER></span>
                 </div>
                 <div class="textSubmit">
-                    <button type="addSch" class="addBtn" id="submitButton" name="addSch">ADD</button>
+                    <button type="submit" class="addBtn"  name="addSch">ADD</button>
                     <span id =sch_btn_ER></span>
                 </div>
             </form>

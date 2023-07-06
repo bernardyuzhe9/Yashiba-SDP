@@ -93,6 +93,10 @@
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                 <div class="container-fluid px-4">
+                <div  style="margin: 30px 30px 30px 2px;">
+                <a href="s_user_profile.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
                         <h1 class="mt-4">Edit Profile</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"></li>

@@ -120,22 +120,26 @@ mysqli_close($connection);
         </div>
         <div class="edit-acc">
             <input  type="text" name="name" autocomplete="off" class="editAcc" id="user_contact_name"  onkeyup="validateRName()" required>
-            <label class="user-label">Full Name</label><span id = nameR-error></span>
+            <label class="user-label">Full Name</label>
+            <span id = nameR-error></span>
             
         </div>
         <div class="edit-acc">
             <input type="text" name="email" autocomplete="off" class="editAcc" id="user_contact_email" onkeyup="validateREmail()"required >
-             <label class="user-label">Email</label><span id = emailR-error></span>
+             <label class="user-label">Email</label>
+             <span id = emailR-error></span>
            
         </div>
         <div class="edit-acc">
             <input type="text" name="txtphone" autocomplete="off" class="editAcc" id="user_contact_phone" onkeyup="validateRPhone()"required >
-             <label class="user-label">Phone</label><span id = phoneR-error></span>
+             <label class="user-label">Phone</label>
+             <span id = phoneR-error></span>
            
         </div>
         <div class="edit-acc">
             <input type="password" class="editAcc" autocomplete="off" placeholder="Password" required name="password" id="user_password1" onkeyup="validatePassword1()";>
-            <label class="user-label">Password</label><span id =passwordR1-error></span>
+            <label class="user-label">Password</label>
+            <span id =passwordR1-error></span>
             
         </div>
         
