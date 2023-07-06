@@ -161,11 +161,11 @@ mysqli_query($connection, $query4);
     <form action="#" method="post"> 
       
     <?php if($row["TASK_CATEGORY"] =="Task") {?>
-      <div class="container" style="background: #f7adad;">
+      <div class="container" style="background:#ffe8b5;">
       <?php }else if($row["TASK_CATEGORY"] =="Material") {?>
                 <div class="container">
         <?php }else{?>
-        <div class="container" style="background:  #caf7ad;">
+        <div class="container" style="background:  #b5fdff;">
         <?php }?>
         <div class="wrapper">
             <div class="top-content">
