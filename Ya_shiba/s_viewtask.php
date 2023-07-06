@@ -126,7 +126,7 @@ $chckmarking = mysqli_query($connection, "SELECT * FROM marking WHERE TASK_ID={$
 
 
   $pass = $row['POINT'];
-$result="None"; 
+$result="Due"; 
 $sum = 0; 
 $row1 = mysqli_fetch_assoc($chckmarking);
 ?>
@@ -164,14 +164,20 @@ $row1 = mysqli_fetch_assoc($chckmarking);
                     </div>
                     <div class="profile">
                         <div><?php echo $row['TASK_NAME']; ?></div>
-                        <div style="font-size: 12px;">due <?php echo $row['TASK_SUBMIT_DATE']; ?></div>
-                    </div>
+                    <?php if($row["TASK_CATEGORY"] =="Task") {?>
+                        <div style="font-size: 12px;">   
+                       
+                        due: <?php echo $row['TASK_SUBMIT_DATE']; ?></div>
+                    <?php }?>
+                    </div>   
                     <div class="right flow" style="font-size: 12px;">
+                    <?php if($row["TASK_CATEGORY"] =="Task") {?>
                     <?php     if (!empty($row1)){ ?>
                                 <div class="delete" style="    margin-left:460px; color: #49eb51;"><?php echo $row1["MARKING_STATUS"]; ?></div>
                                 <?php     } else if (strtotime($dueDate) < strtotime($currentDate)) { ?>
                                     <div class="delete"  style="    margin-left:440px;"><?php echo $result ?></div>
                                     <?php    } ?>
+                                    <?php }?>
 
                              
                 </div>
@@ -271,9 +277,7 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
 }
 ?>                    
                 </div>
-                <!-- <div class="d-grid gap-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reuploadtask" >Reupload the task</button>
-                </div> -->
+              
             </div>
     </div>
     <?php if($row['TASK_CATEGORY'] == "Task") {
@@ -323,7 +327,7 @@ $result = "Not Due";
     }
    
 ?>
-<label for="formFileMultiple" class="form-label">Teacher return file : </label>
+<label for="formFileMultiple" class="form-label">Teacher's return file : </label>
 <?php
 $taskfile = mysqli_query($connection, "SELECT * FROM marking WHERE MARKING_ID='" . $row1['MARKING_ID'] . "'");
 
@@ -375,7 +379,7 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
 
                     <label for="formFileMultiple" class="form-label">Re-Upload Your Work</label>
                     <input class="form-control" type="file" name="files[]" multiple required>
-                <!-- </div> -->
+
                 <div class="d-grid gap-2"style="padding-top:10px">
                 <button class="btn btn-primary" type="submit" name="re-submit" value="<?php echo $row1["MARKING_ID"]; ?>">Submit</button>
                 </div>
@@ -412,4 +416,4 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
 }?>
     
 
-<!-- <?php } ?> -->
+<?php } ?> 

@@ -2,6 +2,20 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/a_header+nav.php');
+
+   
+    if (isset($_POST['edittxt'])) {
+        $userid = $_POST['edittxt'];
+        $password = $_POST['passwordtxt'];
+        $pattern = '/^.{8,15}$/';
+        if (!preg_match($pattern, $password)) {
+            echo '<script>alert("The password must have 8 to 15 characters")</script>';
+        } else {
+        mysqli_query($connection, "UPDATE yashiba_user SET `PASSWORD`='$password' WHERE USER_ID='$userid'");
+        echo '<script>alert("Edit Successful")</script>';
+        echo '<script>window.location.href = "a_student_acc.php";</script>';
+        }
+    }
     $query=
     'SELECT yashiba_user.USER_ID, yashiba_user.USER_PROFILE, yashiba_user.USERNAME, yashiba_user.USER_NAME, 
     yashiba_user.EMAIL, yashiba_school.SCHOOL_NAME, yashiba_user.STUDENT_BATCH_ID, yashiba_user.REGISTERED_DATE, yashiba_user.PASSWORD, yashiba_user.USER_STATUS FROM yashiba_user
@@ -9,19 +23,6 @@
     WHERE ROLE="Student" 
     ORDER BY USER_ID ASC'; 
     $results = mysqli_query($connection, $query);
-
-    if (isset($_POST['edit'])) {
-        $userid = $_POST['userid'];
-        $Password = $_POST['password_'.$userid];
-        $pattern = '/^[0-9]{8,11}$/';
-        if (!preg_match($pattern, $Password)) {
-            echo '<script>alert("The password must have 8 to 15 digits")</script>';
-        } else {
-            mysqli_query($connection, "UPDATE yashiba_user SET PASSWORD='$Password' WHERE USER_ID='$userid'");
-            echo '<script>alert("Edit Successful")</script>';
-            echo '<script>window.location.href = "a_teacher_acc.php";</script>';
-        }
-    }
 
 ?>
 
@@ -66,7 +67,6 @@
                                 <b>Student Accounts</b>
                             </div>
                             <div class="card-body" style ="font-family:Mukta;">
-                                <form action="#" method="post">
                                     <table class="table table-hover table-striped table-bordered"  id="sortTable">
                                         <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                             <tr>
@@ -82,72 +82,74 @@
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
-                                        </thead>
+                                        </thead> 
                                         <tbody>
-                                            <?php
-                                                while ($row = mysqli_fetch_assoc($results)){
-                                            ?>
-                                                
-                                                <tr style="vertical-align:middle;">
-                                                    <td name="userID">
-                                                        <?php echo $row['USER_ID']; ?>
-                                                    </td>
-                                                    <td style="text-align:center;">
-                                                        <?php
-                                                            if ($row["USER_PROFILE"] == null) {
-                                                        ?>
-                                                            <img src="img/profile picture.jpg" style="width: 70px; height: 70px; border-radius: 50%;">
-                                                            <?php
-                                                            } else {
-                                                        ?>
-                                                            <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
-                                                        <?php
-                                                            }
-                                                        ?>
-                                                    </td>
-                                                    <td><?php echo $row['USERNAME'];?></td>
-                                                    <td><?php echo $row['USER_NAME'];?></td>
-                                                    <td><?php echo $row['EMAIL']. ' ';?></td>
-                                                    <td><?php echo $row['SCHOOL_NAME'];?></td>
-                                                    <td><?php echo $row['STUDENT_BATCH_ID'];?></td>
-                                                    <td>
-                                                        <input type="text" name="password_<?php echo $row['USER_ID']; ?>" value="<?php echo $row['PASSWORD']; ?>" required style="background: none; border: none; width:120px;">
-                                                    </td>
-                                                    <td><?php echo $row['REGISTERED_DATE'];?></td>
-                                                    <td style="text-align:center;">
-                                                        <?php
-                                                            if($row['USER_STATUS'] == "Active"){
-                                                        ?>
-                                                            <span class="badge rounded-pill d-inline" style="background-color:#c7d9bf;color:#374a2f;padding:4px 8px 4px 8px;">Active</span>
-                                                            <?php
-                                                            }else if($row['USER_STATUS'] == "Deactivate"){
-                                                        ?>
-                                                            <span class="badge rounded-pill d-inline" style="background-color:#e6979d;color:#422123;padding:4px 8px 4px 8px;">Deactivate</span>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                    </td>
-                                                    <td style="text-align:center;white-space:nowrap;">
-                                                        <input type="hidden" name="userid" value="<?php echo $row['USER_ID']; ?>">
-                                                        <button type="submit" class="edit-button" name="edit" style="background: none; border: none;">
-                                                            <i class="fa-solid fa-pen me-2" style="color: #404a69;width:25px;height:25px;"></i>
-                                                        </button>                                                                         
-                                                        <a href="a_delete.php?stuID=
-                                                            <?php echo $row['USER_ID'];?>" 
-                                                            onclick="alert('Student Account has been deleted.')">
-                                                            <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
-                                                        </a>                                                
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                                    }
-                                                    mysqli_close($connection);
-                                                    ?>
+                        <?php
+                            while ($row = mysqli_fetch_assoc($results)){
+                        ?>
+                            <tr style="vertical-align:middle;">
+                                <form action="#" method="post">
+                                    <td name="userID">
+                                        <?php echo $row['USER_ID']; ?>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <?php
+                                            if ($row["USER_PROFILE"] == null) {
+                                        ?>
+                                            <img src="img/profile picture.jpg" style="width: 70px; height: 70px; border-radius: 50%;">
+                                        <?php
+                                            } else {
+                                        ?>
+                                            <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%;">
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
+                                    <td><?php echo $row['USERNAME'];?></td>
+                                    <td><?php echo $row['USER_NAME'];?></td>
+                                    <td><?php echo $row['EMAIL']. ' ';?></td>
+                                    <td><?php echo $row['SCHOOL_NAME'];?></td>
+                                    <td><?php echo $row['STUDENT_BATCH_ID'];?></td>
+                                    <td>
+                                        <div>
+                                            <input type="text" name="passwordtxt" value="<?php echo $row['PASSWORD']; ?>" required style="background: none; border: none; width:120px;">
+                                        </div>
+                                    </td>
+                                    <td><?php echo $row['REGISTERED_DATE'];?></td>
+                                    <td style="text-align:center;">
+                                        <?php
+                                            if($row['USER_STATUS'] == "Active"){
+                                        ?>
+                                            <span class="badge rounded-pill d-inline" style="background-color:#c7d9bf;color:#374a2f;padding:4px 8px 4px 8px;">Active</span>
+                                        <?php
+                                            } else if($row['USER_STATUS'] == "Deactivate"){
+                                        ?>
+                                            <span class="badge rounded-pill d-inline" style="background-color:#e6979d;color:#422123;padding:4px 8px 4px 8px;">Deactivate</span>
+                                        <?php
+                                            }
+                                        ?>
+        </td>
+        <td style="text-align:center;white-space:nowrap;">
+                 <button type="submit" class="edit-button"  value="<?php echo $row['USER_ID'];?>" name="edittxt" style="background: none; border: none;">
+                <i class="fa-solid fa-pen me-2" style="color: #404a69;width:25px;height:25px;"></i>
+                </button>                                                                                                            
+            <a href="a_delete.php?stuID=<?php echo $row['USER_ID'];?>" onclick="alert('Student Account has been deleted.')">
+                <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
+                </a>
+                
+            </td>
+        </form>
+    </tr>
+<?php
+    }
+?>
+
                                             </tbody>
                                     </table>
-                                </form>
-                            </div>                    
-                            <script>$('#sortTable').DataTable();</script>
+                               
+                            </div>    
+                                    <script>$('#sortTable').DataTable();</script>
+                
                         </div>
                     </div>
                 </main>
@@ -158,5 +160,7 @@
                 ?>
             </div>
         </div>
+
     </body>
 </html>
+

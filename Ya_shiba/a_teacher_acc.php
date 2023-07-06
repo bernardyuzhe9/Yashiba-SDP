@@ -16,17 +16,16 @@
         WHERE ROLE="Teacher" AND (USER_STATUS="Active" OR USER_STATUS="Deactivate")
         ORDER BY USER_ID ASC'; 
     $results = mysqli_query($connection, $query);
-
-    if (isset($_POST['edit'])) {
-        $userid = $_POST['userid'];
-        $Password = $_POST['password_'.$userid];
-        $pattern = '/^[0-9]{8,11}$/';
-        if (!preg_match($pattern, $Password)) {
-            echo '<script>alert("The password must have 8 to 15 digits")</script>';
+    if (isset($_POST['edittxt'])) {
+        $userid = $_POST['edittxt'];
+        $password = $_POST['passwordtxt'];
+        $pattern = '/^.{8,15}$/';
+        if (!preg_match($pattern, $password)) {
+            echo '<script>alert("The password must have 8 to 15 characters")</script>';
         } else {
-            mysqli_query($connection, "UPDATE yashiba_user SET PASSWORD='$Password' WHERE USER_ID='$userid'");
-            echo '<script>alert("Edit Successful")</script>';
-            echo '<script>window.location.href = "a_teacher_acc.php";</script>';
+        mysqli_query($connection, "UPDATE yashiba_user SET `PASSWORD`='$password' WHERE USER_ID='$userid'");
+        echo '<script>alert("Edit Successful")</script>';
+        echo '<script>window.location.href = "a_teacher_acc.php";</script>';
         }
     }
 ?>
@@ -74,7 +73,6 @@
                         </div>
                     
                         <div class="card-body" style ="font-family:Mukta;">                        
-                            <form action="#" method="post">
                                 <table class="table table-hover table-striped table-bordered" id="sortTable">
                                     <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
                                         <tr>
@@ -96,7 +94,9 @@
                                             while ($row = mysqli_fetch_assoc($results)) { 
                                         ?>
                                         <tr style="vertical-align:middle;">
-                                            <td name="userID">
+                                        <form action="#" method="post">
+    
+                                        <td name="userID">
                                                 <?php echo $row['USER_ID']; ?>
                                             </td>
                                             <td style="text-align:center;">
@@ -107,7 +107,7 @@
                                                 <?php
                                                     } else {
                                                 ?>
-                                                        <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%; vertical-align:middle; horizontal-align:center;">
+                                                        <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%; vertical-align:middle; horizontal-align:center;">
                                                 <?php
                                                     }
                                                 ?>
@@ -117,7 +117,7 @@
                                             <td><?php echo $row['EMAIL']; ?></td>
                                             <td style="white-space:nowrap;"><?php echo $row['SCHOOL_NAME']; ?></td>
                                             <td>
-                                                <input type="text" name="password_<?php echo $row['USER_ID']; ?>" value="<?php echo $row['PASSWORD']; ?>" required style="background: none; border: none;width: 120px;">
+                                            <input type="text" name="passwordtxt" value="<?php echo $row['PASSWORD']; ?>" required style="background: none; border: none; width:120px;">
                                             </td>
                                             <td><?php echo $row['REGISTERED_DATE']; ?></td>
                                             <td style="text-align:center;">
@@ -129,7 +129,7 @@
                                             </td>
                                             <td style="text-align:center;white-space:nowrap;">
                                                 <input type="hidden" name="userid" value="<?php echo $row['USER_ID']; ?>">
-                                                <button type="submit" class="edit-button" name="edit" style="background: none; border: none;">
+                                                <button type="submit" class="edit-button"  value="<?php echo $row['USER_ID'];?>" name="edittxt" style="background: none; border: none;">
                                                     <i class="fa-solid fa-pen me-2" style="color: #404a69;width:25px;height:25px;"></i>
                                                 </button>                                                                         
                                                 <a href="a_delete.php?tecID=
@@ -138,6 +138,7 @@
                                                     <i class="fa-solid fa-trash" style="color: #404a69;width:25px;height:25px;"></i>
                                                 </a>                                                
                                             </td>
+                                            </form>
                                         </tr>
                                         <?php 
                                             }

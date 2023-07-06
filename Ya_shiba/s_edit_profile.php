@@ -19,6 +19,13 @@
         $contact_number= $_POST['contact'];
         $password = $_POST['password'];
         $_SESSION['username'] = $username;
+        $query1 = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USERNAME = '$username' AND user_id !=". $_SESSION['id']);
+    $row = mysqli_fetch_assoc($query1); 
+    $count = mysqli_num_rows($query1);
+    if($count == 1){
+        echo '<script>alert("There is repeated username, please try another username ")</script>';
+
+    }else{
         $updateQuery = "UPDATE `yashiba_user` 
         SET `USERNAME`='$username',`EMAIL`='$email',`CONTACT_NUMBER`='$contact_number',`PASSWORD`='$password' WHERE `USER_ID`=" . $_SESSION['id'];
         if(mysqli_query($connection, $updateQuery)){
@@ -73,7 +80,7 @@
     
     }
     
-    }
+    }}
 ?>
 
 <!DOCTYPE html>

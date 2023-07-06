@@ -17,7 +17,11 @@
   }
 
   $tasks = mysqli_query($connection, "SELECT * FROM task WHERE CLASSROOM_ID = {$_SESSION['classroomid']} ORDER BY TASK_ID DESC");
-
+  if(isset($_POST['gopeople'])){
+            
+    echo '<script>window.location.href = "s_people.php";</script>';
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +32,7 @@
 <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
+                <form action="#" method="post">
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
@@ -36,12 +41,13 @@
                 <button class="blog-btn" name="Task">Work</button>
             </li>
             <li>
-                <button class="blog-btn" name="People">People</button>
+            <button class="blog-btn" type="submit" name="gopeople">People</button>
             </li>
         </ul>
     </nav>
+</form>
 </div><?php while ($row = mysqli_fetch_array($tasks)){
-$chckmarking = mysqli_query($connection, "SELECT * FROM marking WHERE TASK_ID={$row['TASK_ID']}");
+$chckmarking = mysqli_query($connection, "SELECT * FROM marking WHERE TASK_ID={$row['TASK_ID']} AND USER_ID='{$_SESSION['id']}'");
 $dueDate=  $row['TASK_SUBMIT_DATE'];
 $pass = $row['POINT'];
 $result=""; 
@@ -84,7 +90,11 @@ if  (!empty($row1)) {
                         </div>
                         <div class="task">
                             <div><?php echo $row["TASK_NAME"]; ?></div>
-                            <div style="font-size: 12px;"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                            <?php if($row["TASK_CATEGORY"] =="Task") {?>
+                        <div style="font-size: 12px;">   
+                       
+                        due: <?php echo $row['TASK_SUBMIT_DATE']; ?></div>
+                    <?php }?>
                         </div>
                         <div class="right flow" style="font-size: 12px;">
                  

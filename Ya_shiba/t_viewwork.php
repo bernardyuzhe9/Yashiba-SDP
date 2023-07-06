@@ -21,6 +21,10 @@
       $highestMark = 0;
   }
   
+
+
+
+  
   $lowestresult = mysqli_query($connection, "SELECT MIN(MARKED) AS lowest_mark FROM marking WHERE TASK_ID=". $_SESSION['taskid']);
 
   // Check if any rows are returned
@@ -35,8 +39,7 @@
 
  // Retrieve all marks from the database for the given task
 $marksResult = mysqli_query($connection, "SELECT MARKED FROM marking WHERE TASK_ID = " . $_SESSION['taskid']);
-$lowestMark=0;
-$highestMark=0;
+
 $totalMarks = mysqli_num_rows($marksResult); // Total number of marks
 $pass = $row1['POINT'];
 $passCount = 0;
@@ -98,7 +101,7 @@ if (isset($_POST['uploadgrading'])) {
 }
 
 
-?>
+?><?php echo $highestMark; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +119,7 @@ if (isset($_POST['uploadgrading'])) {
     </nav>
 </div>  
 <div class="d-grid gap-3" >
-  <button class="btn btn-primary" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Task Name</button>
+  <button class="btn btn-primary" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><?php echo $row1['TASK_NAME']; ?></button>
 </div>
 
 
@@ -151,6 +154,10 @@ if (isset($_POST['uploadgrading'])) {
     </div>
     <div class="container1">
       <div class="sidtask">
+        <div><?php echo $row1['POINT']; ?>%</div>
+        <div style="font-size: 12px;">Pass Mark</div>
+      </div>
+      <div class="sidtask">
         <div><?php echo $passCount; ?></div>
         <div style="font-size: 12px;">Pass</div>
       </div>
@@ -162,6 +169,7 @@ if (isset($_POST['uploadgrading'])) {
         <div><?php echo $row1['HAND_IN_NUM']; ?></div>
         <div style="font-size: 12px;">Handed in</div>
       </div>
+      
     </div>
   </div>
 </div>

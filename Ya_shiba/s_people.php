@@ -5,7 +5,6 @@
 
 
 
-    $_SESSION['classroomid'] ="11";
 
     $_SESSION['classroomnstudent'] ="1";
     $classID = $_SESSION['classroomid'];
@@ -44,7 +43,7 @@
                                 <?php
                                 } else {
                             ?>
-                                <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                                <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%;">
                             <?php
                                 }
                             ?>
@@ -91,7 +90,7 @@
                                 <?php
                                 } else {
                             ?>
-                                <img src="uploads/<?php echo $rows["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                                <img src="uploads/<?php echo $rows["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%;">
                             <?php
                                 }
                             ?>
