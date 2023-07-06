@@ -5,7 +5,7 @@
     include_once('assets/t_header+nav.php');
  
 
-    $_SESSION['id']="1";
+    $userid = $_SESSION['id'];
    
 
     if (isset($_POST['hide'])) {
@@ -59,7 +59,7 @@
                             <?php 
 
                             
-                            $userid = "1";
+                           
                             $status = "Show";
                             $classes = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USER_ID = '$userid' AND STATUS='".$status."'");
 

@@ -7,8 +7,7 @@ $password = '';
 $database = 'yashiba';
 $connection= mysqli_connect($host,$user,$password,$database);
 
-$_SESSION['id']="1";
-
+$userid=$_SESSION['id'];
 if ($connection === false){
     die('Connection failed' . mysqli_connect_error());
 }
@@ -16,6 +15,22 @@ if ($connection === false){
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
    
+if(isset($_POST['gosearch'])){
+        
+    $classroomid = $_POST['id'];
+    
+$query = "SELECT * FROM classroom WHERE CLASSROOM_ID = '$classroomid'";
+$results = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($results); //$row['email']
+$count = mysqli_num_rows($results); //1 or 0
+if($count == 1){
+    
+    $_SESSION['classroomid'] = $row['CLASSROOM_ID'];
+    $_SESSION['classroomname'] = $row['CLASS_NAME'];
+    $_SESSION['classroomnstudent'] = $row['NUM'];
+    echo '<script>window.location.href = "t_courseoveerview.php";</script>';
+    exit();
+}}
 
 
 if(isset($_POST['post-submit']) ){
@@ -24,7 +39,7 @@ if(isset($_POST['post-submit']) ){
     $classcode= $_POST['classcodetxt'];
     $number="1";
     // $task_number="0";
-    $userid=$_SESSION['id'];
+
     $status="Show";
     $query1 =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
     $row = mysqli_fetch_assoc($query1); 
@@ -118,19 +133,29 @@ if(isset($_POST['post-submit']) ){
     </head>
     <body>   
     <nav class="sb-topnav navbar navbar-expand navbar-light sb-sidenav-white">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" style ="font-family:Karla; cursor: pointer;" href= "t_homepage.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="55" height="50" alt="" ></a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" style="font-family:Karla; cursor: pointer;" href="t_homepage.php">Ya-Shiba <img src="img/Logo(Ya-Shiba).png" class="logo ml-3" width="55" height="50" alt=""></a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search for..." id="searchclass" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+    </div>
+
+</form>
+
+
+
+
+    <div  class="bla" ><div id="output1"  ></div></div>
+
+
+            
             <!-- Navbar for profile-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -219,6 +244,8 @@ if(isset($_POST['post-submit']) ){
             </div>
             </div>
         </body>
+     
+        
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var joinClassLink = document.getElementById("createclasslink");
@@ -235,4 +262,52 @@ if(isset($_POST['post-submit']) ){
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#searchclass").keypress(function(){
+    var schoolID = "<?php echo $_SESSION['schoolid']; ?>"; // Retrieve school_id from Session variable
 
+    $.ajax({
+      type: 'POST',
+      url: 'searchclass.php',
+      data: {
+        name: $("#searchclass").val(),
+        schoolID: schoolID
+      },
+      success: function(data){
+        $("#output1").html(data);
+      }
+    });
+  });
+});
+
+</script>
+<style>
+    /* .search-form {
+        position: relative;
+    }
+
+    .search-form .input-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-form .btn-primary {
+        position: absolute;
+        right: 0;
+    } */
+    .bla {
+        display: absolute;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+      
+        padding:10px;
+    }
+ 
+    /* .search-form {
+        position: relative;
+        margin-bottom: 20px;
+    } */
+</style>

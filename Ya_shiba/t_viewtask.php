@@ -94,7 +94,7 @@ ini_set('display_errors', 1);
                 mysqli_query($connection, $query);
                     mysqli_query($connection, "UPDATE task SET UPLOAD_FILE_NUM='$fileCount' WHERE TASK_ID=".$_SESSION['taskid']);    
 
-                    echo '<script>alert("File uploaded successfully")</script>';
+                  
 
              
             } else {
@@ -102,7 +102,7 @@ ini_set('display_errors', 1);
                 echo '<script>alert("Error uploading file")</script>';
 
             }
-        }
+        }  echo '<script>alert("File uploaded successfully")</script>';
     }
   } else{
     $fileCount = "0";
@@ -121,7 +121,7 @@ ini_set('display_errors', 1);
     
     
     $taskid = $_SESSION['taskid'];
-    $_SESSION['id'] = "1";
+
 $selectedpost = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_SESSION['taskid']);
 
     $row = mysqli_fetch_assoc($selectedpost);

@@ -2,20 +2,13 @@
     $title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
-    $host = 'localhost';
-    $user = 'root';
-    $password = '';
-    $database = 'yashiba';
-    $connection= mysqli_connect($host,$user,$password,$database);
 
-    $_SESSION['classroomid'] ="11";
-
-    $_SESSION['classroomnstudent'] ="1";
+    // $_SESSION['schoolid'] = "SCKL001";
     $classID = $_SESSION['classroomid'];
+    $schoolid= $_SESSION['schoolid'] ;
 
-    if ($connection === false){
-        die('Connection failed' . mysqli_connect_error());
-    }
+
+
     if(isset($_POST['delete4'])){
       
             $user_id = $_POST['delete4'];
@@ -62,20 +55,49 @@
     }
     if(isset($_POST['confirm'])){
         $batchid = $_POST['batchID'];
-        $query = "SELECT * FROM student_batch WHERE STUDENT_BATCH_ID = '$batchid'";
+        $query = "SELECT * FROM student_batch WHERE STUDENT_BATCH_ID = '$batchid' ";
     $results = mysqli_query($connection, $query);
     $row = mysqli_fetch_assoc($results); //$row['email']
     $count = mysqli_num_rows($results); //1 or 0
-    
+   
     if($count == 1){
-        echo '<script>alert("Work")</script>';
+        $student="Student";
+        $getStudentBatchQuery = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE STUDENT_BATCH_ID='$batchid' AND ROLE='$student' AND SCHOOL_ID ='$schoolid'");
+        // $row1 = mysqli_fetch_assoc($getStudentBatchQuery);
+        // $Count = mysqli_num_rows($getStudentBatchQuery);
+        if (mysqli_num_rows($getStudentBatchQuery) > 0) {
 
-    }  else {
+        while ($studentBatchRow = mysqli_fetch_assoc($getStudentBatchQuery)) {
+            $studentID = $studentBatchRow['USER_ID'];
+            
+            $checkEnrollmentQuery = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USER_ID='$studentID' AND CLASSROOM_ID='$classID'");
+            $enrollmentCount = mysqli_num_rows($checkEnrollmentQuery);
+            
+            if ($enrollmentCount == 0) {
+                $status = "Show";
+                
+                $sql2 = "INSERT INTO enrolled_classroom (CLASSROOM_ID, USER_ID, STATUS) 
+                         VALUES ('$classID', '$studentID', '$status')";
+                
+                mysqli_query($connection, $sql2);
+                
+                $updateNumQuery = mysqli_query($connection, "UPDATE classroom SET NUM = NUM + 1 WHERE CLASSROOM_ID='$classID'");
+            }
+        }
+        
+        echo '<script>alert("Students have been added to this class")</script>';
+    }else{
+        echo (mysqli_num_rows($getStudentBatchQuery));
+        echo '<script>alert("Batch ID was from other school")</script>';
+    
+    }
+}
+      else {
         echo '<script>alert("Invalid Batch ID")</script>';
 
     } 
+    }
 
-}
 ?>
 
 <title>People - Student</title>
@@ -124,7 +146,7 @@
                                 <?php
                                 } else {
                             ?>
-                                <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                                <img src="uploads/<?php echo $row["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%;">
                             <?php
                                 }
                             ?>
@@ -173,7 +195,7 @@
                                     <?php
                                     } else {
                                 ?>
-                                    <img src="uploads/<?php echo $rows["USER_PROFILE"] ?>" style="width: 70px; height: 700px; border-radius: 50%;">
+                                    <img src="uploads/<?php echo $rows["USER_PROFILE"] ?>" style="width: 70px; height: 70px; border-radius: 50%;">
                                 <?php
                                     }
                                 ?>
@@ -219,21 +241,31 @@
                             <div class="mb-3">
                                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                                 <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                                    <input class="form-control" type="text"  id="searchstf" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                    
                                 </div>
+                                <table>
+                                        <tbody id="output"></tbody>
+                                    </table>
                                 </form>
                             </div>
                         </div>
                         <?php
-                            $schoolid = 'SCKL001';
+                   
                             $sql2 = mysqli_query($connection, "SELECT USER_ID, USER_PROFILE, USER_NAME
                                 FROM yashiba_user
                                 WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student' 
                                 ORDER BY USER_ID DESC
-                                LIMIT 4");
+                                ");
+                        
                             while($school = mysqli_fetch_assoc($sql2)){
+                                $studentID = $school['USER_ID'];
 
+                                $checkEnrollmentQuery = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USER_ID='$studentID' AND CLASSROOM_ID='$classID'");
+                                $enrollmentCount = mysqli_num_rows($checkEnrollmentQuery);
+                            
+                                if ($enrollmentCount == 0) {
                         ?>
                             <div class="mb-3">
                                 <div class="card">
@@ -268,11 +300,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                         <?php
-                        }
+                        }}
                         ?>
-                    </div>
+                    </div> </div>
                 </div>
             </div>
              <!-- Modal for add student-->
@@ -307,3 +339,25 @@
         ?>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#searchstf").keypress(function(){
+    var schoolID = "<?php echo $_SESSION['schoolid']; ?>"; // Retrieve school_id from Session variable
+
+    $.ajax({
+      type: 'POST',
+      url: 'searchstudent.php',
+      data: {
+        name: $("#searchstf").val(),
+        schoolID: schoolID
+      },
+      success: function(data){
+        $("#output").html(data);
+      }
+    });
+  });
+});
+
+</script>

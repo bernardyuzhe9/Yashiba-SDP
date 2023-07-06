@@ -61,8 +61,7 @@ if ($connection === false){
                         <div class="row">
                         <?php 
 
-                            
-                            $userid = "1";
+
                             $status = "Hidden";
                             $classes = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE USER_ID = '$userid' AND STATUS='".$status."'");
 

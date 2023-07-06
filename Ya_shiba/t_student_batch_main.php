@@ -71,7 +71,7 @@
                     <div class="d-grid gap-3">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Student Batch</button>
                         <?php
-                        $userid ="1";
+                        $userid =$_SESSION['id'];
                         $sql = mysqli_query($connection, "SELECT STUDENT_BATCH_ID, NUM
                         FROM student_batch
                         WHERE student_batch.CREATED_USER_ID_TEACHER ='$userid'");

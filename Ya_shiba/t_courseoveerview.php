@@ -27,6 +27,12 @@
     exit();
 }
 
+if(isset($_POST['gopeople'])){
+            
+  echo '<script>window.location.href = "t_people.php";</script>';
+  exit();
+}
+
 if (isset($_POST['deletetask'])) {
   $taskid1= $_POST['deletetask'];
   $sql = "DELETE FROM task WHERE TASK_ID= $taskid1";
@@ -127,6 +133,7 @@ mysqli_query($connection, $query4);
 <body class="sb-nav-fixed">
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
+                <form action="#" method="post">
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
@@ -140,10 +147,11 @@ mysqli_query($connection, $query4);
                 <button class="blog-btn" name="Work">Work</button>
             </li>
             <li>
-                <button class="blog-btn" name="People">People</button>
+                <button class="blog-btn" type="submit" name="gopeople">People</button>
             </li>
         </ul>
     </nav>
+</form>
     </div>
     <?php   while ($row = mysqli_fetch_array($tasks)) { ?>
     <form action="#" method="post"> 

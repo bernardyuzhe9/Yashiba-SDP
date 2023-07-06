@@ -7,9 +7,9 @@
     $password = '';
     $database = 'yashiba';
     $connection= mysqli_connect($host,$user,$password,$database);
-
-
-    $_SESSION['schoolid']="SCKL001";
+    $studentbatchid = $_SESSION['student_batch_id'];
+    $schoolid = $_SESSION['schoolid'];
+    
     if ($connection === false){
         die('Connection failed' . mysqli_connect_error());
     }
@@ -27,19 +27,19 @@
         }
     }
     if(isset($_POST['add'])){
-        if(isset($_POST['user_name1'])){
-            $user_names =$_POST['user_name1'];
+        if(isset($_POST['id'])){
+            $user_id = $_POST['id'];
             $sbatchid = $_SESSION['student_batch_id'];
             $getnumq = mysqli_query($connection,"SELECT * FROM student_batch WHERE STUDENT_BATCH_ID='$sbatchid'");
             $row1 = mysqli_fetch_assoc($getnumq);
             $number =$row1['NUM'];
-            $checkq = mysqli_query($connection,"SELECT * FROM yashiba_user WHERE USER_NAME='$user_names' AND STUDENT_BATCH_ID='$sbatchid'");
+            $checkq = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USER_ID='$user_id' AND STUDENT_BATCH_ID IS NOT NULL");
             $row = mysqli_fetch_assoc($checkq);
             $count = mysqli_num_rows($checkq);
             if($count == 1){
-                echo '<script>alert("Error! The student has been added before")</script>';
+                echo '<script>alert("Error! The student has been added in other student batch")</script>';
             }else{
-                mysqli_query($connection, "UPDATE yashiba_user SET STUDENT_BATCH_ID='$sbatchid' WHERE USER_NAME='$user_names'AND ROLE='Student'");
+                mysqli_query($connection, "UPDATE yashiba_user SET STUDENT_BATCH_ID='$sbatchid' WHERE USER_ID='$user_id'AND ROLE='Student'");
                 mysqli_query($connection, "UPDATE student_batch SET NUM=$number+1 WHERE STUDENT_BATCH_ID='$sbatchid'");
                 echo '<script>alert("The student has been added to this id")</script>';
             }
@@ -57,7 +57,6 @@
             <main>
                 <div class="container-fluid px-4">
                     <?php
-                        $studentbatchid = $_SESSION['student_batch_id'];
                         $sql = mysqli_query($connection, "SELECT STUDENT_BATCH_ID, STUDENT_BATCH_NAME
                             FROM student_batch
                             WHERE STUDENT_BATCH_ID = '$studentbatchid'");
@@ -132,20 +131,31 @@
                         <div class="mb-3">
                             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                <input class="form-control" type="text"   id="searchstf" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                             </div>
+                            <table>
+                                        <tbody id="output"></tbody>
+                                    </table>
                             </form>
                         </div>
                     </div>
                     <?php
-                        $schoolid = $_SESSION['schoolid'];
-                        $sql2 = mysqli_query($connection, "SELECT USER_PROFILE, USER_NAME
-                            FROM yashiba_user
-                            WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student'
-                            ORDER BY USER_ID DESC
-                            LIMIT 4");
-                        while($school = mysqli_fetch_assoc($sql2)){
+                       
+                       
+                        $sql2 = mysqli_query($connection, "SELECT USER_ID, USER_PROFILE, USER_NAME
+                        FROM yashiba_user
+                        WHERE SCHOOL_ID ='$schoolid'AND ROLE='Student' AND STUDENT_BATCH_ID IS NULL
+                        ORDER BY USER_ID DESC
+                        ");
+                
+                    while($school = mysqli_fetch_assoc($sql2)){
+                        $studentID = $school['USER_ID'];
+
+                        $checkEnrollmentQuery = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USER_ID='$studentID' AND STUDENT_BATCH_ID='$studentbatchid'");
+                        $enrollmentCount = mysqli_num_rows($checkEnrollmentQuery);
+                    
+                        if ($enrollmentCount == 0) {
                     ?>
                     <form action="#" method="post">
                     <div class="mb-3">
@@ -173,7 +183,7 @@
                                     </div>
                                     <div>
                                         
-                                        <input type="hidden" name="user_name1" value="<?php echo $school['USER_NAME'] ?>">
+                                        <input type="hidden" name="id" value="<?php echo $school['USER_ID'] ?>">
                                         <button type="submit" class="btn btn-primary" name="add">Add</button>
                                         </form>
                                     </div>
@@ -182,7 +192,7 @@
                         </div>
                     </div>
                     <?php
-                        }
+                        }}
                     ?>
                     </div>
                 </div>
@@ -196,3 +206,26 @@
         </div>
     </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#searchstf").keypress(function(){
+    var schoolID = "<?php echo $_SESSION['schoolid']; ?>"; // Retrieve school_id from Session variable
+
+    $.ajax({
+      type: 'POST',
+      url: 'searchstudent.php',
+      data: {
+        name: $("#searchstf").val(),
+        schoolID: schoolID
+      },
+      success: function(data){
+        $("#output").html(data);
+      }
+    });
+  });
+});
+
+</script>

@@ -50,15 +50,7 @@
                             <li class="breadcrumb-item"></li>
                         </ol>
                         <div class="row">
-                            <div class="list-group" style="margin-bottom: 10px;">
-                                <a href="#" class="list-group-item list-group-item-action active" aria-current="true" style="font-family:Karla;font-weight:bold;">
-                                To Do List
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                                <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
-                            </div>
+                            
                             <?php 
 
                             

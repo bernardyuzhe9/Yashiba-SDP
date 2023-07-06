@@ -5,7 +5,7 @@
     include_once('assets/t_header+nav.php');
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
-    $_SESSION['id'] = "1";
+
     $selectedtask = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_SESSION['taskid']);
 
     $row1 = mysqli_fetch_assoc($selectedtask);
