@@ -1,3 +1,11 @@
+<!-- Programmer Name: Tay Hui Yee-->
+<!-- Program Name : Download file -->
+<!-- Description:download the teacher file  -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
+
 <?php
 if (isset($_GET['file'])) {
     // Retrieve the file name from the query parameter

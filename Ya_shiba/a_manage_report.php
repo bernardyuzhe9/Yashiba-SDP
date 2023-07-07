@@ -1,3 +1,9 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Admin Manage Report -->
+<!-- Description: allow admin to manage report -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

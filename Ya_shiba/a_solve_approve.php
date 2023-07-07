@@ -1,3 +1,10 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Approve and rejeacted -->
+<!-- Description: for report used -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
 $host = 'localhost';
 $user = 'root';

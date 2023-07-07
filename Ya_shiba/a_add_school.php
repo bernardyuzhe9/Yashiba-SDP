@@ -1,3 +1,10 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Add School -->
+<!-- Description: add school to database -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
 $host = 'localhost';
 $user = 'root';
@@ -11,30 +18,6 @@ if ($connection === false){
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
-// if(isset($_POST['addSch'])){
-    
-//     $schID= $_POST['schID'];
-//     $schName= $_POST['schName'];
-//     $address= $_POST['schAddress'];
-//     $pic= $_POST['schPic'];
-//     $contact=$_POST['schContact'];
-//     $rDate=date('Y/m/d H:i:s');
-    
-//     $query1 =mysqli_query($connection,"SELECT * FROM yashiba_school WHERE SCHOOL_ID = '$schID'");
-//     $row = mysqli_fetch_assoc($query1); 
-//     $count = mysqli_num_rows($query1);
-//     if($count == 1){
-//         echo '<script>alert("There is repeated school ID, please try another school ID ")</script>';
-
-//     }else{
-//     $query = "INSERT INTO yashiba_school (SCHOOL_ID,SCHOOL_NAME,SCHOOL_ADDRESS,PERSON_IN_CHARGE,PERSON_IN_CHARGE_PHONE,SCHOOL_REGISTER_DATE) 
-//     VALUES ('$schID', '$schName', '$address', '$pic', $contact, '$rDate')";
-//     if(mysqli_query($connection,$query)){
-//         echo '<script>alert("School Account was created successfully")</script>';
-//     }else{
-
-//       echo '<script>alert("School Account was not create, please try again")</script>';
-//     }}}
 if(isset($_POST['addSch'])){
     $schID = $_POST['schID'];
     $schName = $_POST['schName'];

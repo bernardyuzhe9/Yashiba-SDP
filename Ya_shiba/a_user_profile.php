@@ -1,3 +1,12 @@
+<!-- Programmer Name: She Jun Yuan-->
+<!-- Program Name : Admin User Account -->
+<!-- Description:allow admin to view profile  -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
+
+
 <?php
     $title = 'Home';
     $page = 'home';

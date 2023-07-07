@@ -1,3 +1,10 @@
+<!-- Programmer Name: Bernard Ong Yuzhe & She Jun Yuan-->
+<!-- Program Name : Student People -->
+<!-- Description: Student able to view the people class details -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
     $title = 'Home';
     $page = 'home';

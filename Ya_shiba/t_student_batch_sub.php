@@ -1,5 +1,11 @@
+<!-- Programmer Name: She Jun Yuan & Bernard Ong Yuzhe -->
+<!-- Program Name : View Student Batch Page (Sub) -->
+<!-- Description: Able to view add student to the student batch page -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
-    $title = 'Home';
+$title = 'Home';
     $page = 'home';
     include_once('assets/t_header+nav.php');
     $host = 'localhost';

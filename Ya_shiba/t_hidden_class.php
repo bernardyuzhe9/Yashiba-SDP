@@ -1,3 +1,9 @@
+<!-- Programmer Name: Benard Ong Yuzhe & She Jun Yuan-->
+<!-- Program Name : Teacher Hidden Class-->
+<!-- Description: Teacher able to hide the classroom-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

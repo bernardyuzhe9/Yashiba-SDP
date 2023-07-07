@@ -1,3 +1,8 @@
+<!-- Programmer Name: Teoh Mae Kay & She Jun Yuan-->
+<!-- Program Name : Student Join Class -->
+<!-- Description: Allow student to join class  -->
+<!-- First Written: 19/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
 
 <body>
     <div class="modal fade" id="joinClassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

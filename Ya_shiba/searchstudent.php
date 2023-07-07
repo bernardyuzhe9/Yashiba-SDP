@@ -1,3 +1,9 @@
+<!-- Programmer Name: Tay Hui Yee-->
+<!-- Program Name : search student-->
+<!-- Description: Teacher able to search the student based on the student name-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <html>
 <head>
 <link rel="stylesheet" href="blog.css">
@@ -12,7 +18,6 @@ $password = '';
 $database = 'yashiba';
 $connection= mysqli_connect($host,$user,$password,$database);
 
-// $_SESSION['schoolid'] = $_POST['name'];
 
 if ($connection === false){
     die('Connection failed' . mysqli_connect_error());

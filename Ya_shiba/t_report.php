@@ -1,3 +1,10 @@
+<!-- Programmer Name: Benard Ong Yuzhe & She Jun Yuan-->
+<!-- Program Name : Report-->
+<!-- Description: Teacher able to report the difficulty faced when using the systen -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
     $title = 'Home';
     $page = 'home';

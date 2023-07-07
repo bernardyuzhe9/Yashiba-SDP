@@ -1,3 +1,9 @@
+<!-- Programmer Name: She Jun Yuan-->
+<!-- Program Name : Student Hidden Class -->
+<!-- Description:Hide Student class -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

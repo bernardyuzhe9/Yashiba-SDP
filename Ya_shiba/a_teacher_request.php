@@ -1,3 +1,10 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Teacher Request Account -->
+<!-- Description:allow admin to accept/reject teacher account  -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
     $title = 'Home';
     $page = 'home';

@@ -1,3 +1,9 @@
+<!-- Programmer Name: Teoh Mae Kay-->
+<!-- Program Name : Edit Student Account -->
+<!-- Description:allow admin to edit student account  -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

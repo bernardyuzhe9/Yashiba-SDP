@@ -1,3 +1,10 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Edit Teacher Account -->
+<!-- Description:allow admin to edit teacher account  -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
     $title = 'Home';
     $page = 'home';

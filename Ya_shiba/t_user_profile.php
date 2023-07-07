@@ -1,3 +1,9 @@
+<!-- Programmer Name: She Jun Yuan & Bernard Ong Yuzhe -->
+<!-- Program Name : Teacher User Profile -->
+<!-- Description: Teacher able to view the their details -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

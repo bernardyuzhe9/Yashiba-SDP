@@ -1,3 +1,9 @@
+<!-- Programmer Name: Benard Ong Yuzhe & Tay Hui Yee-->
+<!-- Program Name : People Classroom-->
+<!-- Description: Teacher able to add student into the classroom-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

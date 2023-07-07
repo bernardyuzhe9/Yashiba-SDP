@@ -1,3 +1,9 @@
+<!-- Programmer Name: Tay Hui Yee-->
+<!-- Program Name : Register 2  -->
+<!-- Description:insert general information  -->
+<!-- First Written: 10/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
 session_start();
 
@@ -164,35 +170,7 @@ mysqli_close($connection);
 </html>
 
 <script src="assets/validation.js"></script>
-<!-- <script>
-const wrapper = document.querySelector("picture-wrapper");
-  const defaultBtn= document.querySelector("#default-btn");
-  const customBtn= document.querySelector("#custom-btn");
-  const img= document.querySelector("#profile-img");
-  const cancelBtn = document.querySelector("#cancel-btn i");
-  
-  
-    
-         function defaultBtnActive(){
-           defaultBtn.click();
-         }
-         defaultBtn.addEventListener("change", function(){
-           const file = this.files[0];
-           if(file){
-             const reader = new FileReader();
-             reader.onload = function(){
-               const result = reader.result;
-               img.src = result;
-               wrapper.classList.add("active");
-             }
-             reader.readAsDataURL(file);
-           }
 
-         });
-        function removeImg(){
-            img.src=""; 
-            defaultBtn.value="";
-        } -->
 </script>
 <script src="validationscript.js">
 

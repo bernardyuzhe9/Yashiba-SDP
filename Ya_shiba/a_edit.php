@@ -1,3 +1,9 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : Admin edit -->
+<!-- Description: Edit user account -->
+<!-- First Written: 20/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
 $host = 'localhost';
 $user = 'root';

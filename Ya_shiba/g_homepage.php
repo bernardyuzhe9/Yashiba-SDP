@@ -1,3 +1,11 @@
+<!-- Programmer Name: She Jun Yuan-->
+<!-- Program Name : General Homepage -->
+<!-- Description:General homepage for all user before login  -->
+<!-- First Written: 8/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

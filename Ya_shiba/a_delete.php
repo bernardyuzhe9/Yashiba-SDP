@@ -1,3 +1,10 @@
+<!-- Programmer Name: Teoh Mae Kay -->
+<!-- Program Name : admin delete -->
+<!-- Description: function for admin to delete -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
 <?php
 $host = 'localhost';
 $user = 'root';

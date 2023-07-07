@@ -1,3 +1,9 @@
+<!-- Programmer Name: Bernard Ong Yuzhe-->
+<!-- Program Name : Student Homapage -->
+<!-- Description: student able to view the class -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

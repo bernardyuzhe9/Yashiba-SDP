@@ -1,3 +1,8 @@
+<!-- Programmer Name: Bernard Ong Yuzhe & She Jun Yuan -->
+<!-- Program Name : Teacher Header -->
+<!-- Description: Header for teacher user -->
+<!-- First Written: 19/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
 
 <?php
 session_start();

@@ -1,3 +1,11 @@
+<!-- Programmer Name: Bernard Ong Yuzhe & Teoh Mae Kay-->
+<!-- Program Name : Student Header -->
+<!-- Description: Header for student user -->
+<!-- First Written: 19/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
+
 <?php
     session_start();
     $host = 'localhost';

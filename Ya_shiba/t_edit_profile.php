@@ -1,3 +1,9 @@
+<!-- Programmer Name: Benard Ong Yuzhe & She Jun Yuan-->
+<!-- Program Name : Teacher Edit Profile-->
+<!-- Description: Teacher able to edit the profile-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

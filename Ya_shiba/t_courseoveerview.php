@@ -1,4 +1,8 @@
-
+<!-- Programmer Name: Benard Ong Yuzhe & Tay Hui Yee-->
+<!-- Program Name : Teacher courseoverview-->
+<!-- Description: Teacher able to view all the class-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
 <?php
 
 

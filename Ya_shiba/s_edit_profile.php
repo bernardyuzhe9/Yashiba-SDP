@@ -1,3 +1,9 @@
+<!-- Programmer Name: She Jun Yuan-->
+<!-- Program Name : Student edit profile -->
+<!-- Description: Edit student profile -->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
     $title = 'Home';
     $page = 'home';

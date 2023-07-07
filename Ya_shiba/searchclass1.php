@@ -1,3 +1,9 @@
+<!-- Programmer Name: Tay Hui Yee-->
+<!-- Program Name : search class-->
+<!-- Description: Student able to search the class based on the classroom name-->
+<!-- First Written: 22/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
 <?php
 session_start();
 $host = 'localhost';
