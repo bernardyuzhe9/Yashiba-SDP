@@ -52,12 +52,12 @@ if(isset($_POST['addSch'])){
         echo '<script>alert("There is a repeated school ID, please try another school ID")</script>';
 
     }else{
-        $insertQuery = mysqli_prepare($connection, "INSERT INTO yashiba_school (SCHOOL_ID, SCHOOL_NAME, SCHOOL_ADDRESS, PERSON_IN_CHARGE, PERSON_IN_CHARGE_PHONE, SCHOOL_REGISTER_DATE) VALUES (?, ?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($insertQuery, 'ssssis', $schID, $schName, $address, $pic, $contact, $rDate);
+        $query = "INSERT INTO yashiba_school (SCHOOL_ID,SCHOOL_NAME,SCHOOL_ADDRESS,PERSON_IN_CHARGE,PERSON_IN_CHARGE_PHONE,SCHOOL_REGISTER_DATE) 
+        VALUES ('$schID', '$schName', '$address', '$pic', $contact, '$rDate')";
+        if(mysqli_query($connection,$query)){
+     
+            echo '<script>alert("School Account was created successfully")</script>';
 
-        if(mysqli_stmt_execute($insertQuery)){
-
-            echo "School Account was created successfully";
         }else{
             echo '<script>alert("School Account was not created, please try again")</script>';
 

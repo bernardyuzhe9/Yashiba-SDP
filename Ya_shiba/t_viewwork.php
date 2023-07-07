@@ -5,63 +5,7 @@
     include_once('assets/t_header+nav.php');
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
-
-    $selectedtask = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_SESSION['taskid']);
-
-    $row1 = mysqli_fetch_assoc($selectedtask);
-    $highestresult = mysqli_query($connection, "SELECT MAX(MARKED) AS highest_mark FROM marking WHERE TASK_ID=". $_SESSION['taskid']);
-
-    // Check if any rows are returned
-    if (mysqli_num_rows($highestresult) > 0) {
-      // Fetch the highest mark value
-      $row2 = mysqli_fetch_assoc($highestresult);
-      $highestMark = $row2['highest_mark'];
-  } else {
-      // No rows found, set highest mark to 0
-      $highestMark = 0;
-  }
   
-
-
-
-  
-  $lowestresult = mysqli_query($connection, "SELECT MIN(MARKED) AS lowest_mark FROM marking WHERE TASK_ID=". $_SESSION['taskid']);
-
-  // Check if any rows are returned
-  if (mysqli_num_rows($lowestresult) > 0) {
-    // Fetch the highest mark value
-    $row3 = mysqli_fetch_assoc($lowestresult);
-    $lowestMark = $row3['lowest_mark'];
-} else {
-    // No rows found, set highest mark to 0
-    $lowestMark = 0;
-}
-
- // Retrieve all marks from the database for the given task
-$marksResult = mysqli_query($connection, "SELECT MARKED FROM marking WHERE TASK_ID = " . $_SESSION['taskid']);
-
-$totalMarks = mysqli_num_rows($marksResult); // Total number of marks
-$pass = $row1['POINT'];
-$passCount = 0;
-$failCount = 0; 
-$sum = 0; // Variable to store the sum of marks
-
-// Loop through each mark and calculate the sum
-while ($row4 = mysqli_fetch_assoc($marksResult)) {
-    $sum += $row4['MARKED'];
-    if ($row4['MARKED'] >= $pass) {
-      $passCount++;
-  }else{
-    $failCount++;
-  }
-}
-
-if ($totalMarks > 0) {
-     
-    $average = $sum / $totalMarks;
-} else {
-    $average = 0;
-}
 
 if (isset($_POST['uploadgrading'])) {
 
@@ -70,8 +14,10 @@ if (isset($_POST['uploadgrading'])) {
   $marked = $_POST['markedtxt'];
   $markingId = $_POST['markingid'];
   $markdate = date('Y/m/d H:i:s');
-
-
+  if (!ctype_digit($marked) || intval($marked) <= 0) {
+    echo '<script>alert("Please enter a valid integer greater than 0.");</script>';
+    // Handle the error or take appropriate actions
+  } else {
   if (isset($_FILES["files"]) && is_array($_FILES["files"])) {
     $fileCount = count($_FILES["files"]["name"]);
 
@@ -87,7 +33,8 @@ if (isset($_POST['uploadgrading'])) {
       if (move_uploaded_file($fileTmp, $destination)) {
         mysqli_query($connection, "UPDATE marking SET MARKING_STATUS='$status', MARKING_DATE='$markdate', MARKED='$marked', RETURN_FILE='$fileName', FEEDBACK='$feedback' WHERE MARKING_ID='$markingId'");
         echo '<script>alert("Marked successfully")</script>';
-        
+        echo '<script>window.location.href = "t_viewwork.php";</script>';
+
       } else {
     
         echo '<script>alert("Error uploading file")</script>';
@@ -98,13 +45,69 @@ if (isset($_POST['uploadgrading'])) {
     echo '<script>alert("File upload failed. Please select a file to upload")</script>';
         
   }
+}}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<?php 
+
+$selectedtask = mysqli_query($connection, "SELECT * FROM task WHERE TASK_ID=".$_SESSION['taskid']);
+
+$row1 = mysqli_fetch_assoc($selectedtask);
+$lowestresult = mysqli_query($connection, "SELECT MIN(MARKED) AS lowest_mark FROM marking WHERE TASK_ID = " . $_SESSION['taskid']);
+$highestresult = mysqli_query($connection, "SELECT MAX(MARKED) AS highest_mark FROM marking WHERE TASK_ID=". $_SESSION['taskid']);
+
+// Check if any rows are returned
+if (mysqli_num_rows($highestresult) > 0) {
+  // Fetch the highest mark value
+  $row2 = mysqli_fetch_assoc($highestresult);
+  $highestMark = $row2['highest_mark'];
+} else {
+  // No rows found, set highest mark to 0
+  $highestMark = 0;
+}
+
+if (mysqli_num_rows($lowestresult) > 0) {
+// Fetch the highest mark value
+$row3 = mysqli_fetch_assoc($lowestresult);
+$lowestMark = $row3['lowest_mark'];
+} else {
+// No rows found, set highest mark to 0
+$lowestMark = 0;
+}
+
+$marksResult = mysqli_query($connection, "SELECT MARKED FROM marking WHERE TASK_ID = {$_SESSION['taskid']} AND MARKED IS NOT NULL");
+
+$totalMarks = mysqli_num_rows($marksResult); // Total number of marks
+$pass = $row1['POINT'];
+$passCount = 0;
+$failCount = 0; 
+$sum = 0; // Variable to store the sum of marks
+
+
+// Loop through each mark and calculate the sum
+while ($row4 = mysqli_fetch_assoc($marksResult)) {
+if(!empty($row4['MARKED']))
+$sum += $row4['MARKED'];
+if ($row4['MARKED'] >= $pass) {
+  $passCount++;
+}else{
+$failCount++;
+}
+}
+
+if ($totalMarks > 0) {
+ 
+$average = $sum / $totalMarks;
+$average = number_format($average, 0); 
+} else {
+$average = 0;
 }
 
 
-?><?php echo $highestMark; ?>
-<!DOCTYPE html>
-<html lang="en">
-
+?>
 <head>
         <link href="css/viewwork.css" rel="stylesheet" />
 </head>
@@ -196,7 +199,17 @@ if (isset($_POST['uploadgrading'])) {
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <div class="profile-pic" style="margin-left: 30px;">
-              <img src="" alt="">
+            <?php
+                if ($markingprofile["USER_PROFILE"] == null) {
+            ?>
+                <img src="img/profile picture.jpg" >
+                <?php
+                } else {
+            ?>
+                <img src="uploads/<?php echo $markingprofile["USER_PROFILE"] ?>" >
+            <?php
+                }
+            ?>
             </div>
             <div class="profile">
               <div><?php echo $markingprofile['USER_NAME']; ?></div>

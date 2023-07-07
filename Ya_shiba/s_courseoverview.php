@@ -38,6 +38,10 @@
 <div class="blog-navigation-container" id="blog-DIV">
     <nav>
         <ul>
+        <div  style="margin: 30px 30px 30px 30px;">
+                <a href="s_homepage.php">
+                <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
             <li class="course-name"><?php echo $_SESSION['classroomname']; ?></li>
             <li>
                 <button class="blog-btn" name="Task">Work</button>

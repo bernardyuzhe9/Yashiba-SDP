@@ -50,7 +50,7 @@ function validateRName(){
 
 function validateRPhone(){
     var phone= document.getElementById("user_contact_phone").value;
-    var pattern = /^(01)[0-9]{1}[0-9]{7,8}$/;
+    var pattern = /^(01)[0-9]{1}[0-9]{7}$/;
 
     if(!phone.match(pattern)){
         phoneError.innerHTML="Phone number is not match";
@@ -226,20 +226,15 @@ function validateSchPic(){
 
 function validateSchContact(){
     var schoolContact= document.getElementById("sch_contact").value;
+    var pattern = /^(01)[0-9]{1}[0-9]{7}$/;
 
     if(schoolContact.length==0){
         schContactError.innerHTML="School Contact Number is required";
-        return false;
-        /* to set or return the HTML content of an element.*/
-    }
+        return false;}
 
-    if(isNaN(schoolContact)){
-        schContactError.innerHTML="Only write digit not character";
-        return false;
-    }
-    if(schoolContact.length!=10){
-        schContactError.innerHTML="Contact number only can be 10 digits";
-        return false;
+     if(!schoolContact.match(pattern)){
+        schContactError.innerHTML="Phone number is not valid";
+        return false;    
     }
     else{
         schContactError.innerHTML="<img src=\"img/checkcircle.png\"width=\"20px\" height=\"20px\" >";

@@ -213,7 +213,17 @@ if (isset($row["MESSAGES_NUM"])) {
 ?>
         <div class="bottom-content" style="justify-content: left">
             <div class="profile-pic">
-                <img src="users/<?php echo $commentprofile["USER_PROFILE"]; ?>" alt="">
+            <?php
+                if ($commentprofile["USER_PROFILE"] == null) {
+            ?>
+                <img src="img/profile picture.jpg" >
+                <?php
+                } else {
+            ?>
+                <img src="uploads/<?php echo $commentprofile["USER_PROFILE"] ?>" >
+            <?php
+                }
+            ?>      
             </div>
             <div class="profile">
                 <div><?php echo $commentprofile["USER_NAME"]; ?></div>

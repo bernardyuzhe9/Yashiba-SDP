@@ -57,6 +57,11 @@ if (isset($_POST['deletetask'])) {
       $due=date('Y-m-d', strtotime($_POST['duetxt']));
       $classcat=$_POST['taskcattxt'];
       $point=$_POST['pointtxt'];
+      if (!ctype_digit($point) || intval($point) <= 0) {
+        echo '<script>alert("Please enter a valid integer greater than 0.");</script>';
+        // Handle the error or take appropriate actions
+      
+      }else{
       $message="0";
       $handin="0";     
 
@@ -105,14 +110,7 @@ if (isset($_FILES["files"])) {
 ('{$_SESSION['classroomid']}','$taskname','$description','$fileCount','$post_date','$due','$classcat','$point','$message','$handin')";
 mysqli_query($connection, $query4);
 
-}
-      
-  
-    
-     
-  
-  }
-
+}  }  }
 
 
 
@@ -180,7 +178,11 @@ mysqli_query($connection, $query4);
                     </div>
                     <div class="task">
                         <div><?php echo $row["TASK_NAME"]; ?></div>
-                        <div style="font-size: 12px;"><?php echo $row["TASK_SUBMIT_DATE"]; ?></div>
+                        <?php if($row["TASK_CATEGORY"] =="Task") {?>
+                        <div style="font-size: 12px;">   
+                       
+                        due: <?php echo $row['TASK_SUBMIT_DATE']; ?></div>
+                    <?php }?>
                     </div>
                 </div>
                 <div class="right flow" style="font-size: 12px;">
@@ -202,6 +204,7 @@ mysqli_query($connection, $query4);
                         <div ><?php echo $row["MESSAGES_NUM"]; ?></div>
                         <div style="font-size: 12px;">Comment</div>
                     </div>
+                    <?php if($row['TASK_CATEGORY'] == "Task") {?>
                     <div class="sidtask">
                         <div><?php echo $row["HAND_IN_NUM"]; ?></div>
                         <div style="font-size: 12px;">Handed in</div>
@@ -210,6 +213,7 @@ mysqli_query($connection, $query4);
                         <div><?php echo $assigned ?></div>
                         <div style="font-size: 12px;">Assigned</div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
             <hr style="border:1px solid #365268;">
@@ -266,28 +270,28 @@ mysqli_query($connection, $query4);
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control"  name="tasknametxt">
+                <input type="text" class="form-control"  name="tasknametxt" required>
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" name="taskdestxt"></textarea>
+            <textarea class="form-control" name="taskdestxt" required></textarea>
             </div>
        
         <div class="mb-3">
                 <label for="Point" class="col-form-label" name="pointtxt">Point</label>
-                <input type="text" class="form-control" name="pointtxt">
+                <input type="text" class="form-control" name="pointtxt" required>
             </div>
      
         <div class="mb-3">
 
                 <label for="due" class="col-form-label">Due</label>
-                <input type="text" class="form-control" id="due" name="duetxt" >
+                <input type="text" class="form-control" id="due" name="duetxt"  required>
 
             </div>
         <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Upload</label>
-                <input class="form-control" type="file" name="files[]" multiple>
+                <input class="form-control" type="file" name="files[]" multiple required>
         </div>
     
         </div>
@@ -314,16 +318,16 @@ mysqli_query($connection, $query4);
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" name="tasknametxt">
+                <input type="text" class="form-control" name="tasknametxt" required>
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" name="taskdestxt"></textarea>
+            <textarea class="form-control" name="taskdestxt" required></textarea>
             </div>
         </div>
         <input type="hidden" name="duetxt" value="0000-00-00">
-        <input type="hidden" name="pointtxt" value="0">
+        <input type="hidden" name="pointtxt" value="1">
         
       <div class="modal-footer">
       <button class="btn btn-secondary" type="button" data-bs-target="#createbtn" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
@@ -348,20 +352,20 @@ mysqli_query($connection, $query4);
       <div class="modal-body">
         <div class="mb-3">
                 <label for="Title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" name="tasknametxt">
+                <input type="text" class="form-control" name="tasknametxt" required>
             </div>
         
         <div class="mb-3">
             <label for="Description" class="col-form-label">Description</label>
-            <textarea class="form-control" name="taskdestxt"></textarea>
+            <textarea class="form-control" name="taskdestxt" required></textarea>
             </div>
             <input type="hidden" name="duetxt" value="None">
-            <input type="hidden" name="pointtxt" value="0">
+            <input type="hidden" name="pointtxt" value="1">
 
         <div class="mb-3">
         <input type="hidden" name="additional" value="Null">
                 <label for="formFileMultiple" class="form-label">Upload</label>
-                <input class="form-control" type="file" name="files[]" multiple>
+                <input class="form-control" type="file" name="files[]" multiple required>
         </div>
         </div>
       <div class="modal-footer">

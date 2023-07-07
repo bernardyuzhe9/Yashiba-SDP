@@ -100,6 +100,8 @@ ini_set('display_errors', 1);
             } else {
               
                 echo '<script>alert("Error uploading file")</script>';
+                echo '<script>window.location.href = "t_viewtask.php";</script>';
+
 
             }
         }  echo '<script>alert("File uploaded successfully")</script>';
@@ -198,8 +200,17 @@ if (isset($row["MESSAGES_NUM"])) {
 ?>
         <div class="bottom-content" style="justify-content: left">
             <div class="profile-pic">
-                <img src="users/<?php echo $commentprofile["USER_PROFILE"]; ?>" alt="">
-            </div>
+            <?php
+                if ($commentprofile["USER_PROFILE"] == null) {
+            ?>
+                <img src="img/profile picture.jpg" >
+                <?php
+                } else {
+            ?>
+                <img src="uploads/<?php echo $commentprofile["USER_PROFILE"] ?>" >
+            <?php
+                }
+            ?>            </div>
             <div class="profile">
                 <div><?php echo $commentprofile["USER_NAME"]; ?></div>
                 <div class="comment">
@@ -302,7 +313,7 @@ while ($wee = mysqli_fetch_assoc($taskfile)) {
           <div class="mb-3">
           <label for="formFileMultiple" class="form-label">Upload</label>
           <label for="formFileMultiple" class="form-label">Please note that the previous file will be removed</label>
-                <input class="form-control" type="file" name="files[]" multiple>
+                <input class="form-control" type="file" name="files[]" multiple required>
           </div>
        
       </div>

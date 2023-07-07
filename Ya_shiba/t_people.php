@@ -86,7 +86,7 @@
         
         echo '<script>alert("Students have been added to this class")</script>';
     }else{
-        echo (mysqli_num_rows($getStudentBatchQuery));
+        // echo (mysqli_num_rows($getStudentBatchQuery));
         echo '<script>alert("Batch ID was from other school")</script>';
     
     }

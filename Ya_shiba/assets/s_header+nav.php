@@ -18,37 +18,49 @@
         $classcode = $_POST['classcodetxt'];
         $status = "Show";
         $userid = $_SESSION['id'];
-        if(empty( $classcode) ){
+        $schoolid = $_SESSION['schoolid'];
+    
+        if (empty($classcode)) {
             echo '<script>alert("Please fill in the code")</script>';
-        }else{
-            $query =mysqli_query($connection,"SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
-            $row = mysqli_fetch_assoc($query); 
+        } else {
+            $query = mysqli_query($connection, "SELECT * FROM classroom WHERE CLASS_CODE = '$classcode'");
+            $row = mysqli_fetch_assoc($query);
             $count = mysqli_num_rows($query);
-            if($count ==1){
-                $classroom_id = $row['CLASSROOM_ID'];
-                $query2 = mysqli_query($connection,"SELECT * FROM enrolled_classroom WHERE CLASSROOM_ID='$classroom_id'AND USER_ID='$userid'");
-                $row1 = mysqli_fetch_assoc($query2); 
-                $count1 = mysqli_num_rows($query2);
-                if($count1 ==1){
-                    echo '<script>alert("Error! You have joined the class")</script>';
-                }else{
-                    // Insert data into the report table
-                    $query1 = "INSERT INTO enrolled_classroom (CLASSROOM_ID, USER_ID, STATUS)
-                    VALUES ('$classroom_id', '" . $_SESSION['id'] . "', '$status')";
-
-                    if (mysqli_query($connection, $query1)) {
-                        echo '<script>alert("Successfully join the class")</script>';
+    
+            if ($count == 1) {
+                $USERCHECKID = $row['USER_ID'];
+                $query3 = mysqli_query($connection, "SELECT * FROM yashiba_user WHERE USER_ID ='$USERCHECKID'");
+                $row2 = mysqli_fetch_assoc($query3);
+                $checkshl = $row2['SCHOOL_ID'];
+    
+                if ($schoolid == $checkshl) {
+                    $classroom_id = $row['CLASSROOM_ID'];
+                    $query2 = mysqli_query($connection, "SELECT * FROM enrolled_classroom WHERE CLASSROOM_ID='$classroom_id'AND USER_ID='$userid'");
+                    $row1 = mysqli_fetch_assoc($query2);
+                    $count1 = mysqli_num_rows($query2);
+    
+                    if ($count1 == 1) {
+                        echo '<script>alert("Error! You have joined the class")</script>';
                     } else {
-                        echo '<script>alert("Error occur")</script>';
+                        // Insert data into the report table
+                        $query1 = "INSERT INTO enrolled_classroom (CLASSROOM_ID, USER_ID, STATUS)
+                                VALUES ('$classroom_id', '" . $_SESSION['id'] . "', '$status')";
+    
+                        if (mysqli_query($connection, $query1)) {
+                            echo '<script>alert("Successfully join the class")</script>';
+                        } else {
+                            echo '<script>alert("Error occur")</script>';
+                        }
                     }
+                } else {
+                    echo '<script>alert("You are not able to join this class code")</script>';
                 }
-
-            }else{
+            } else {
                 echo '<script>alert("Wrong class code")</script>';
-            }   
+            }
         }
-        
     }
+    
 
 ?>
 <!DOCTYPE html>
