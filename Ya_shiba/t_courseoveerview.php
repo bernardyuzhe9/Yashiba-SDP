@@ -10,8 +10,7 @@
     $page = 'home';
     include_once('assets/t_header+nav.php'); 
     
-    
-    $assigned = (int)$_SESSION['classroomnstudent'] -1;
+    $assigned =(int)$_SESSION['classroomnstudent']-1;
     date_default_timezone_set('Asia/Kuala_Lumpur');
 
 

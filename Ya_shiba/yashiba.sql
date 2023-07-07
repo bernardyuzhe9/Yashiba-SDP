@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2023 at 05:10 PM
+-- Generation Time: Jul 07, 2023 at 05:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,15 +42,13 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`CLASSROOM_ID`, `CLASS_CODE`, `USER_ID`, `CLASS_NAME`, `CLASS_DESCRIPTION`, `CLASS_BACKGROUND`, `NUM`) VALUES
-(10, 'CCCC4444', 1, 'Bahasa Melayu', 'Bahasa Melayu for 4sc2', 'hihi.png', 1),
-(11, 'ENGL1234', 1, 'English', 'English classroom for Year 2 student', 'IMG-64a514f6891e41.91557128.png', 5),
-(12, 'MMMM1234', 1, 'Math', 'Math class for 4sc2', 'IMG-64a58c63052c20.23972779.jpg', 1),
-(13, 'MATH1234', 2, 'Addtional Math', 'Additional math for 4sc2', 'hihi.png', 1),
+(13, 'MATH1234', 2, 'Addtional Math', 'Additional math for 4sc2', 'hihi.png', 2),
 (14, 'CCCC4333', 2, 'Chinese', 'chinese for student 4sc3', 'hihi.png', 6),
 (15, 'ENNG4235', 2, 'Japanese', 'For all Form 4', 'hihi.png', 5),
 (16, 'ENNG0123', 17, 'English', 'English for 4sc3', 'hihi.png', 5),
-(17, 'JJJJ4444', 2, 'Bahasa Malaysia', 'This is a BM classroom', 'hihi.png', 1),
-(18, 'MMMN1239', 2, 'Moral', 'moral class', 'IMG-64a7a1f8eb44e8.91295251.png', 1);
+(17, 'JJJJ4444', 2, 'Bahasa Malaysia', 'This is a BM classroom', 'hihi.png', 2),
+(18, 'MMMN1239', 2, 'Moral', 'moral class', 'IMG-64a7a1f8eb44e8.91295251.png', 3),
+(19, 'BIOL0123', 2, 'Biology', 'biology class', 'hihi.png', 2);
 
 -- --------------------------------------------------------
 
@@ -70,23 +68,18 @@ CREATE TABLE `enrolled_classroom` (
 --
 
 INSERT INTO `enrolled_classroom` (`ENROLLED_CLASS_ID`, `CLASSROOM_ID`, `USER_ID`, `STATUS`) VALUES
-(26, 10, 1, 'Show'),
-(41, 12, 1, 'Show'),
 (42, 13, 2, 'Show'),
 (43, 14, 2, 'Hidden'),
-(44, 15, 2, 'Hidden'),
-(45, 15, 10, 'Hidden'),
-(53, 15, 8, 'Hidden'),
-(54, 15, 6, 'Hidden'),
-(55, 15, 7, 'Hidden'),
-(56, 10, 7, 'Show'),
+(44, 15, 2, 'Show'),
+(45, 15, 10, 'Show'),
+(53, 15, 8, 'Show'),
+(54, 15, 6, 'Show'),
+(55, 15, 7, 'Show'),
 (57, 16, 17, 'Show'),
 (58, 16, 33, 'Show'),
 (59, 16, 45, 'Show'),
 (60, 16, 44, 'Show'),
 (61, 16, 43, 'Show'),
-(62, 11, 7, 'Show'),
-(63, 11, 8, 'Show'),
 (64, 16, 32, 'Show'),
 (65, 17, 2, 'Show'),
 (66, 14, 7, 'Hidden'),
@@ -95,10 +88,13 @@ INSERT INTO `enrolled_classroom` (`ENROLLED_CLASS_ID`, `CLASSROOM_ID`, `USER_ID`
 (69, 14, 6, 'Hidden'),
 (70, 14, 35, 'Hidden'),
 (71, 16, 37, 'Show'),
-(72, 18, 2, 'Show'),
-(73, 18, 6, 'Show'),
+(72, 18, 2, 'Hidden'),
+(73, 18, 6, 'Hidden'),
 (74, 13, 6, 'Show'),
-(75, 17, 6, 'Show');
+(75, 17, 6, 'Show'),
+(80, 18, 46, 'Show'),
+(81, 19, 2, 'Show'),
+(82, 19, 46, 'Show');
 
 -- --------------------------------------------------------
 
@@ -153,7 +149,6 @@ INSERT INTO `messages` (`MESSAGE_ID`, `USER_ID`, `TASK_ID`, `MESSAGE_DETAIL`) VA
 (48, 6, 34, 'i like the work'),
 (49, 17, 36, 'by tmr'),
 (50, 32, 36, 'test'),
-(53, 7, 30, 'bla'),
 (54, 6, 40, 'okay');
 
 -- --------------------------------------------------------
@@ -202,7 +197,6 @@ CREATE TABLE `student_batch` (
 INSERT INTO `student_batch` (`STUDENT_BATCH_ID`, `STUDENT_BATCH_NAME`, `CREATED_TIME`, `CREATED_USER_ID_TEACHER`, `NUM`) VALUES
 ('YS0001', '4sc1', '2023-07-07 12:59:28', 2, 3),
 ('YS1234', '4sc3', '2023-07-06 00:37:06', 2, 3),
-('YS1254', 'Batch 1', '2023-07-05 02:25:02', 1, 1),
 ('YS1452', '4sc2', '2023-07-06 00:37:41', 2, 2),
 ('YS5252', 'Sckool 2', '2023-07-05 18:56:37', 13, 1),
 ('YS5452', 'Sckool 2', '2023-07-05 18:56:37', 13, 1);
@@ -233,7 +227,6 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`TASK_ID`, `CLASSROOM_ID`, `TASK_NAME`, `TASK_DESCRIPTION`, `UPLOAD_FILE_NUM`, `TASK_CREATE_TIME`, `TASK_SUBMIT_DATE`, `TASK_CATEGORY`, `POINT`, `MESSAGES_NUM`, `HAND_IN_NUM`) VALUES
 (29, 13, 'MathTest', 'this is math test', 1, '2023-07-05 23:26:13', '2023-07-24', 'Task', 50, 0, 0),
-(30, 11, 'English Test', 'this is english test', 1, '2023-07-05 23:27:42', '2023-07-24', 'Task', 50, 1, 0),
 (31, 15, 'Quiz', 'Answer the quiz given \r\nhttps://www.efset.org/quick-check/\r\nSubmit the file to me by blabla', 4, '2023-07-06 14:05:04', '2023-07-12', 'Task', 40, 2, 1),
 (34, 13, 'Math test', 'SPM 2022', 0, '2023-07-06 15:19:23', '0000-00-00', 'Annoucement', 0, 1, 0),
 (35, 14, 'Chinese SPM 25', 'here is the file for the SPM 2025', 1, '2023-07-06 15:24:29', '1970-01-01', 'Material', 0, 0, 0),
@@ -245,15 +238,12 @@ INSERT INTO `task` (`TASK_ID`, `CLASSROOM_ID`, `TASK_NAME`, `TASK_DESCRIPTION`, 
 (41, 15, 'Task 1', 'tak 1 description', 1, '2023-07-07 13:29:24', '2023-07-09', 'Task', 40, 0, 1),
 (42, 16, 'English Test', 'English test on next Monday', 0, '2023-07-07 16:29:14', '0000-00-00', 'Annoucement', 1, 0, 0),
 (43, 13, 'AddMath SPM 2023', 'answer the addmath SPM 2023 ', 1, '2023-07-07 17:27:12', '2023-07-31', 'Task', 80, 0, 0),
-(44, 10, 'Task 1', 'Description for Task 1', 1, '2023-07-07 17:31:25', '2023-07-12', 'Task', 40, 0, 0),
-(45, 11, 'Task 2', 'Description for Task 2', 1, '2023-07-07 17:31:25', '2023-07-12', 'Task', 40, 0, 0),
-(46, 12, 'Material 1', 'Description for Material 1', 1, '2023-07-07 17:31:25', '0000-00-00', 'Material', 1, 0, 0),
 (47, 13, 'Material 2', 'Description for Material 2', 1, '2023-07-07 17:31:25', '0000-00-00', 'Material', 1, 0, 0),
 (48, 14, 'Task 5', 'Description for Task 5', 1, '2023-07-07 17:31:25', '2023-07-13', 'Task', 40, 0, 0),
 (49, 15, 'Announcement 1', 'Description for Announcement 1', 0, '2023-07-07 17:31:25', '0000-00-00', 'Announcement', 1, 0, 0),
 (50, 16, 'Announcement 2', 'Description for Announcement 2', 0, '2023-07-07 17:31:25', '0000-00-00', 'Announcement', 1, 0, 0),
-(51, 17, 'Announcement 3', 'Description for Announcement 3', 1, '2023-07-07 17:31:25', '2023-07-14', 'Task', 40, 0, 0),
-(52, 18, 'Task 9', 'Description for Task 9', 0, '2023-07-07 17:31:25', '0000-00-00', 'Announcement', 1, 0, 0),
+(51, 17, 'Task 6', 'Complete the task given', 1, '2023-07-07 17:31:25', '2023-07-14', 'Task', 40, 0, 0),
+(52, 18, 'Announcement 3', 'Description for Announcement 3', 0, '2023-07-07 17:31:25', '0000-00-00', 'Announcement', 1, 0, 0),
 (53, 14, 'AddMath SPM 2023', 'answer the addmath SPM 2023 ', 1, '2023-07-07 17:42:35', '2023-07-31', 'Task', 80, 0, 0);
 
 -- --------------------------------------------------------
@@ -278,7 +268,6 @@ CREATE TABLE `tec_uploaded_file` (
 
 INSERT INTO `tec_uploaded_file` (`UPLOADED_FILE_ID`, `TASK_ID`, `FILE_1`, `FILE_2`, `FILE_3`, `FILE_4`, `FILE_5`) VALUES
 (35, 29, 'Assignment_Q (1).docx', '', '', '', ''),
-(36, 30, 'Assignment_Q (1).docx', '', '', '', ''),
 (40, 35, 'TASK 3 (2).docx', '', '', '', ''),
 (42, 31, 'Sample 1.docx', 'Sample 2.docx', 'Sample 3.docx', 'Sample 4.docx', ''),
 (44, 37, 'English - Chap 1.docx', '', '', '', ''),
@@ -287,9 +276,6 @@ INSERT INTO `tec_uploaded_file` (`UPLOADED_FILE_ID`, `TASK_ID`, `FILE_1`, `FILE_
 (47, 41, 'jpns task.docx', '', '', '', ''),
 (51, 36, 'Sample 5.docx', '', '', '', ''),
 (52, 43, 'Sample 6.docx', '', '', '', ''),
-(53, 44, 'Sample 7.docx', '', '', '', ''),
-(54, 45, 'Sample 8.docx', '', '', '', ''),
-(55, 46, 'Sample 9.docx', '', '', '', ''),
 (56, 47, 'Sample 10.docx', '', '', '', ''),
 (57, 48, 'Sample 11.docx', '', '', '', ''),
 (58, 51, 'Sample 12.docx', '', '', '', ''),
@@ -346,7 +332,6 @@ CREATE TABLE `yashiba_user` (
 --
 
 INSERT INTO `yashiba_user` (`USER_ID`, `SCHOOL_ID`, `USERNAME`, `USER_NAME`, `EMAIL`, `CONTACT_NUMBER`, `PASSWORD`, `ROLE`, `STUDENT_BATCH_ID`, `USER_STATUS`, `USER_PROFILE`, `REGISTERED_DATE`) VALUES
-(1, 'SCKL001', 'tayyy_hy', 'Tay1', 'sms@gmail.com', '0122177537', '23456789', 'Teacher', 'YS1254', 'Active', '3135715.png', '2023-06-11 01:53:25'),
 (2, 'SCKL001', 'usman', 'Usman', 'a@gmail.com', '0125236985', '12341234', 'Teacher', NULL, 'Active', 'images.jpeg', '2023-07-01 21:06:53'),
 (3, '', 'Admin1', 'Hashana', 'wew@gmail.com', '0122555788', '12341234', 'Admin', NULL, 'Active', NULL, '2023-06-11 01:59:14'),
 (6, 'SCKL001', 'bn123a', 'Bernard Ong', 'g@gmail.com', '0122175556', '12341234', 'Student', 'YS1234', 'Active', NULL, '2023-07-01 21:11:12'),
@@ -460,13 +445,13 @@ ALTER TABLE `yashiba_user`
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `CLASSROOM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `CLASSROOM_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `enrolled_classroom`
 --
 ALTER TABLE `enrolled_classroom`
-  MODIFY `ENROLLED_CLASS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `ENROLLED_CLASS_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `marking`

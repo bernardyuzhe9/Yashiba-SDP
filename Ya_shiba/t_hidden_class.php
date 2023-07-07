@@ -46,7 +46,7 @@ if ($connection === false){
         
         $_SESSION['classroomid'] = $row['CLASSROOM_ID'];
         $_SESSION['classroomname'] = $row['CLASS_NAME'];
-        $_SESSION['classroomnstudent'] = $row['CLASS_NAME'];
+        $_SESSION['classroomnstudent'] = $row['NUM'];
         echo '<script>window.location.href = "t_courseoveerview.php";</script>';
         exit();
     }}
