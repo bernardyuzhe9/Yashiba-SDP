@@ -120,7 +120,7 @@ CREATE TABLE `marking` (
 --
 
 INSERT INTO `marking` (`MARKING_ID`, `USER_ID`, `TASK_ID`, `SUBMIT_DATE`, `MARKING_DATE`, `UPLOAD_FILE`, `RETURN_FILE`, `MARKING_STATUS`, `MARKED`, `FEEDBACK`) VALUES
-(9, 6, 31, '2023-07-06 15:45:05', '2023-07-06 16:05:52', 'TASK 3 (2).docx', 'Assignment Cover (1) (1).doc', 'Graded', '50', 'Good, but there is some changes on the assignment cover as there is many file'),
+(9, 6, 31, '2023-07-06 15:45:05', '2023-07-06 16:05:52', 'TASK 3 (2).docx', 'TASK 3 (1).docx', 'Graded', '50', 'Good, but there is some changes on the assignment cover as there is many file'),
 (11, 33, 36, '2023-07-07 12:33:58', '2023-07-07 16:23:14', 'English - Jason.docx', 'Jason file.docx', 'Graded', '90', 'Good'),
 (12, 37, 36, '2023-07-07 12:52:23', '2023-07-07 16:26:00', 'English - 77.docx', 'Noah Chang edited.docx', 'Graded', '75', 'Good'),
 (13, 32, 36, '2023-07-07 13:02:17', '2023-07-07 16:25:15', 'English David.docx', 'David Wang editted.docx', 'Graded', '3', 'Poor'),
