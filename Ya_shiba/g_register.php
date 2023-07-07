@@ -1,3 +1,11 @@
+<!-- Programmer Name: Tay Hui Yee-->
+<!-- Program Name : Register 1  -->
+<!-- Description:allow new user to select student and teacher  -->
+<!-- First Written: 10/6/2023 -->
+<!-- Eddited on: 7/7/2023-->
+
+
+
 <?php
 
 

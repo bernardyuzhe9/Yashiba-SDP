@@ -35,6 +35,13 @@
                     <h3 class="text-primary">Teacher</h3>
                     <hr class="border border-primary border-2 opacity-100">
                 </div>
+                <table class="table table-hover  table-bordered">
+                    <thead class="text-center" style="background-color: #bcd2e1fe; vertical-align:middle; white-space:nowrap;">
+                        <tr>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
                 <tbody class="text-center">
                         <?php
                         

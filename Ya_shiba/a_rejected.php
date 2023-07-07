@@ -1,5 +1,5 @@
 <!-- Programmer Name:  She Jun Yuan-->
-<!-- Program Name : Admin rejecct -->
+<!-- Program Name : Admin reject -->
 <!-- Description: allow admin to reject school teacher-->
 <!-- First Written: 20/6/2023 -->
 <!-- Eddited on: 7/7/2023-->
