@@ -9,8 +9,6 @@
     include_once('assets/a_header+nav.php');
     $query='SELECT * FROM yashiba_school ORDER BY SCHOOL_ID ASC'; 
     $results = mysqli_query($connection, $query);
-    dfdfgfd
-
     $query1="SELECT STUDENT_BATCH_ID, COUNT(USER_ID) as 'u_Count' FROM yashiba_user 
              WHERE STUDENT_BATCH_ID!='NULL'
              GROUP BY STUDENT_BATCH_ID 
